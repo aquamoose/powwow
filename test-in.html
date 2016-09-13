@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pow! Wow! Taiwan!</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Pow! Wow! Taiwan!">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="">
+    <link rel="stylesheet" href="css/timeliner.css">
+    <script src="js/waterfall-light.js"></script>
+    <script src="js/timeliner.js"></script>
+    <script>
+      function goToByScroll(id){
+      	id = id.replace("link", "");
+      	$('html,body').animate({
+      		scrollTop: $("#"+id).offset().top - 50},
+      	'slow');
+      }
+      function redirectPage() {
+      	window.location = linkLocation;
+      }
+      $(document).ready(function() {
+      	//- $("body").css("display", "none");
+      
+       //-    $("body").fadeIn(1000);
+       
+       //-    $(".linkFade").click(function(event){
+       //-        event.preventDefault();
+       //-        linkLocation = this.href;
+       //-        $("body").fadeOut(1000, redirectPage);      
+       //-    });
+               
+          
+      	$(document).foundation();
+      	//- $('.lines-button').click(function(e) {
+      	//- 	e.preventDefault();
+      	//- 	$('.lines-button').toggleClass('close');
+      	//- 	var open = $('.screen-menu').hasClass('sm-overlay-open');
+      	//- 	if(open) {
+      	//- 		$('.screen-menu').removeClass('sm-overlay-open');
+      	//- 		$('body').css({'overflow-y': 'auto'});
+      	//- 		$('.header').find('.menu-button').show();
+      	//- 	} else {
+      	//- 		$('.screen-menu').addClass('sm-overlay-open');
+      	//- 		$('body').css({'overflow-y': 'hidden'});
+      	//- 		$('.header').find('.menu-button').hide();
+      	//- 	}
+      	//- });
+      	
+      	//- $(window).scroll(function(){
+      	//- 	if ($(this).scrollTop() > 50) {
+      	//- 		$('.back-to-top').addClass('back-top-show');
+      	//- 	} else if($('.back-to-top').hasClass('back-top-show')) {
+      	//- 		$('.back-to-top').addClass('back-top-hide').removeClass('back-top-show');
+      	//- 		window.setTimeout(function(){
+      	//- 			$('.back-to-top').removeClass('back-top-hide');
+      	//- 		}, 100);
+      	//- 	} else {
+      	//- 		$('.back-to-top').removeClass('back-top-show');
+      	//- 	}
+      	//- });
+      	//- $('.back-to-top').click(function(){
+      	//- 	$("html, body").animate({ scrollTop: 0 }, 500);
+      	//- 	return false;
+      	//- });
+      
+      	//- particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1600}},"color":{"value":"#000000"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.3,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":1,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#000000","opacity":0.3,"width":1},"move":{"enable":true,"speed":1,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":true,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":100,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
+      
+      	//- $('.ripple').on('click', function (event) {
+      	//- 	var $div = $('<div/>'),
+      	//- 	btnOffset = $(this).offset(),
+      	//- 	xPos = event.pageX - btnOffset.left,
+      	//- 	yPos = event.pageY - btnOffset.top;
+      
+      	//- 	if ($(window).width() > 641) {
+      	//- 		$div.addClass('ripple-effect');
+      	//- 		var $ripple = $(".ripple-effect");
+      
+      	//- 		$ripple.css("height", $(this).height());
+      	//- 		$ripple.css("width", $(this).height());
+      	//- 		$div
+      	//- 		.css({
+      	//- 			top: yPos - ($ripple.height()/2),
+      	//- 			left: xPos - ($ripple.width()/2),
+      	//- 			background: $(this).data("ripple-color")
+      	//- 		}) 
+      	//- 		.appendTo($(this));
+      
+      	//- 	} 
+      	//- 	window.setTimeout(function(){
+      	//- 		$div.fadeOut('normal', function(){
+      	//- 			$(this).remove();
+      	//- 		});
+      	//- 	}, 500);
+      	//- //- });
+      	function videoResize() {
+      		var videoHeight = $(".video-wrap iframe").width();
+      		$(".video-wrap iframe").attr("width", "100%");
+      		$(".video-wrap iframe").attr("height", videoHeight / 1.778);
+      	}
+      	setTimeout(function(){
+      		videoResize();
+      	}, 1000);
+      
+      	$(window).resize(function(){
+      		videoResize();
+      	});	
+      	$('.pin').hover(function(){
+      		$('.pin').not(this).css('opacity', '0.4');
+      	}, function(){
+      		$('.pin').not(this).css('opacity', '1');
+      	});
+      	[].slice.call( document.querySelectorAll( 'select.filter-select' ) ).forEach( function(el){	
+      		new SelectFx(el);
+      	});  		
+      	var setting = {
+      		gridWidth: [0,400,600,800]
+      	}
+      	$('.pin-block').waterfall(setting);	
+      	$.timeliner({
+      		baseSpeed: 300,
+      		speed: 1
+      	});
+      });
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="content p-bottom-50">
+        <div id="barba-wrapper">
+          <div data-namespace="event" class="barba-container event-container">
+            <div id="particles-js"></div>
+            <div id="timeline" class="timeline-container">
+              <div class="timeline-wrapper">
+                <h2 class="timeline-time">2015 October 1</h2>
+                <dl class="timeline-series">
+                  <dt id="event01" class="timeline-event"><a>PowWow Taiwan 2015 Start!</a></dt>
+                  <dd id="event01EX" class="timeline-event-content">
+                    <p>POW! WOW! took on Asia with a tour in Japan and Taiwan. For the second half of their journey, they painted across the country with stops in Tainan, Taichung, Nantou and Tainan. Artists that braved the trek were Naturel, Nychos, Case, Caratoes, Jeff Soto, Omen, Prime and many more. Concerts, exhibitions and painting on buses were just a few of the activations that POW! WOW! brought to the beautiful country of Taiwan.</p>
+                  </dd>
+                  <dt id="event02" class="timeline-event"><a>PowWow Taiwan 2015 Starts Painting in Taipei</a></dt>
+                  <dd id="event02EX" class="timeline-event-content">
+                    <p>Started painting at various places.</p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="timeline-wrapper">
+                <h2 class="timeline-time">2015 October 6</h2>
+                <dl class="timeline-series">
+                  <dt id="event03" class="timeline-event"><a>PowWow Taiwan 2015 Press Conference!</a></dt>
+                  <dd id="event03EX" class="timeline-event-content">
+                    <p>POW! WOW! Taiwan! held a press conference this afternoon at Huashang Cultural Park.</p>
+                  </dd>
+                  <dt id="event04" class="timeline-event"><a>PowWow Taiwan 2015 Opening Concert</a></dt>
+                  <dd id="event04EX" class="timeline-event-content">
+                    <p>SOHconcert was held at ATT4FUN at night.</p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="timeline-wrapper">
+                <h2 class="timeline-time">2015 October 8</h2>
+                <dl class="timeline-series">
+                  <dt id="event05" class="timeline-event"><a>PowWow Taiwan 2015 Starts Painting in Taichung</a></dt>
+                  <dd id="event05EX" class="timeline-event-content">
+                    <div class="media"><img src="img/madsteez-mural.jpg"></div>
+                    <p>Painted a wall at Da Juiceman restaurant.</p>
+                    <div class="clearfix"></div>
+                  </dd>
+                </dl>
+              </div>
+              <div class="timeline-wrapper">
+                <h2 class="timeline-time">2015 October 11</h2>
+                <dl class="timeline-series">
+                  <dt id="event06" class="timeline-event"><a>PowWow Taiwan 2015 Crew Arrives at Nantou</a></dt>
+                  <dd id="event06EX" class="timeline-event-content">
+                    <p>The aboriginals prepared a feast and a dance for the artists to enjoy. </p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="timeline-wrapper">
+                <h2 class="timeline-time">2015 October 11</h2>
+                <dl class="timeline-series">
+                  <dt id="event07" class="timeline-event"><a>PowWow Taiwan 2015 Starts Painting in Nantou</a></dt>
+                  <dd id="event07EX" class="timeline-event-content">
+                    <p>Various artists started painting.</p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="timeline-wrapper">
+                <h2 class="timeline-time">2015 October 16</h2>
+                <dl class="timeline-series">
+                  <dt id="event08" class="timeline-event"><a>PowWow Taiwan 2015 Starts Painting at Tainan</a></dt>
+                  <dd id="event08EX" class="timeline-event-content">
+                    <p>Various artists started painting.</p>
+                  </dd>
+                </dl>
+              </div>
+              <div class="timeline-wrapper">
+                <h2 class="timeline-time">2015 October 21</h2>
+                <dl class="timeline-series">
+                  <dt id="event09" class="timeline-event"><a>PowWow Taiwan 2015 Closing Party</a></dt>
+                  <dd id="event09EX" class="timeline-event-content">
+                    <p>Closing party at Haan Rd. </p>
+                  </dd>
+                </dl>
+              </div>
+              <button class="timeline-toggle">+ expand all</button>
+              <div class="clearfix"></div>
+            </div>
+            <div class="gallery-wrap">
+              <p class="index-title small-title">Gallery</p>
+              <div class="event-gallery-wrap">
+                <div class="filter-wrap">
+                  <div class="filter-outer-box"><span class="filter-label">Filter</span>
+                    <div class="filter-box">
+                      <select class="cs-select filter-select cs-skin-underline">
+                        <option selected disabled>Choose Filter</option>
+                        <option value="none">None</option>
+                        <option value="artist">Artist</option>
+                        <option value="country">Country</option>
+                        <option value="date">Year</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="filter-outer-box"><span class="filter-label">Arrange</span>
+                    <div class="arrange-box">
+                      <select class="cs-select filter-select cs-skin-underline">
+                        <option selected disabled>Choose Filter</option>
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="az">A-Z</option>
+                        <option value="za">Z-A</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="filter-submit"> 
+                    <button>APPLY</button>
+                  </div>
+                </div>
+                <div class="artists-content-block">
+                  <div class="pin-block">
+                    <div class="pin dontsplit"><a href="mural.html"><img src="img/wall1.jpg" data-caption="Cara To AKA 'Caratoes' is an illustrator and street artist based in Hong Kong.">
+                        <p class="author-name">Caratoes</p>
+                        <p>Cara To AKA 'Caratoes' is an illustrator and street artist based in Hong Kong.</p></a>
+                      <div class="card-bg-fix"></div>
+                    </div>
+                    <div class="pin dontsplit"><a href="mural.html"><img src="img/wall2.jpg" data-caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis.">
+                        <p class="author-name">DEBE</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis.</p></a>
+                      <div class="card-bg-fix"></div>
+                    </div>
+                    <div class="pin dontsplit"><a href="mural.html"><img src="img/wall3.jpg" data-caption="ANO Started practicing graffiti art in 1999 on the streets, often using pixels as his basic element of design. Proficient in various graffiti techniques, Ano has often collaborated with television advertising and well-known brands doing performances for Rolex, NIKE, Adidas,Puma ,Converse, Royal Elastics, ASUS, and more. ">
+                        <p class="author-name">ANO</p>
+                        <p>ANO Started practicing graffiti art in 1999 on the streets, often using pixels as his basic element of design. Proficient in various graffiti techniques, Ano has often collaborated with television advertising and well-known brands doing performances for Rolex, NIKE, Adidas,Puma ,Converse, Royal Elastics, ASUS, and more. </p></a>
+                      <div class="card-bg-fix"></div>
+                    </div>
+                    <div class="pin dontsplit"><a href="mural.html"><img src="img/wall4.jpg" data-caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque.Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.">
+                        <p class="author-name">Girenhao</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque.Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.</p></a>
+                      <div class="card-bg-fix"></div>
+                    </div>
+                    <div class="pin dontsplit"><a href="mural.html"><img src="img/wall5.jpg" data-caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.">
+                        <p class="author-name">Alexface</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.</p></a>
+                      <div class="card-bg-fix"></div>
+                    </div>
+                    <div class="pin dontsplit"><a href="mural.html"><img src="img/wall1.jpg" data-caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.">
+                        <p class="author-name">Colasa</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.</p></a>
+                      <div class="card-bg-fix"></div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+              <p class="index-title small-title">Video</p>
+              <div class="row">
+                <div class="medium-6 small-12 columns">
+                  <div class="video-wrap"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/Y1kWxFTWIWQ" frameborder="0" allowfullscreen></iframe></div>
+                </div>
+                <div class="medium-6 small-12 columns">
+                  <div class="video-wrap"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/Y1kWxFTWIWQ" frameborder="0" allowfullscreen></iframe></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

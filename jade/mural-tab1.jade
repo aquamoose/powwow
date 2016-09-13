@@ -1,0 +1,258 @@
+doctype html
+html.no-js
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		title Pow! Wow! Taiwan!
+		meta(name='description', content='')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		meta(property='og:site_name', content='Pow! Wow! Taiwan!')
+		meta(property='og:type', content='website')
+		meta(property='og:title', content='')
+		meta(property='og:url', content='')
+		meta(property='og:image', content='')
+		meta(property='og:description', content='')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+		script(src='js/foundation.js')
+		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
+		script(src='js/classie.js')
+		script(src='js/selectFx.js')
+		script(src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js")
+		script(src='js/barba.min.js')
+		script(src='js/jquery.grid-a-licious.js')
+		script(src='js/materialize.js')
+		script(src='js/stick.js')
+		link(rel='stylesheet', href='font/aller.css')
+		link(rel='stylesheet', href='css/flexslider.css')
+		link(rel='stylesheet', href='css/materialize.css')
+		link(rel='stylesheet', href='css/foundation.css')
+		link(rel='stylesheet', href='css/font-awesome.css')
+		link(rel='stylesheet', href='css/styles.css')
+		link(href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300', rel='stylesheet', type='text/css')
+		script.
+			function goToByScroll(id){
+				id = id.replace("link", "");
+				$('html,body').animate({
+					scrollTop: $("#"+id).offset().top - 50},
+				'slow');
+			}
+			function redirectPage() {
+				window.location = linkLocation;
+			}
+			$(window).load(function(){
+				$('.loader').fadeOut(500);
+				$('.loader-bg').fadeOut(1000);
+
+			});
+			$(document).ready(function() {
+			 	$('body').fadeIn(1000);
+			 
+			    $(".linkFade").click(function(event){
+			        event.preventDefault();
+			        linkLocation = this.href;
+			        $("body").fadeOut(1000, redirectPage);      
+			    });
+
+				$(document).foundation();
+				
+				$('.lines-button').click(function(e) {
+					e.preventDefault();
+					$('.lines-button').toggleClass('close');
+					var open = $('.screen-menu').hasClass('sm-overlay-open');
+					if(open) {
+						$('.screen-menu').removeClass('sm-overlay-open');
+						$('body').css({'overflow-y': 'auto'});
+						$('.header').find('.menu-button').show();
+					} else {
+						$('.screen-menu').addClass('sm-overlay-open');
+						$('body').css({'overflow-y': 'hidden'});
+						$('.header').find('.menu-button').hide();
+					}
+				});
+				
+				$(window).scroll(function(){
+					if ($(this).scrollTop() > 50) {
+						$('.back-to-top').addClass('back-top-show');
+					} else if($('.back-to-top').hasClass('back-top-show')) {
+						$('.back-to-top').addClass('back-top-hide').removeClass('back-top-show');
+						window.setTimeout(function(){
+							$('.back-to-top').removeClass('back-top-hide');
+						}, 100);
+					} else {
+						$('.back-to-top').removeClass('back-top-show');
+					}
+				});
+				$('.back-to-top').click(function(){
+					$("html, body").animate({ scrollTop: 0 }, 500);
+					return false;
+				});
+				$('.ripple').on('click', function (event) {
+					var $div = $('<div/>'),
+					btnOffset = $(this).offset(),
+					xPos = event.pageX - btnOffset.left,
+					yPos = event.pageY - btnOffset.top;
+
+					if ($(window).width() > 641) {
+						$div.addClass('ripple-effect');
+						var $ripple = $(".ripple-effect");
+
+						$ripple.css("height", $(this).height());
+						$ripple.css("width", $(this).height());
+						$div
+						.css({
+							top: yPos - ($ripple.height()/2),
+							left: xPos - ($ripple.width()/2),
+							background: $(this).data("ripple-color")
+						}) 
+						.appendTo($(this));
+
+					} 
+					window.setTimeout(function(){
+						$div.fadeOut('normal', function(){
+							$(this).remove();
+						});
+					}, 500);
+				});
+				//- $('.index-block').each(function(){
+				//- 	$(this).find('.index-artist-block').last().addClass('end');
+				//- });
+				$('.item').hover(function(){
+					$('.item').not(this).css('opacity', '0.4');
+				}, function(){
+					$('.item').not(this).css('opacity', '1');
+				});
+
+				
+				$("#contentlink").click(function(e) { 
+					e.preventDefault(); 
+					goToByScroll($(this).attr("id"));           
+				});
+				$('.parallax').parallax();
+				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
+					new SelectFx(el);
+				});     
+				
+				//- $('.pin-block').waterfall();
+				$('.mural-container').gridalicious({
+					selector: '.item',
+					width: 400
+				});
+			
+				Barba.Prefetch.init();
+				Barba.Pjax.start();
+				Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
+					$(function(){
+						$('.sticky-header').stick_in_parent({
+							offset_top: 50
+						});
+						$('.panel-column a').click(function(){
+							$('html,body').animate({
+								scrollTop: $("#content").offset().top - 50},
+							'slow');
+						});
+						$('.mural-container').gridalicious({
+							selector: '.item',
+							width: 400
+						});
+
+						$('.parallax').parallax();
+						$('.item').hover(function(){
+							$('.item').not(this).css('opacity', '0.4');
+						}, function(){
+							$('.item').not(this).css('opacity', '1');
+						});
+						[].slice.call( document.querySelectorAll( 'select.filter-select' ) ).forEach( function(el){	
+							new SelectFx(el);
+						}); 
+					});
+				});
+				var FadeTransition = Barba.BaseTransition.extend({
+					start: function() {
+					/**
+					* This function is automatically called as soon the Transition starts
+					* this.newContainerLoading is a Promise for the loading of the new container
+					* (Barba.js also comes with an handy Promise polyfill!)
+					*/
+
+					// As soon the loading is finished and the old page is faded out, let's fade the new page
+					Promise
+						.all([this.newContainerLoading, this.fadeOut()])
+						.then(this.fadeIn.bind(this));
+					},
+
+					fadeOut: function() {
+					/**
+					* this.oldContainer is the HTMLElement of the old Container
+					*/
+
+						return $(this.oldContainer).animate({ opacity: 0 }).promise();
+					},
+
+					fadeIn: function() {
+					/**
+					* this.newContainer is the HTMLElement of the new Container
+					* At this stage newContainer is on the DOM (inside our #barba-container and with visibility: hidden)
+					* Please note, newContainer is available just after newContainerLoading is resolved!
+					*/
+
+						var _this = this;
+						var $el = $(this.newContainer);
+
+						$(this.oldContainer).hide();
+
+						$el.css({
+							visibility : 'visible',
+							opacity : 0
+						});
+
+						$el.animate({ opacity: 1 }, 2000, function() {
+					/**
+					* Do not forget to call .done() as soon your transition is finished!
+					* .done() will automatically remove from the DOM the old Container
+					*/
+
+							_this.done();
+						});
+					}
+				});
+
+					/**
+					* Next step, you have to tell Barba to use the new Transition
+					*/
+
+				Barba.Pjax.getTransition = function() {
+					/**
+					* Here you can use your own logic!
+					* For example you can use different Transition based on the current page or link...
+					*/
+
+					return FadeTransition;
+				};
+
+			});
+	body
+		.loader
+			.circle
+			.circle-small
+			.circle-big
+			.circle-inner-inner
+			.circle-inner
+		.wrapper
+			include component/header.jade
+			.content
+				.parallax-container
+					.parallax
+						img(src='img/banner3.jpg')
+						.pattern-hack
+					.banner-slogan
+						p.page-slogan mural
+						p.page-sub-slogan see the best murals from arould the world
+						.banner-button.arrow-down: a#contentlink(href="#") SEE MURALS
+				a#content(href="#")
+				.index-block.index-mural.padding-top-120.padding-column#barba-wrapper
+					.barba-container
+						p.index-title.small-title.divided-title POWWOW LONG BEACH 2016
+						include component/mural-tab1.jade
+			include component/footer.jade
+			a.back-to-top.ripple(href="#") TOP
+		script.

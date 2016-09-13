@@ -1,0 +1,289 @@
+doctype html
+html.no-js
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		title Pow! Wow! Taiwan!
+		meta(name='description', content='')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		meta(property='og:site_name', content='Pow! Wow! Taiwan!')
+		meta(property='og:type', content='website')
+		meta(property='og:title', content='')
+		meta(property='og:url', content='')
+		meta(property='og:image', content='')
+		meta(property='og:description', content='')
+		script(src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.22&key=AIzaSyC_kLitJTrG9CrohPBaoPDu15qjBu7F1Lg")
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+		script(src='js/foundation.js')
+		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
+		script(src='js/classie.js')
+		script(src='js/selectFx.js')
+		script(src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js")
+		script(src='js/maplace.js')
+		script(src='js/markerclusterer.js')
+		link(rel='stylesheet', href='font/aller.css')
+		link(rel='stylesheet', href='css/foundation.css')
+		link(rel='stylesheet', href='css/font-awesome.css')
+		link(rel='stylesheet', href='css/styles.css')
+		link(href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300', rel='stylesheet', type='text/css')
+		script.
+			function goToByScroll(id){
+				id = id.replace("link", "");
+				$('html,body').animate({
+					scrollTop: $("#"+id).offset().top - 50},
+				'slow');
+			}
+
+			function redirectPage() {
+				window.location = linkLocation;
+			}
+			$(window).load(function(){
+				$('.loader').fadeOut(500);
+				$('.loader-bg').fadeOut(1000);
+
+			});
+			$(document).ready(function() {
+			 	$('body').fadeIn(1000);
+			 
+			    $(".linkFade").click(function(event){
+			        event.preventDefault();
+			        linkLocation = this.href;
+			        $("body").fadeOut(1000, redirectPage);      
+			    });
+			         
+			    
+				$(document).foundation();
+				$('.lines-button').click(function(e) {
+					e.preventDefault();
+					$('.lines-button').toggleClass('close');
+					var open = $('.screen-menu').hasClass('sm-overlay-open');
+					if(open) {
+						$('.screen-menu').removeClass('sm-overlay-open');
+						$('body').css({'overflow-y': 'auto'});
+						$('.header').find('.menu-button').show();
+					} else {
+						$('.screen-menu').addClass('sm-overlay-open');
+						$('body').css({'overflow-y': 'hidden'});
+						$('.header').find('.menu-button').hide();
+					}
+				});
+				
+				$(window).scroll(function(){
+					if ($(this).scrollTop() > 50) {
+						$('.back-to-top').addClass('back-top-show');
+					} else if($('.back-to-top').hasClass('back-top-show')) {
+						$('.back-to-top').addClass('back-top-hide').removeClass('back-top-show');
+						window.setTimeout(function(){
+							$('.back-to-top').removeClass('back-top-hide');
+						}, 100);
+					} else {
+						$('.back-to-top').removeClass('back-top-show');
+					}
+				});
+				$('.back-to-top').click(function(){
+					$("html, body").animate({ scrollTop: 0 }, 500);
+					return false;
+				});
+
+				//- particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1600}},"color":{"value":"#000000"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.3,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":1,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#000000","opacity":0.3,"width":1},"move":{"enable":true,"speed":1,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":true,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":100,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
+
+				$('.ripple').on('click', function (event) {
+					var $div = $('<div/>'),
+					btnOffset = $(this).offset(),
+					xPos = event.pageX - btnOffset.left,
+					yPos = event.pageY - btnOffset.top;
+
+					if ($(window).width() > 641) {
+						$div.addClass('ripple-effect');
+						var $ripple = $(".ripple-effect");
+
+						$ripple.css("height", $(this).height());
+						$ripple.css("width", $(this).height());
+						$div
+						.css({
+							top: yPos - ($ripple.height()/2),
+							left: xPos - ($ripple.width()/2),
+							background: $(this).data("ripple-color")
+						}) 
+						.appendTo($(this));
+
+					} 
+					window.setTimeout(function(){
+						$div.fadeOut('normal', function(){
+							$(this).remove();
+						});
+					}, 500);
+				});
+			
+				
+				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
+					new SelectFx(el);
+				});  
+				var maplace = new Maplace({
+					map_div: '#gmap',
+					controls_on_map: false,
+					map_options : {
+						scrollwheel : false
+					}
+				});
+
+				$('#location-tabs a').click(function(e) {
+					e.preventDefault();
+					var index = $(this).attr('data-load');
+					showGroup(index);
+				});
+
+				function showGroup(index) {
+					var el = $('#g'+index);
+					$('#location-tabs li').removeClass('active');
+					$(el).parent().addClass('active');
+					$.getJSON('js/location.php', { type: index }, function(data) {
+						//loads data into the map
+						maplace.Load({
+							locations: data.locations,
+							view_all: false,
+							type: data.type,
+							force_generate_controls: true,
+							view_clustered: true
+						});
+					});
+				}
+
+				showGroup(0);
+
+				//- var f = Array();
+				//- $('#location-tabs li a').each(function(i, v){
+				//- 	f[i] = $(this).attr('data-tag');
+				//- });
+				//- var selector = $('.location-filter-box').find('.cs-placeholder').text();
+				//- $('.filter-submit button').click(function(e){
+				//- 	var base = $('.location-filter-box').find('.cs-placeholder');
+				//- 	var selector = base.text();
+				//- 	var elLength = $('#location-tabs li').length;
+				//- 	if(selector === 'Year') {
+				//- 		function showGroup(index) {
+				//- 			var el = $('#g'+index);
+				//- 			$('#location-tabs li').removeClass('active');
+				//- 			$(el).parent().addClass('active');
+				//- 			$.getJSON('js/ajax2.php', { type: index }, function(data) {
+				//- 				//loads data into the map
+				//- 				maplace.Load({
+				//- 					locations: data.locations,
+				//- 					view_all: false,
+				//- 					type: data.type,
+				//- 					force_generate_controls: true
+				//- 				});
+				//- 			});
+				//- 		}
+				//- 		var dates = ['2015', '2014'];
+				//- 		var aLength = dates.length;
+				//- 		$('#location-tabs li a').each(function(i){
+				//- 			$(this).text(dates[i]).attr('data-tag', dates[i]);
+				//- 		});
+				//- 		$('#location-tabs li').show().slice(aLength).hide();
+				//- 		$('#location-tabs a').click(function(e) {
+				//- 			e.preventDefault();
+				//- 			var index = $(this).attr('data-load');
+				//- 			showGroup(index);
+				//- 		});
+				//- 		showGroup(0);
+				//- 	}
+				//- 	if(selector === 'Location') {
+				//- 		function showGroup(index) {
+				//- 			var el = $('#g'+index);
+				//- 			$('#location-tabs li').removeClass('active');
+				//- 			$(el).parent().addClass('active');
+				//- 			$.getJSON('js/location.php', { type: index }, function(data) {
+				//- 				//loads data into the map
+				//- 				maplace.Load({
+				//- 					locations: data.locations,
+				//- 					view_all: false,
+				//- 					type: data.type,
+				//- 					force_generate_controls: true
+				//- 				});
+				//- 			});
+				//- 		}
+				//- 		var dates = ['台北', '台中', '台南'];
+				//- 		var aLength = dates.length;
+				//- 		$('#location-tabs li a').each(function(i){
+				//- 			$(this).text(dates[i]).attr('data-tag', dates[i]);
+				//- 		});
+				//- 		//- $('#location-tabs li').show();
+				//- 		$('#location-tabs li').show().slice(aLength).hide();
+				//- 		$('#location-tabs a').click(function(e) {
+				//- 			e.preventDefault();
+				//- 			var index = $(this).attr('data-load');
+				//- 			showGroup(index);
+				//- 		});
+				//- 		showGroup(0);
+				//- 	}
+				//- });	
+				
+				function initialize() {
+					var center = new google.maps.LatLng(51.5074, 0.1278);
+
+					var map = new google.maps.Map(document.getElementByClassName('canvas_map'), {
+						zoom: 3,
+						center: center,
+						mapTypeId: google.maps.MapTypeId.ROADMAP
+					});
+
+					var markers = [];
+					var marker = new google.maps.Marker({
+						position: new google.maps.LatLng(51.5074, 0.1278)
+					});
+					markers.push(marker);
+
+					var options = {
+						imagePath: 'img/m',
+						girdSize: 80
+					};
+
+					var markerCluster = new MarkerClusterer(map, markers, options);
+				}
+			});
+	body
+		.loader
+			.circle
+			.circle-small
+			.circle-big
+			.circle-inner-inner
+			.circle-inner
+		.wrapper
+			include component/header.jade
+			.content.padding-column.p-bottom-50
+				#particles-js
+				.banner-slogan
+					p.page-slogan.artist-slogan Location
+				//- .filter-wrap.location-filter-wrap
+				//- 	.filter-outer-box
+				//- 		span.filter-label Filter
+				//- 		.filter-box.location-filter-box
+				//- 			select.cs-select.filter-select.cs-skin-underline
+				//- 				option(selected, disabled) Choose Filter
+				//- 				option(value="all") All
+				//- 				option(value="location") Location
+				//- 				option(value="year") Year
+				//- 	span.filter-span or
+				//- 	.filter-outer-box
+				//- 		form.location-search
+				//- 			input.location-textfield(type="text", name="search", placeholder="Search for artist")
+				//- 	.filter-submit 
+				//- 		button APPLY
+				//- .clearfix
+				.map-embed.ratio-hack.clearfix
+					//- .control-wrap
+					//- 	ul#location-tabs.tabs
+					//- 		- var item = ['台北','台中','台南']
+					//- 			- for (var i=0; i<3; i++)
+					//- 				li: a(href="javascript:void(0)", data-load=i, id="g" + i, title=item[i], data-tag=i)=item[i]
+					//- 	#controls-mixed
+					#gmap
+			include component/footer.jade
+			a.back-to-top.ripple(href="#") TOP
+	script(src='js/lightbox.js')
+	script.
+		lightbox.option({
+			'fadeDuration': 300,
+			'resizeDuration': 300
+		});

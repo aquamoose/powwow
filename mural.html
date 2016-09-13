@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pow! Wow! Taiwan!</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Pow! Wow! Taiwan!">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="">
+    <script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.22&amp;key=AIzaSyC_kLitJTrG9CrohPBaoPDu15qjBu7F1Lg"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="js/foundation.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/selectFx.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/waterfall-light.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
+    <script src="js/maplace.js"></script>
+    <script src="js/markerclusterer.js"></script>
+    <link rel="stylesheet" href="font/aller.css">
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,300" rel="stylesheet" type="text/css">
+    <script>
+      function goToByScroll(id){
+      	id = id.replace("link", "");
+      	$('html,body').animate({
+      		scrollTop: $("#"+id).offset().top - 50},
+      	'slow');
+      }
+      function redirectPage() {
+      	window.location = linkLocation;
+      }
+      $(window).load(function(){
+      	$('.loader').fadeOut(500);
+      	$('.loader-bg').fadeOut(1000);
+      
+      });
+      $(document).ready(function() {
+       	$('body').fadeIn(1000);
+       
+          $(".linkFade").click(function(event){
+              event.preventDefault();
+              linkLocation = this.href;
+              $("body").fadeOut(1000, redirectPage);      
+          });
+               
+          
+      	$(document).foundation();
+      	$('.lines-button').click(function(e) {
+      		e.preventDefault();
+      		$('.lines-button').toggleClass('close');
+      		var open = $('.screen-menu').hasClass('sm-overlay-open');
+      		if(open) {
+      			$('.screen-menu').removeClass('sm-overlay-open');
+      			$('body').css({'overflow-y': 'auto'});
+      			$('.header').find('.menu-button').show();
+      		} else {
+      			$('.screen-menu').addClass('sm-overlay-open');
+      			$('body').css({'overflow-y': 'hidden'});
+      			$('.header').find('.menu-button').hide();
+      		}
+      	});
+      	
+      	$(window).scroll(function(){
+      		if ($(this).scrollTop() > 50) {
+      			$('.back-to-top').addClass('back-top-show');
+      		} else if($('.back-to-top').hasClass('back-top-show')) {
+      			$('.back-to-top').addClass('back-top-hide').removeClass('back-top-show');
+      			window.setTimeout(function(){
+      				$('.back-to-top').removeClass('back-top-hide');
+      			}, 100);
+      		} else {
+      			$('.back-to-top').removeClass('back-top-show');
+      		}
+      	});
+      	$('.back-to-top').click(function(){
+      		$("html, body").animate({ scrollTop: 0 }, 500);
+      		return false;
+      	});
+      
+      	particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1600}},"color":{"value":"#000000"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.3,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":1,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#000000","opacity":0.3,"width":1},"move":{"enable":true,"speed":1,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":true,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":100,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
+      
+      	$('.ripple').on('click', function (event) {
+      		var $div = $('<div/>'),
+      		btnOffset = $(this).offset(),
+      		xPos = event.pageX - btnOffset.left,
+      		yPos = event.pageY - btnOffset.top;
+      
+      		if ($(window).width() > 641) {
+      			$div.addClass('ripple-effect');
+      			var $ripple = $(".ripple-effect");
+      
+      			$ripple.css("height", $(this).height());
+      			$ripple.css("width", $(this).height());
+      			$div
+      			.css({
+      				top: yPos - ($ripple.height()/2),
+      				left: xPos - ($ripple.width()/2),
+      				background: $(this).data("ripple-color")
+      			}) 
+      			.appendTo($(this));
+      
+      		} 
+      		window.setTimeout(function(){
+      			$div.fadeOut('normal', function(){
+      				$(this).remove();
+      			});
+      		}, 500);
+      	});
+      	function videoResize() {
+      		var videoHeight = $(".video-wrap iframe").width();
+      		$(".video-wrap iframe").attr("width", "100%");
+      		$(".video-wrap iframe").attr("height", videoHeight / 1.778);
+      	}
+      	videoResize();
+      	$(window).resize(function(){
+      		videoResize();
+      	});	
+      
+      	$('.artist-gallery').hover(function(){
+      		$('.artist-gallery').not(this).css('opacity', '0.4');
+      	}, function(){
+      		$('.artist-gallery').not(this).css('opacity', '1');
+      	});
+      	
+      	
+      
+      	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
+      		new SelectFx(el);
+      	});  
+      	var maplace = new Maplace({
+      		map_div: '#gmap',
+      		controls_div: '#controls-mixed',
+      		controls_type: 'list',
+      		controls_on_map: false,
+      		map_options : {
+      			scrollwheel : false
+      		}
+      	});
+      
+      	$('#location-tabs a').click(function(e) {
+      		e.preventDefault();
+      		var index = $(this).attr('data-load');
+      		showGroup(index);
+      	});
+      
+      
+      	function showGroup(index) {
+      		var el = $('#g'+index);
+      		$('#location-tabs li').removeClass('active');
+      		$(el).parent().addClass('active');
+      		$.getJSON('js/mural.php', { type: index }, function(data) {
+      			//loads data into the map
+      			maplace.Load({
+      				locations: data.locations,
+      				view_all: false,
+      				type: data.type,
+      				force_generate_controls: true
+      			});
+      		});
+      	}
+      
+      	showGroup(0);
+      	function initialize() {
+      		var center = new google.maps.LatLng(51.5074, 0.1278);
+      
+      		var map = new google.maps.Map(document.getElementByClassName('canvas_map'), {
+      			zoom: 3,
+      			center: center,
+      			mapTypeId: google.maps.MapTypeId.ROADMAP
+      		});
+      
+      		var markers = [];
+      		var marker = new google.maps.Marker({
+      			position: new google.maps.LatLng(51.5074, 0.1278)
+      		});
+      		markers.push(marker);
+      
+      		var options = {
+      			imagePath: 'img/m',
+      			girdSize: 80
+      		};
+      
+      		var markerCluster = new MarkerClusterer(map, markers, options);
+      	}
+      });
+    </script>
+  </head>
+  <body>
+    <div class="loader">
+      <div class="circle"></div>
+      <div class="circle-small"></div>
+      <div class="circle-big"></div>
+      <div class="circle-inner-inner"></div>
+      <div class="circle-inner"></div>
+    </div>
+    <div class="wrapper">
+      <div class="header row">
+        <div class="logo medium-1 small-12 columns header-logo"><a href="index.html" class="linkFade"><img src="img/powwowlogo.png"></a></div>
+        <div class="medium-10 columns header-nav mobile-hide">
+          <div class="row">
+            <div class="medium-3 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
+            <div class="medium-3 columns"><a href="event-list.html" class="linkFade">EVENTS</a></div>
+            <div class="medium-3 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
+            <div class="medium-3 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
+          </div>
+        </div>
+        <div class="medium-1 columns header-menu mobile-fix">
+          <div> <span class="menu-button">
+              <button type="button" role="button" aria-label="Toggle Navigation" class="lines-button x"><span class="lines"></span></button></span></div>
+        </div>
+      </div>
+      <div class="screen-menu sm-overlay"><span class="menu-button">
+          <button type="button" role="button" aria-label="Toggle Navigation" class="lines-button x"><span class="lines"></span></button></span>
+        <div class="sm-wrapper">
+          <p class="sm-title">MENU</p>
+          <div class="search-wrap">
+            <form class="search">
+              <input type="text" name="search" placeholder="What're we looking for?" class="search-textfield">
+            </form>
+          </div>
+          <div class="sm-menu row">
+            <div class="medium-6 small-12 columns"><a href="#" class="linkFade">NEWS</a></div>
+            <div class="medium-6 small-12 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
+            <div class="medium-6 small-12 columns"><a href="#" class="linkFade">MUSIC</a></div>
+            <div class="medium-6 small-12 columns"><a href="activities.html" class="linkFade">EVENT</a></div>
+            <div class="medium-6 small-12 columns"><a href="#" class="linkFade">CHANNEL</a></div>
+            <div class="medium-6 small-12 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
+            <div class="medium-6 small-12 columns"><a href="#" class="linkFade">PROFILES</a></div>
+            <div class="medium-6 small-12 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
+            <div class="medium-6 small-12 columns"><a href="#" class="linkFade">ABOUT</a></div>
+            <div class="medium-6 small-12 columns"><a href="#" class="linkFade">MEMBER PROFILE</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="content padding-column">
+        <div id="particles-js"></div>
+        <div class="mural-img"><img src="img/madsteez-mural.jpg"></div>
+        <div class="mural-des"></div>
+        <p class="index-title small-title divided-title">location</p>
+        <div class="map-embed ratio-hack clearfix">
+          <div class="control-wrap">
+          </div>
+          <div id="gmap"></div>
+        </div>
+        <div class="section-divider"></div>
+        <p class="index-title small-title divided-title">Related Murals</p>
+        <div class="row related-block artists-content-block">
+          <div class="medium-4 small-12 columns index-artist-block"><a>
+              <div class="ratio-hack">
+                <div style="background-image: url(img/case.jpg);" class="i-artist-thumb">
+                  <div class="i-artist-overlay"></div>
+                  <p>case</p>
+                </div>
+              </div></a></div>
+          <div class="medium-4 small-12 columns index-artist-block"><a>
+              <div class="ratio-hack">
+                <div style="background-image: url(img/huatunan.jpg);" class="i-artist-thumb">
+                  <div class="i-artist-overlay"></div>
+                  <p>huatunan</p>
+                </div>
+              </div></a></div>
+          <div class="medium-4 small-12 columns index-artist-block"><a>
+              <div class="ratio-hack">
+                <div style="background-image: url(img/nychos.jpg);" class="i-artist-thumb">
+                  <div class="i-artist-overlay"></div>
+                  <p>nychos</p>
+                </div>
+              </div></a></div>
+        </div>
+        <div class="prev-next-pagi">
+          <div class="row">
+            <div class="small-4 columns">
+              <p>Previous Mural</p><a class="prev-underline"><i aria-hidden="true" class="fa fa-angle-left"></i><span>ANO Mural</span></a>
+            </div>
+            <div class="small-4 columns center-top"><a class="center-underline">Back To Murals</a></div>
+            <div class="small-4 columns">
+              <p>Next Mural</p><a class="next-underline"><span>Jeff Soto Mural</span><i aria-hidden="true" class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="footer-block row">
+          <div class="medium-3 small-12 columns">
+            <div class="footer-logo"><a><img src="img/powwowlogo.png"></a>
+              <p>Copyright © 2016 All Rights Reserved </p>
+              <p>POW! WOW! TAIWAN!</p>
+            </div>
+          </div>
+          <div class="medium-6 small-12 columns footer-nav-block">
+            <div class="footer-nav">
+              <div><a href="index.html" class="linkFade">Home</a></div>
+              <div><a href="#" class="linkFade">News</a></div>
+              <div><a href="mural-list.html" class="linkFade">Murals</a></div>
+              <div><a href="#" class="linkFade">Music</a></div>
+              <div><a href="event-list.html" class="linkFade">Event</a></div>
+              <div><a href="#" class="linkFade">Channel</a></div>
+            </div>
+            <div class="footer-nav">
+              <div><a href="participants.html" class="linkFade">Participants</a></div>
+              <div><a href="#" class="linkFade">Profiles</a></div>
+              <div><a href="location.html" class="linkFade">Location</a></div>
+              <div><a href="#" class="linkFade">About</a></div>
+              <div><a href="#" class="linkFade">Member Profile</a></div>
+            </div>
+          </div>
+          <div class="medium-3 small-12 columns">
+            <div class="footer-social">
+              <p class="footer-title">SOCIAL</p>
+              <div class="footer-nav">
+                <div><a href="# " class="linkFade">Facebook</a></div>
+                <div><a href="#" class="linkFade">Instagram</a></div>
+                <div><a href="#" class="linkFade">Pinterest</a></div>
+                <div><a href="#" class="linkFade">Youtube</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lang-select-box">
+          <select class="cs-select lang-select cs-skin-underline">
+            <option selected="selected" value="eng">Eng</option>
+            <option value="chi">Chi</option>
+          </select>
+        </div>
+      </div><a href="#" class="back-to-top ripple">TOP</a>
+    </div>
+  </body>
+</html>

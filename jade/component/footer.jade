@@ -1,0 +1,27 @@
+.footer
+	.footer-block.row
+		.medium-3.small-12.columns
+			.footer-logo
+				a: img(src="img/powwowlogo.png")
+				p Copyright © 2016 All Rights Reserved 
+				p POW! WOW! TAIWAN!
+		.medium-6.small-12.columns.footer-nav-block
+			.footer-nav
+				- var list = [{ name : 'Home', data : 'index.html'}, { name : 'News', data : '#' }, { name : 'Murals', data : 'mural-list.html' },{ name : 'Music', data : '#' },{ name : 'Event', data : 'event-list.html' },{ name : 'Channel', data : '#' }]
+						each item in list
+							div: a(href=item.data).linkFade=item.name
+			.footer-nav
+				- var list = [{ name : 'Participants', data : 'participants.html'}, { name : 'Profiles', data : '#' }, { name : 'Location', data : 'location.html' },{ name : 'About', data : '#' },{ name : 'Member Profile', data : '#' }]
+						each item in list
+							div: a(href=item.data).linkFade=item.name
+		.medium-3.small-12.columns
+			.footer-social
+				p.footer-title SOCIAL
+				.footer-nav
+					- var list = [{ name : 'Facebook', data : '# '}, { name : 'Instagram', data : '#' }, { name : 'Pinterest', data : '#' }, { name : 'Youtube', data : '#'}]
+							each item in list
+								div: a(href=item.data).linkFade=item.name
+	.lang-select-box
+		select.cs-select.lang-select.cs-skin-underline
+			option(selected="selected", value="eng") Eng
+			option(value="chi") Chi

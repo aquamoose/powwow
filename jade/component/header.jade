@@ -1,0 +1,32 @@
+.header.row
+	.logo.medium-1.small-12.columns.header-logo
+		a(href="index.html").linkFade: img(src="img/powwowlogo.png")
+	.medium-10.columns.header-nav.mobile-hide
+		.row
+			- var list = [{ name : 'MURALS', data : 'mural-list.html' },{ name : 'EVENTS', data : 'event-list.html' },{ name : 'PARTICIPANTS', data : 'participants.html' },{ name : 'LOCATION', data : 'location.html' }]
+				each item in list
+					.medium-3.columns: a(href=item.data).linkFade= item.name
+				//- .2.columns 
+				//- 	.lang-select-box
+				//- 		select.cs-select.lang-select.cs-skin-underline
+				//- 			option(selected="selected", value="eng") Eng
+				//- 			option(value="chi") Chi 
+	.medium-1.columns.header-menu.mobile-fix
+		div 
+			span.menu-button
+				button.lines-button.x(type="button", role="button", aria-label="Toggle Navigation")
+					span.lines
+.screen-menu.sm-overlay
+	span.menu-button
+		button.lines-button.x(type="button", role="button", aria-label="Toggle Navigation")
+			span.lines
+	.sm-wrapper
+		p.sm-title MENU
+		.search-wrap
+			form.search
+				input.search-textfield(type="text", name="search", placeholder="What're we looking for?")
+				//- input.search-submit(value="", type="submit")
+		.sm-menu.row
+			- var list = [{ name : 'NEWS', data : '#' }, { name : 'MURALS', data : 'mural-list.html' },{ name : 'MUSIC', data : '#' },{ name : 'EVENT', data : 'activities.html' },{ name : 'CHANNEL', data : '#' },{ name : 'PARTICIPANTS', data : 'participants.html' },{ name : 'PROFILES', data : '#' },{ name : 'LOCATION', data : 'location.html' },{ name : 'ABOUT', data : '#' },{ name : 'MEMBER PROFILE', data : '#' },]
+				each item in list
+					.medium-6.small-12.columns: a(href=item.data).linkFade=item.name
