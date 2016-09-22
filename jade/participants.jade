@@ -12,6 +12,14 @@ html.no-js
 		meta(property='og:url', content='')
 		meta(property='og:image', content='')
 		meta(property='og:description', content='')
+		<link rel="apple-touch-icon" sizes="180x180" href="fav/apple-touch-icon.png">
+		<link rel="icon" type="image/png" href="fav/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="fav/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="fav/manifest.json">
+		<link rel="mask-icon" href="fav/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="apple-mobile-web-app-title" content="POW! WOW!">
+		<meta name="application-name" content="POW! WOW!">
+		<meta name="theme-color" content="#ffffff">
 		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
 		script(src='js/foundation.js')
 		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
@@ -165,10 +173,11 @@ html.no-js
 								select.cs-select.filter-select.cs-skin-underline
 									option(selected, disabled) Choose Filter
 									option(value="none") None
-									option(value="country") Events
-									option(value="date") Year
 									option(value="art") Graffiti Artist
 									option(calue="music") Music Artist
+									option(value="country") Events
+									option(value="date") Year
+									
 						.filter-outer-box
 							span.filter-label Arrange
 							.arrange-box
