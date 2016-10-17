@@ -71,14 +71,6 @@
       		baseSpeed: 300,
       		speed: 1
       	});
-      	//- var page = 4;
-      	//- var setting = {
-      	//- 	gridWidth: [0,400,600,800],
-      	//- 	scrollbottom:{
-      	//-     	gap: 300,
-      	//-         endtxt : 'No More Data !!',
-      	//-     }
-      	//- }
       	$.fn.is_on_screen = function(){
       		var win = $(window);
       		var viewport = {
@@ -97,7 +89,6 @@
       	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
       		new SelectFx(el);
       	}); 
-      	//- $('.pin-block').waterfall(setting);	
       	$('.mural-container').gridalicious({
       		selector: '.item',
       		width: 400
@@ -286,9 +277,7 @@
           <div class="sm-menu row">
             <div class="medium-6 small-12 columns"><a href="#" class="linkFade">NEWS</a></div>
             <div class="medium-6 small-12 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
-            <div class="medium-6 small-12 columns"><a href="#" class="linkFade">MUSIC</a></div>
             <div class="medium-6 small-12 columns"><a href="activities.html" class="linkFade">EVENT</a></div>
-            <div class="medium-6 small-12 columns"><a href="#" class="linkFade">CHANNEL</a></div>
             <div class="medium-6 small-12 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
             <div class="medium-6 small-12 columns"><a href="#" class="linkFade">PROFILES</a></div>
             <div class="medium-6 small-12 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
@@ -408,16 +397,12 @@
               <div><a href="index.html" class="linkFade">Home</a></div>
               <div><a href="#" class="linkFade">News</a></div>
               <div><a href="mural-list.html" class="linkFade">Murals</a></div>
-              <div><a href="#" class="linkFade">Music</a></div>
               <div><a href="event-list.html" class="linkFade">Event</a></div>
-              <div><a href="#" class="linkFade">Channel</a></div>
             </div>
             <div class="footer-nav">
               <div><a href="participants.html" class="linkFade">Participants</a></div>
-              <div><a href="#" class="linkFade">Profiles</a></div>
               <div><a href="location.html" class="linkFade">Location</a></div>
               <div><a href="#" class="linkFade">About</a></div>
-              <div><a href="#" class="linkFade">Member Profile</a></div>
             </div>
           </div>
           <div class="medium-3 small-12 columns">
@@ -431,12 +416,6 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="lang-select-box">
-          <select class="cs-select lang-select cs-skin-underline">
-            <option selected="selected" value="eng">Eng</option>
-            <option value="chi">Chi</option>
-          </select>
         </div>
       </div>
     </div>

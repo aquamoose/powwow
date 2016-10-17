@@ -72,14 +72,6 @@ html.no-js
 					baseSpeed: 300,
 					speed: 1
 				});
-				//- var page = 4;
-				//- var setting = {
-				//- 	gridWidth: [0,400,600,800],
-				//- 	scrollbottom:{
-				//-     	gap: 300,
-				//-         endtxt : 'No More Data !!',
-				//-     }
-				//- }
 				$.fn.is_on_screen = function(){
 					var win = $(window);
 					var viewport = {
@@ -98,7 +90,6 @@ html.no-js
 				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
 					new SelectFx(el);
 				}); 
-				//- $('.pin-block').waterfall(setting);	
 				$('.mural-container').gridalicious({
 					selector: '.item',
 					width: 400

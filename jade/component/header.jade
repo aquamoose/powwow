@@ -27,6 +27,6 @@
 				input.search-textfield(type="text", name="search", placeholder="What're we looking for?")
 				//- input.search-submit(value="", type="submit")
 		.sm-menu.row
-			- var list = [{ name : 'NEWS', data : '#' }, { name : 'MURALS', data : 'mural-list.html' },{ name : 'MUSIC', data : '#' },{ name : 'EVENT', data : 'activities.html' },{ name : 'CHANNEL', data : '#' },{ name : 'PARTICIPANTS', data : 'participants.html' },{ name : 'PROFILES', data : '#' },{ name : 'LOCATION', data : 'location.html' },{ name : 'ABOUT', data : '#' },{ name : 'MEMBER PROFILE', data : '#' },]
+			- var list = [{ name : 'NEWS', data : '#' }, { name : 'MURALS', data : 'mural-list.html' },{ name : 'EVENT', data : 'activities.html' },{ name : 'PARTICIPANTS', data : 'participants.html' },{ name : 'PROFILES', data : '#' },{ name : 'LOCATION', data : 'location.html' },{ name : 'ABOUT', data : '#' },{ name : 'MEMBER PROFILE', data : '#' },]
 				each item in list
 					.medium-6.small-12.columns: a(href=item.data).linkFade=item.name

@@ -1719,7 +1719,7 @@ body {
       color: #cb4040; }
 
 .tabs-content {
-  background: #fefefe;
+  background: #f7f7f7;
   transition: all 0.5s ease;
   /*border: 1px solid #e6e6e6;*/
   border-top: 0; }

@@ -36,18 +36,6 @@
 		}
 	}
 }
-#particles-js {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: -1;
-	canvas {
-		position: absolute;
-		top: 0;
-	}
-}
 
 .artist-gallery {
 	position: relative;
@@ -83,6 +71,15 @@
 .artist-video {
 	margin-bottom: 50px;
 }
+
 .video-wrap iframe {
 	@include aspect-ratio(16, 9);
+}
+.index-sec {
+	h3 {
+		text-align: center;
+		margin: 60px 0 70px;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
 }

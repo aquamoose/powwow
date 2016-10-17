@@ -4,7 +4,9 @@
 .p-bottom-50 {
 	padding-bottom: 50px;
 }
-
+.padding-50 {
+	padding-top: 50px;
+}
 .row {
 	max-width: 100%;
 }
@@ -35,6 +37,24 @@
 
 .borderless {
 	border: none;
+}
+.google-maps {
+	position: relative;
+    padding-bottom: 50%; // This is the aspect ratio
+    height: 0;
+    overflow: hidden;
+	iframe {
+		display: block;
+		pointer-events: none;
+		position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100% !important;
+	    height: 100% !important;
+	}
+	iframe.clicked{
+		pointer-events: auto;
+	}
 }
 .back-to-top {
 	position: fixed;

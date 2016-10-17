@@ -26,7 +26,6 @@ html.no-js
 		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
 		script(src='js/classie.js')
 		script(src='js/selectFx.js')
-		script(src='js/particles.js')
 		script(src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js")
 		script(src='js/maplace.js')
 		script(src='js/markerclusterer.js')
@@ -99,7 +98,7 @@ html.no-js
 					return false;
 				});
 
-				particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1600}},"color":{"value":"#000000"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.3,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":1,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#000000","opacity":0.3,"width":1},"move":{"enable":true,"speed":1,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":true,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":100,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
+				
 
 				$('.ripple').on('click', function (event) {
 					var $div = $('<div/>'),
@@ -227,7 +226,6 @@ html.no-js
 		.wrapper
 			include component/header.jade
 			.content.padding-column
-				#particles-js
 				.banner-slogan
 					p.page-slogan.artist-slogan Colasa
 				.artist-des.revealer
@@ -252,8 +250,11 @@ html.no-js
 					.clearfix
 				.artist-video.revealer
 					p.index-title.small-title See Me Here
-					.video-wrap
-						<iframe width="100%" height="56%" src="https://www.youtube.com/embed/Y1kWxFTWIWQ" frameborder="0" allowfullscreen></iframe>
+					.row
+						.video-wrap.medium-6.small-12.column
+							<iframe width="100%" height="56%" src="https://www.youtube.com/embed/Y1kWxFTWIWQ" frameborder="0" allowfullscreen></iframe>
+						.video-wrap.medium-6.small-12.column
+							<iframe width="100%" height="56%" src="https://www.youtube.com/embed/Y1kWxFTWIWQ" frameborder="0" allowfullscreen></iframe>
 				.section-divider
 				p.index-title.small-title.divided-title location
 				.map-embed.ratio-hack.clearfix.revealer
@@ -267,13 +268,17 @@ html.no-js
 				.section-divider
 				p.index-title.small-title.divided-title Related Artists
 				.row.related-block.artists-content-block
-					each item in ['alexface', 'caratoes', 'nychos']
-						.medium-4.small-12.columns.index-artist-block.revealer
-							a
-								.ratio-hack
-									div.i-artist-thumb(style="background-image: url(img/"+item+"_thumb.jpg);")
-										div.i-artist-overlay
-										p=item
+					- var list = [{ name : "alexface", data : "graffiti artist" },{ name : "caratoes", data : "music artist" },{ name : "nychos", data : "music artist"}]
+						each item in list
+							.medium-4.small-12.columns.index-artist-block.revealer
+								a
+									.ratio-hack
+										div.i-artist-thumb(style="background-image: url(img/"+item.name+"_thumb.jpg);")
+											div.i-artist-overlay
+											.artist-name-cat
+												p=item.name
+												p.underline
+												p=item.data
 				.prev-next-pagi.revealer
 					.row
 						.small-4.columns
