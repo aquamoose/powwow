@@ -164,6 +164,26 @@
       	$(window).resize(function(){
       		expand();
       	});
+      	$('.mural-container').gridalicious({
+      		selector: '.item',
+      		width: 400
+      	});
+      	$('.item').hover(function(){
+      		$('.item').not(this).css({
+      			'opacity' : '0.4',
+      			'z-index' : '10'
+      		});
+      		$('.card-bg-fix').css('z-index', '-1');
+      	}, function(){
+      		$('.item').not(this).css({
+      			'opacity' : '1',
+      			'z-index' : '2'
+      		});
+      		$('.card-bg-fix').css('z-index', '0');
+      	});
+      	$('.google-maps').click(function(){
+      		$(this).find('iframe').addClass('clicked')}).mouseleave(function(){
+      			$(this).find('iframe').removeClass('clicked')});
       });
     </script>
   </head>
@@ -371,6 +391,43 @@
                       </div>
                     </div>
                   </div></a></div>
+            </div>
+          </div>
+          <div class="index-artist">
+            <h3>Map</h3>
+            <div class="google-maps"><iframe src="https://www.google.com/maps/d/u/0/embed?mid=19s8FCjqTaJEw3mL0B5paTyTV8GU" width="640" height="480"></iframe></div>
+          </div>
+          <div class="mural-container">
+            <h3>Murals</h3>
+            <div class="item"><a href="mural.html" class="no-barba linkFade"><img src="img/wall1.jpg" data-caption="Cara To AKA 'Caratoes' is an illustrator and street artist based in Hong Kong.">
+                <p class="author-name">Caratoes</p>
+                <p>Cara To AKA 'Caratoes' is an illustrator and street artist based in Hong Kong.</p></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="item"><a href="mural.html" class="no-barba linkFade"><img src="img/wall2.jpg" data-caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis.">
+                <p class="author-name">DEBE</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis.</p></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="item"><a href="mural.html" class="no-barba linkFade"><img src="img/wall3.jpg" data-caption="ANO Started practicing graffiti art in 1999 on the streets, often using pixels as his basic element of design. Proficient in various graffiti techniques, Ano has often collaborated with television advertising and well-known brands doing performances for Rolex, NIKE, Adidas,Puma ,Converse, Royal Elastics, ASUS, and more. ">
+                <p class="author-name">ANO</p>
+                <p>ANO Started practicing graffiti art in 1999 on the streets, often using pixels as his basic element of design. Proficient in various graffiti techniques, Ano has often collaborated with television advertising and well-known brands doing performances for Rolex, NIKE, Adidas,Puma ,Converse, Royal Elastics, ASUS, and more. </p></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="item"><a href="mural.html" class="no-barba linkFade"><img src="img/wall4.jpg" data-caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque.Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.">
+                <p class="author-name">Girenhao</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque.Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.</p></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="item"><a href="mural.html" class="no-barba linkFade"><img src="img/wall5.jpg" data-caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.">
+                <p class="author-name">Alexface</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.</p></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="item"><a href="mural.html" class="no-barba linkFade"><img src="img/wall1.jpg" data-caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.">
+                <p class="author-name">Colasa</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.</p></a>
+              <div class="card-bg-fix"></div>
             </div>
           </div>
         </div>

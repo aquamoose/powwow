@@ -54,9 +54,13 @@
 	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
 	@include transition(all .3s ease);
 }
+.mural-panel {
+	margin-top: 15px;
+}
 .panel-column {
 	margin-bottom: 30px;
 	a {
+		background-color: #333;
 		display: block;
 		overflow: hidden;
 		width: 100%;
@@ -70,6 +74,8 @@
 			height: 100%;
 			width: 100%;
 			overflow: hidden;
+			display: flex;
+			justify-content: center;
 			@include transition(all .3s);
 			&:after {
 				content: '';
@@ -96,21 +102,32 @@
 				overflow: hidden;
 				@include transition(all .3s);
 			}
-			p {
+			.artist-name-cat {
 				position: relative;
-				text-align: center;
-				font-size: 2em;
-				color: white; 
-				text-transform: uppercase;
-				font-weight: bolder;
-				z-index: 5;
-				padding: 0 0.9375em;
-				top: 50%;
-				transform: translateY(-50%);
-				-webkit-transform: translateY(-50%);
-				-moz-transform: translateY(-50%);
-				-o-transform: translateY(-50%);
-				
+				align-self: center;
+				@include transition(all .3s ease);
+				width: 100%;
+				// top: 50%;
+				// transform: translateY(-50%);
+				// -webkit-transform: translateY(-50%);
+				// -moz-transform: translateY(-50%);
+				// -o-transform: translateY(-50%);
+				p {						
+					text-align: center;
+					font-size: 2em;
+					color: white; 
+					text-transform: uppercase;
+					font-weight: bolder;
+					z-index: 5;
+					padding: 0 0.9375em;
+					margin-bottom: 0;
+				}
+				.underline {
+					height: 2px;
+					width: 80%;
+					background: white;
+					margin: 5px auto;
+				}
 			}
 		}
 		&:hover {
@@ -122,6 +139,9 @@
 					right: 5.5%;
 					bottom: 7%;
 					opacity: 1;
+				}
+				.artist-name-cat {
+					transform: scale(0.9);
 				}
 			}
 			.i-artist-overlay {

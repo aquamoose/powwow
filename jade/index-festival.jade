@@ -165,6 +165,26 @@ html.no-js
 				$(window).resize(function(){
 					expand();
 				});
+				$('.mural-container').gridalicious({
+					selector: '.item',
+					width: 400
+				});
+				$('.item').hover(function(){
+					$('.item').not(this).css({
+						'opacity' : '0.4',
+						'z-index' : '10'
+					});
+					$('.card-bg-fix').css('z-index', '-1');
+				}, function(){
+					$('.item').not(this).css({
+						'opacity' : '1',
+						'z-index' : '2'
+					});
+					$('.card-bg-fix').css('z-index', '0');
+				});
+				$('.google-maps').click(function(){
+					$(this).find('iframe').addClass('clicked')}).mouseleave(function(){
+						$(this).find('iframe').removeClass('clicked')});
 			});
 	body
 		.loader-bg
@@ -270,6 +290,21 @@ html.no-js
 														p=item.name
 														p.underline
 														p=item.data
+					.index-artist
+						h3 Map
+						.google-maps
+							<iframe src="https://www.google.com/maps/d/u/0/embed?mid=19s8FCjqTaJEw3mL0B5paTyTV8GU" width="640" height="480"></iframe>
+					.mural-container
+						h3 Murals
+						- var list = [{ name : "Cara To AKA 'Caratoes' is an illustrator and street artist based in Hong Kong.", author : "Caratoes", data : "wall1" }, { name : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis.", author : "DEBE", data : "wall2" },{ name : "ANO Started practicing graffiti art in 1999 on the streets, often using pixels as his basic element of design. Proficient in various graffiti techniques, Ano has often collaborated with television advertising and well-known brands doing performances for Rolex, NIKE, Adidas,Puma ,Converse, Royal Elastics, ASUS, and more. ", author : "ANO", data : "wall3" },{ name : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque.Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.", author : "Girenhao", data : "wall4" },{ name : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.", author : "Alexface", data : "wall5" },{ name : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat consectetur pellentesque. Nam ac elit risus, ac blandit dui. Duis rutrum porta tortor ut convallis. Duis rutrum porta tortor ut convallis.", author : "Colasa", data : "wall1" }]
+								each item in list
+									.item
+										a(href="mural.html").no-barba.linkFade
+											img(src="img/"+item.data+".jpg", data-caption=item.name)
+											p.author-name=item.author
+											p=item.name
+										.card-bg-fix
+					
 			include component/footer.jade
 			//- a.back-to-top.ripple(href="#") TOP
 	script(src='js/lightbox.js')
