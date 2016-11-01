@@ -1,6 +1,9 @@
 .bold {
 	font-weight: bold;
 }
+.italic {
+	font-style: italic;
+}
 .banner {
 	position: fixed;
 	width: 100%;
@@ -21,6 +24,15 @@
 	font-weight: bolder;
 	position: relative;
 }
+.about-title {
+	text-align: center;
+	padding: 40px 0;
+	font-size: 4em;
+	color: white; 
+	text-transform: uppercase;
+	font-weight: bolder;
+	position: relative;
+}
 .small-title {
 	font-size: 3em;
 	color: #333;
@@ -28,6 +40,7 @@
 .divided-title {
 	padding-top: 0;
 }
+
 .banner-slogan {
 	position: relative;
 	text-align: center;

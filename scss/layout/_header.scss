@@ -63,6 +63,9 @@
 	}
 	.header-menu {
 		text-align: right;
+		div {
+			display: inline-block;
+		}
 		.menu-button {
 			display: block;
 			padding-top: 5px;

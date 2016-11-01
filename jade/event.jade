@@ -96,157 +96,13 @@ html.no-js
 				});
 				
 				$('.parallax').parallax();
-				Barba.Prefetch.init();
-				Barba.Pjax.start();
-				Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
-					$(function(){
-						
-						$('.mural-container').gridalicious({
-							selector: '.item',
-							width: 400
-						});
-						
-						$('.item').hover(function(){
-							$('.item').not(this).css('opacity', '0.4');
-						}, function(){
-							$('.item').not(this).css('opacity', '1');
-						});
-						$.timeliner({
-							baseSpeed: 300,
-							speed: 1
-						});
-						$('.panel').click(function(){
-							$('html,body').animate({
-								scrollTop: $("#content").offset().top - 50},
-							'slow');
-						});
-						$('.tabs-title a').each(function(){
-							$(this).click(function(e){
-								$('.tabs-title a').removeClass('is-active');
-								$(this).addClass('is-active');
-								var link = $(this).attr('href');
-								$('.event-list-wrapper').scrollTo($(link), 800);
-								e.preventDefault();
-							})
-						});
-						$('.event-list-panel').each(function(){
-							if($(window).width() > 480 ) {
-								$(this).hover(function(){
-									$(this).find('.panel-hack').addClass('hover');
-									$(this).find('.panel-hack').addClass('expand');
-									$(this).next().find('.panel-hack').addClass('shrink-right');
-									$(this).prev().find('.panel-hack').addClass('shrink-left');
-									$('.event-list-panel').not(this).css('opacity', '0.4');
-									$(this).css('z-index', '999');
-
-								}, function(){
-									$(this).find('.panel-hack').removeClass('hover');
-									$(this).find('.panel-hack').removeClass('expand');
-									$(this).next().find('.panel-hack').removeClass('shrink-right');
-									$(this).prev().find('.panel-hack').removeClass('shrink-left');
-									$('.event-list-panel').not(this).css('opacity', '1');
-									$(this).css('z-index', '5');
-								});
-							} else {
-								$(this).hover(function(){
-									$(this).find('.panel-hack').addClass('hover');
-									$(this).find('.panel-hack').removeClass('expand');
-									$(this).next().find('.panel-hack').removeClass('shrink-right');
-									$(this).prev().find('.panel-hack').removeClass('shrink-left');
-								});	
-							}
-						});
-					});
-				});
-
-				var FadeTransition = Barba.BaseTransition.extend({
-				  start: function() {
-				    /**
-				     * This function is automatically called as soon the Transition starts
-				     * this.newContainerLoading is a Promise for the loading of the new container
-				     * (Barba.js also comes with an handy Promise polyfill!)
-				     */
-
-				    // As soon the loading is finished and the old page is faded out, let's fade the new page
-				    Promise
-				      .all([this.newContainerLoading, this.fadeOut()])
-				      .then(this.fadeIn.bind(this));
-				  },
-
-				  fadeOut: function() {
-				    /**
-				     * this.oldContainer is the HTMLElement of the old Container
-				     */
-					
-				    return $(this.oldContainer).animate({ opacity: 0 }).promise();
-				  },
-
-				  fadeIn: function() {
-				    /**
-				     * this.newContainer is the HTMLElement of the new Container
-				     * At this stage newContainer is on the DOM (inside our #barba-container and with visibility: hidden)
-				     * Please note, newContainer is available just after newContainerLoading is resolved!
-				     */
-
-				    var _this = this;
-				    var $el = $(this.newContainer);
-
-				    $(this.oldContainer).hide();
-
-				    $el.css({
-				      visibility : 'visible',
-				      opacity : 0
-				    });
-
-				    $el.animate({ opacity: 1 }, 2000, function() {
-				      /**
-				       * Do not forget to call .done() as soon your transition is finished!
-				       * .done() will automatically remove from the DOM the old Container
-				       */
-
-				      _this.done();
-				    });
-				  }
-				});
-				
-
-				/**
-				 * Next step, you have to tell Barba to use the new Transition
-				 */
-
-				Barba.Pjax.getTransition = function() {
-				  /**
-				   * Here you can use your own logic!
-				   * For example you can use different Transition based on the current page or link...
-				   */
-				   var transitionObj = FadeTransition;
-				 		
-					//- if (Barba.HistoryManager.prevStatus().namespace === 'event') {
-				 //-       $('#barba-wrapper').show();
-				 //-       $('.transition-page').show('300');
-				       
-				 //-    } else {
-				 //-    	$('#barba-wrapper').hide();
-				 //-    	setTimeout(function(){
-					//- 		//- $('.transition-page').hide('300');
-					//- 		$('#barba-wrapper').show('300');
-
-							 
-					//- 	}, 800);
-						
-				 //-    }		
-				return transitionObj;
-				 
-				};
 			});
 	body
-		.loader
-			.circle
-			.circle-small
-			.circle-big
-			.circle-inner-inner
-			.circle-inner
 		.loader-bg
+			.spinner
+				.bounce1
+				.bounce2
+				.bounce3
 		.wrapper
 			include component/header.jade
 			.content
@@ -261,9 +117,9 @@ html.no-js
 				.content.p-bottom-50#barba-wrapper
 					.barba-container
 						#particles-js
-						a.prev-underline.back-panel.event-back(href="event-list.html")
+						a.prev-underline.back-panel.event-back(href="javascript: history.go(-1)")
 							i.fa.fa-angle-left(aria-hidden="true")
-							span Back To Murals
+							span Back To Event
 						.event-des
 							p.index-title.small-title STRANDED IN PARADISE CONCERT 2016
 							p.padding-column Every February, artists from all over the world travel to the island of Oahu for POW! WOW! Hawaii, an art and music festival that takes place in the Kaka’ako district of Honolulu. Heading into the 6th year in Hawaii and after a worldwide tour of festivals, the 2016 edition was even bigger and better. With over a hundred artists, musicians, photographers and media partners from across the globe attending and forming a unique creative community built on the celebration and appreciation of art, music and culture.<br><br>For the first time at the festival, POW! WOW! presented “Stranded in Paradise”. A concert with The Green and DJ Babu and Rakaa Iriscience of Dilated Peoples at Makers and Tasters in Kaka’ako, Hawaii. The event also featured the Secret Walls street art battles, the best food trucks, retail booths and more.

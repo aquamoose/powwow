@@ -95,174 +95,39 @@
       	});
       	
       	$('.parallax').parallax();
-      	Barba.Prefetch.init();
-      	Barba.Pjax.start();
-      	Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
-      		$(function(){
-      			
-      			$('.mural-container').gridalicious({
-      				selector: '.item',
-      				width: 400
-      			});
-      			
-      			$('.item').hover(function(){
-      				$('.item').not(this).css('opacity', '0.4');
-      			}, function(){
-      				$('.item').not(this).css('opacity', '1');
-      			});
-      			$.timeliner({
-      				baseSpeed: 300,
-      				speed: 1
-      			});
-      			$('.panel').click(function(){
-      				$('html,body').animate({
-      					scrollTop: $("#content").offset().top - 50},
-      				'slow');
-      			});
-      			$('.tabs-title a').each(function(){
-      				$(this).click(function(e){
-      					$('.tabs-title a').removeClass('is-active');
-      					$(this).addClass('is-active');
-      					var link = $(this).attr('href');
-      					$('.event-list-wrapper').scrollTo($(link), 800);
-      					e.preventDefault();
-      				})
-      			});
-      			$('.event-list-panel').each(function(){
-      				if($(window).width() > 480 ) {
-      					$(this).hover(function(){
-      						$(this).find('.panel-hack').addClass('hover');
-      						$(this).find('.panel-hack').addClass('expand');
-      						$(this).next().find('.panel-hack').addClass('shrink-right');
-      						$(this).prev().find('.panel-hack').addClass('shrink-left');
-      						$('.event-list-panel').not(this).css('opacity', '0.4');
-      						$(this).css('z-index', '999');
-      
-      					}, function(){
-      						$(this).find('.panel-hack').removeClass('hover');
-      						$(this).find('.panel-hack').removeClass('expand');
-      						$(this).next().find('.panel-hack').removeClass('shrink-right');
-      						$(this).prev().find('.panel-hack').removeClass('shrink-left');
-      						$('.event-list-panel').not(this).css('opacity', '1');
-      						$(this).css('z-index', '5');
-      					});
-      				} else {
-      					$(this).hover(function(){
-      						$(this).find('.panel-hack').addClass('hover');
-      						$(this).find('.panel-hack').removeClass('expand');
-      						$(this).next().find('.panel-hack').removeClass('shrink-right');
-      						$(this).prev().find('.panel-hack').removeClass('shrink-left');
-      					});	
-      				}
-      			});
-      		});
-      	});
-      
-      	var FadeTransition = Barba.BaseTransition.extend({
-      	  start: function() {
-      	    /**
-      	     * This function is automatically called as soon the Transition starts
-      	     * this.newContainerLoading is a Promise for the loading of the new container
-      	     * (Barba.js also comes with an handy Promise polyfill!)
-      	     */
-      
-      	    // As soon the loading is finished and the old page is faded out, let's fade the new page
-      	    Promise
-      	      .all([this.newContainerLoading, this.fadeOut()])
-      	      .then(this.fadeIn.bind(this));
-      	  },
-      
-      	  fadeOut: function() {
-      	    /**
-      	     * this.oldContainer is the HTMLElement of the old Container
-      	     */
-      		
-      	    return $(this.oldContainer).animate({ opacity: 0 }).promise();
-      	  },
-      
-      	  fadeIn: function() {
-      	    /**
-      	     * this.newContainer is the HTMLElement of the new Container
-      	     * At this stage newContainer is on the DOM (inside our #barba-container and with visibility: hidden)
-      	     * Please note, newContainer is available just after newContainerLoading is resolved!
-      	     */
-      
-      	    var _this = this;
-      	    var $el = $(this.newContainer);
-      
-      	    $(this.oldContainer).hide();
-      
-      	    $el.css({
-      	      visibility : 'visible',
-      	      opacity : 0
-      	    });
-      
-      	    $el.animate({ opacity: 1 }, 2000, function() {
-      	      /**
-      	       * Do not forget to call .done() as soon your transition is finished!
-      	       * .done() will automatically remove from the DOM the old Container
-      	       */
-      
-      	      _this.done();
-      	    });
-      	  }
-      	});
-      	
-      
-      	/**
-      	 * Next step, you have to tell Barba to use the new Transition
-      	 */
-      
-      	Barba.Pjax.getTransition = function() {
-      	  /**
-      	   * Here you can use your own logic!
-      	   * For example you can use different Transition based on the current page or link...
-      	   */
-      	   var transitionObj = FadeTransition;
-      	 		
-      		//- if (Barba.HistoryManager.prevStatus().namespace === 'event') {
-      	 //-       $('#barba-wrapper').show();
-      	 //-       $('.transition-page').show('300');
-      	       
-      	 //-    } else {
-      	 //-    	$('#barba-wrapper').hide();
-      	 //-    	setTimeout(function(){
-      		//- 		//- $('.transition-page').hide('300');
-      		//- 		$('#barba-wrapper').show('300');
-      
-      				 
-      		//- 	}, 800);
-      			
-      	 //-    }		
-      	return transitionObj;
-      	 
-      	};
       });
     </script>
   </head>
   <body>
-    <div class="loader">
-      <div class="circle"></div>
-      <div class="circle-small"></div>
-      <div class="circle-big"></div>
-      <div class="circle-inner-inner"></div>
-      <div class="circle-inner"></div>
+    <div class="loader-bg">
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
     </div>
-    <div class="loader-bg"></div>
     <div class="wrapper">
       <div class="header row">
         <div class="logo medium-1 small-12 columns header-logo"><a href="index.html" class="linkFade"><img src="img/powwowlogo.png"></a></div>
         <div class="medium-10 columns header-nav mobile-hide">
           <div class="row">
             <div class="medium-3 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
-            <div class="medium-3 columns"><a href="event-list.html" class="linkFade">EVENTS</a></div>
+            <div class="medium-3 columns"><a href="event-list.html" class="linkFade">FESTIVALS</a></div>
             <div class="medium-3 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
             <div class="medium-3 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
           </div>
         </div>
         <div class="medium-1 columns header-menu mobile-fix">
           <div> <span class="menu-button">
-              <button type="button" role="button" aria-label="Toggle Navigation" class="lines-button x"><span class="lines"></span></button></span></div>
+              <button type="button" role="button" aria-label="Toggle Navigation" class="lines-button x"><span class="lines"> </span></button></span></div>
+        </div>
+        <div class="lang-box-wrapper">
+          <div class="lang-select-box">
+            <select class="cs-select lang-select cs-skin-underline">
+              <option selected="selected" value="eng">Eng</option>
+              <option value="chi">Chi</option>
+            </select>
+          </div>
         </div>
       </div>
       <div class="screen-menu sm-overlay"><span class="menu-button">
@@ -275,14 +140,12 @@
             </form>
           </div>
           <div class="sm-menu row">
-            <div class="medium-6 small-12 columns"><a href="#" class="linkFade">NEWS</a></div>
-            <div class="medium-6 small-12 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
-            <div class="medium-6 small-12 columns"><a href="activities.html" class="linkFade">EVENT</a></div>
-            <div class="medium-6 small-12 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
-            <div class="medium-6 small-12 columns"><a href="#" class="linkFade">PROFILES</a></div>
-            <div class="medium-6 small-12 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
-            <div class="medium-6 small-12 columns"><a href="#" class="linkFade">ABOUT</a></div>
-            <div class="medium-6 small-12 columns"><a href="#" class="linkFade">MEMBER PROFILE</a></div>
+            <div class="small-12 columns"><a href="index.html" class="linkFade">HOME</a></div>
+            <div class="small-12 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
+            <div class="small-12 columns"><a href="activities.html" class="linkFade">FESTIVALS</a></div>
+            <div class="small-12 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
+            <div class="small-12 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
+            <div class="small-12 columns"><a href="about.html" class="linkFade">ABOUT</a></div>
           </div>
         </div>
       </div>
@@ -298,7 +161,7 @@
         </div><a id="content" href="#"></a>
         <div id="barba-wrapper" class="content p-bottom-50">
           <div class="barba-container">
-            <div id="particles-js"></div><a href="event-list.html" class="prev-underline back-panel event-back"><i aria-hidden="true" class="fa fa-angle-left"></i><span>Back To Murals</span></a>
+            <div id="particles-js"></div><a href="javascript: history.go(-1)" class="prev-underline back-panel event-back"><i aria-hidden="true" class="fa fa-angle-left"></i><span>Back To Event</span></a>
             <div class="event-des">
               <p class="index-title small-title">STRANDED IN PARADISE CONCERT 2016</p>
               <p class="padding-column">Every February, artists from all over the world travel to the island of Oahu for POW! WOW! Hawaii, an art and music festival that takes place in the Kaka’ako district of Honolulu. Heading into the 6th year in Hawaii and after a worldwide tour of festivals, the 2016 edition was even bigger and better. With over a hundred artists, musicians, photographers and media partners from across the globe attending and forming a unique creative community built on the celebration and appreciation of art, music and culture.<br><br>For the first time at the festival, POW! WOW! presented “Stranded in Paradise”. A concert with The Green and DJ Babu and Rakaa Iriscience of Dilated Peoples at Makers and Tasters in Kaka’ako, Hawaii. The event also featured the Secret Walls street art battles, the best food trucks, retail booths and more.</p>
@@ -395,11 +258,8 @@
           <div class="medium-6 small-12 columns footer-nav-block">
             <div class="footer-nav">
               <div><a href="index.html" class="linkFade">Home</a></div>
-              <div><a href="#" class="linkFade">News</a></div>
               <div><a href="mural-list.html" class="linkFade">Murals</a></div>
-              <div><a href="event-list.html" class="linkFade">Event</a></div>
-            </div>
-            <div class="footer-nav">
+              <div><a href="index-festival.html" class="linkFade">Festivals</a></div>
               <div><a href="participants.html" class="linkFade">Participants</a></div>
               <div><a href="location.html" class="linkFade">Location</a></div>
               <div><a href="#" class="linkFade">About</a></div>

@@ -49,6 +49,9 @@
 		column-count: 3;
 		column-gap: 10px;
 	}
+	.lang-select-box {
+		max-width: 60px;
+	}
 }
 
 @media only screen and (max-width: 768px) {
@@ -124,6 +127,9 @@
     }
     .pin-block[data-columns]::before {
 		content: '3 .column.size-1of3';
+	}
+	.lang-box-wrapper {
+		right: 80px;
 	}
 }
 
@@ -213,6 +219,12 @@
 		column-count: 2;
 		column-gap: 10px;
 	}
+	.powwow-history {
+		.pow-section {
+			width: 100%;
+			padding: 0 5%;
+		}
+	}
 }
 @media only screen and (max-width: 480px) {
 	.screen-menu .sm-wrapper .search-wrap {
@@ -265,6 +277,9 @@
 				position: relative;
 			}
 		}
+	}
+	.lang-box-wrapper {
+		display: none;
 	}
 	
 }

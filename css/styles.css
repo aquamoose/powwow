@@ -690,6 +690,8 @@ body {
     font-family: 'Aller', sans-serif; }
   .header .header-menu {
     text-align: right; }
+    .header .header-menu div {
+      display: inline-block; }
     .header .header-menu .menu-button {
       display: block;
       padding-top: 5px; }
@@ -1588,6 +1590,20 @@ body {
   color: white;
   text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.7); }
 
+.powwow-history {
+  font-size: 1.5em;
+  text-align: center; }
+  .powwow-history .pow-section {
+    text-align: left;
+    width: 49%;
+    display: inline-block;
+    padding: 0 2%;
+    vertical-align: top; }
+    .powwow-history .pow-section .personnel {
+      margin-bottom: 10px; }
+      .powwow-history .pow-section .personnel p {
+        margin-bottom: 0; }
+
 button:focus {
   outline: none; }
 
@@ -1940,9 +1956,17 @@ textarea {
     right: 0;
     top: -7px; }
 
+.lang-box-wrapper {
+  position: absolute;
+  top: 6px;
+  right: 65px; }
+  .lang-box-wrapper .cs-skin-underline .cs-options {
+    background: rgba(0, 0, 0, 0.75); }
+
 .lang-select-box {
-  padding: 0 7em 0 0;
-  text-align: right; }
+  padding: 0;
+  text-align: right;
+  max-width: 70px; }
 
 div.cs-select {
   display: inline-block;
@@ -2210,6 +2234,9 @@ div.cs-skin-underline {
 .bold {
   font-weight: bold; }
 
+.italic {
+  font-style: italic; }
+
 .banner {
   position: fixed;
   width: 100%;
@@ -2223,6 +2250,15 @@ div.cs-skin-underline {
 .index-title {
   text-align: center;
   padding: 80px 0;
+  font-size: 4em;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bolder;
+  position: relative; }
+
+.about-title {
+  text-align: center;
+  padding: 40px 0;
   font-size: 4em;
   color: white;
   text-transform: uppercase;
@@ -2540,7 +2576,9 @@ div.cs-skin-underline {
     -webkit-column-count: 3;
     -webkit-column-gap: 10px;
     column-count: 3;
-    column-gap: 10px; } }
+    column-gap: 10px; }
+  .lang-select-box {
+    max-width: 60px; } }
 
 @media only screen and (max-width: 768px) {
   .header-logo {
@@ -2582,7 +2620,9 @@ div.cs-skin-underline {
     float: none;
     width: 200px; }
   .pin-block[data-columns]::before {
-    content: '3 .column.size-1of3'; } }
+    content: '3 .column.size-1of3'; }
+  .lang-box-wrapper {
+    right: 80px; } }
 
 @media only screen and (max-width: 640px) {
   .screen-menu .sm-wrapper .search-wrap {
@@ -2638,7 +2678,10 @@ div.cs-skin-underline {
     -webkit-column-count: 2;
     -webkit-column-gap: 10px;
     column-count: 2;
-    column-gap: 10px; } }
+    column-gap: 10px; }
+  .powwow-history .pow-section {
+    width: 100%;
+    padding: 0 5%; } }
 
 @media only screen and (max-width: 480px) {
   .screen-menu .sm-wrapper .search-wrap {
@@ -2679,7 +2722,9 @@ div.cs-skin-underline {
         width: 100%;
         height: 300px;
         display: block;
-        position: relative; } }
+        position: relative; }
+  .lang-box-wrapper {
+    display: none; } }
 
 @media only screen and (max-width: 400px) {
   .screen-menu .sm-wrapper .sm-menu {
