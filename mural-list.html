@@ -164,129 +164,7 @@
       	window.sr = ScrollReveal(config);
       	sr.reveal('.panel-column');
       
-      	Barba.Prefetch.init();
-      	Barba.Pjax.start();
-      	Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
-      		$(function(){
-      			
-      			$('.back-panel').click(function(){
-      				parent.history.back();
-      				return false;
-      			});
-      			
-      			$('.panel-column a').click(function(){
-      				$('html,body').animate({
-      					scrollTop: $("#content").offset().top - 50},
-      				'slow');
-      			});
-      			var config = {
-      				viewFactor: 0.15,
-      				duration: 800,
-      				distance: '0px',
-      				scale: 0.8
-      			}
-      			
-      			window.sr = ScrollReveal(config);
-      			sr.reveal('.revealer');
-      			$('.mural-container').gridalicious({
-      				selector: '.item',
-      				animate: true,
-      				width: 400
-      			});
-      			$('.parallax').parallax();
-      			$('.item').hover(function(){
-      				$('.item').not(this).css('opacity', '0.4');
-      			}, function(){
-      				$('.item').not(this).css('opacity', '1');
-      			});
-      			[].slice.call( document.querySelectorAll( 'select.filter-select' ) ).forEach( function(el){	
-      				new SelectFx(el);
-      			}); 
-      			$('.sticky-header').stick_in_parent({
-      				offset_top: 50
-      			});
-      		});
-      	});
-      
-      	var FadeTransition = Barba.BaseTransition.extend({
-      	  start: function() {
-      	    /**
-      	     * This function is automatically called as soon the Transition starts
-      	     * this.newContainerLoading is a Promise for the loading of the new container
-      	     * (Barba.js also comes with an handy Promise polyfill!)
-      	     */
-      
-      	    // As soon the loading is finished and the old page is faded out, let's fade the new page
-      	    Promise
-      	      .all([this.newContainerLoading, this.fadeOut()])
-      	      .then(this.fadeIn.bind(this));
-      	  },
-      
-      	  fadeOut: function() {
-      	    /**
-      	     * this.oldContainer is the HTMLElement of the old Container
-      	     */
-      		
-      	    return $(this.oldContainer).animate({ opacity: 0 }).promise();
-      	  },
-      
-      	  fadeIn: function() {
-      	    /**
-      	     * this.newContainer is the HTMLElement of the new Container
-      	     * At this stage newContainer is on the DOM (inside our #barba-container and with visibility: hidden)
-      	     * Please note, newContainer is available just after newContainerLoading is resolved!
-      	     */
-      
-      	    var _this = this;
-      	    var $el = $(this.newContainer);
-      
-      	    $(this.oldContainer).hide();
-      
-      	    $el.css({
-      	      visibility : 'visible',
-      	      opacity : 0
-      	    });
-      
-      	    $el.animate({ opacity: 1 }, 2000, function() {
-      	      /**
-      	       * Do not forget to call .done() as soon your transition is finished!
-      	       * .done() will automatically remove from the DOM the old Container
-      	       */
-      
-      	      _this.done();
-      	    });
-      	  }
-      	});
       	
-      
-      	/**
-      	 * Next step, you have to tell Barba to use the new Transition
-      	 */
-      
-      	Barba.Pjax.getTransition = function() {
-      	  /**
-      	   * Here you can use your own logic!
-      	   * For example you can use different Transition based on the current page or link...
-      	   */
-      	   var transitionObj = FadeTransition;
-      	 		
-      		//- if (Barba.HistoryManager.prevStatus().namespace === 'event') {
-      	 //-       $('#barba-wrapper').show();
-      	 //-       $('.transition-page').show('300');
-      	       
-      	 //-    } else {
-      	 //-    	$('#barba-wrapper').hide();
-      	 //-    	setTimeout(function(){
-      		//- 		//- $('.transition-page').hide('300');
-      		//- 		$('#barba-wrapper').show('300');
-      
-      				 
-      		//- 	}, 800);
-      			
-      	 //-    }		
-      	return transitionObj;
-      	 
-      	};
       });
     </script>
   </head>
@@ -304,7 +182,7 @@
         <div class="medium-10 columns header-nav mobile-hide">
           <div class="row">
             <div class="medium-3 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
-            <div class="medium-3 columns"><a href="event-list.html" class="linkFade">FESTIVALS</a></div>
+            <div class="medium-3 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
             <div class="medium-3 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
             <div class="medium-3 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
           </div>
@@ -334,10 +212,18 @@
           <div class="sm-menu row">
             <div class="small-12 columns"><a href="index.html" class="linkFade">HOME</a></div>
             <div class="small-12 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
-            <div class="small-12 columns"><a href="activities.html" class="linkFade">FESTIVALS</a></div>
+            <div class="small-12 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
             <div class="small-12 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
             <div class="small-12 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
             <div class="small-12 columns"><a href="about.html" class="linkFade">ABOUT</a></div>
+            <div class="sm-lang-box-wrapper">
+              <div class="lang-select-box">
+                <select class="cs-select lang-select cs-skin-underline">
+                  <option selected="selected" value="eng">Eng</option>
+                  <option value="chi">Chi</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -386,7 +272,7 @@
           </div>
           <div class="barba-container">
             <div class="mural-panel row">
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/07/20160712-DSC02981.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -397,7 +283,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/07/Persue-Yok-Sheryo-5-26-FS-1.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -408,7 +294,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/03/day5_fafi_kamea_gress.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -419,7 +305,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/03/usugrow-20160214.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -430,7 +316,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/07/Telmo-Miel.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -441,7 +327,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/03/DSC09144.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -452,7 +338,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/03/DSC05508.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -463,7 +349,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2015/07/2-1277x848.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -474,7 +360,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2015/04/pw-sxsw-3-1277x848.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -485,7 +371,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2015/03/olek-1-1277x848.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -496,7 +382,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/07/Andrew-Hem-Yoskay-Yamamoto-Edwin-Ushiro.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -507,7 +393,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2014/04/pwtw_process_18-1277x848.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -518,7 +404,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2014/03/7K9A0020-3-1277x848.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -529,7 +415,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/07/Aaron-Li-Hill.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -540,7 +426,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2013/05/7K9A0019-1277x848.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -551,7 +437,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/07/Defer.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -562,7 +448,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2013/05/DSC02060-1277x848.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -573,7 +459,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/07/Sket-One.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -584,7 +470,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2013/05/IMG_0003-1277x848.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -595,7 +481,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/07/The-Draculas-01.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -606,7 +492,7 @@
                       </div>
                     </div>
                   </div></a></div>
-              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="mural-tab1.html" class="linkFade">
                   <div class="ratio-hack">
                     <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2013/05/artist_01-1277x848.jpg);" class="i-artist-thumb">
                       <div class="i-artist-overlay"></div>
@@ -633,7 +519,7 @@
             <div class="footer-nav">
               <div><a href="index.html" class="linkFade">Home</a></div>
               <div><a href="mural-list.html" class="linkFade">Murals</a></div>
-              <div><a href="index-festival.html" class="linkFade">Festivals</a></div>
+              <div><a href="festival-list.html" class="linkFade">Festivals</a></div>
               <div><a href="participants.html" class="linkFade">Participants</a></div>
               <div><a href="location.html" class="linkFade">Location</a></div>
               <div><a href="#" class="linkFade">About</a></div>
@@ -643,10 +529,8 @@
             <div class="footer-social">
               <p class="footer-title">SOCIAL</p>
               <div class="footer-nav">
-                <div><a href="# " class="linkFade">Facebook</a></div>
-                <div><a href="#" class="linkFade">Instagram</a></div>
-                <div><a href="#" class="linkFade">Pinterest</a></div>
-                <div><a href="#" class="linkFade">Youtube</a></div>
+                <div><a href="https://www.facebook.com/PowWowHawaii/" class="linkFade">Facebook</a></div>
+                <div><a href="https://www.instagram.com/powwowworldwide/" class="linkFade">Instagram</a></div>
               </div>
             </div>
           </div>

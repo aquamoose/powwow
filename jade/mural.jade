@@ -95,7 +95,6 @@ html.no-js
 					return false;
 				});
 
-				particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1600}},"color":{"value":"#000000"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.3,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":1,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#000000","opacity":0.3,"width":1},"move":{"enable":true,"speed":1,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":true,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":100,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
 
 				$('.ripple').on('click', function (event) {
 					var $div = $('<div/>'),
@@ -133,51 +132,13 @@ html.no-js
 				$(window).resize(function(){
 					videoResize();
 				});	
-
-				$('.artist-gallery').hover(function(){
-					$('.artist-gallery').not(this).css('opacity', '0.4');
-				}, function(){
-					$('.artist-gallery').not(this).css('opacity', '1');
-				});
 				
 				
 
 				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
 					new SelectFx(el);
 				});  
-				var maplace = new Maplace({
-					map_div: '#gmap',
-					controls_div: '#controls-mixed',
-					controls_type: 'list',
-					controls_on_map: false,
-					map_options : {
-						scrollwheel : false
-					}
-				});
-
-				$('#location-tabs a').click(function(e) {
-					e.preventDefault();
-					var index = $(this).attr('data-load');
-					showGroup(index);
-				});
-
-
-				function showGroup(index) {
-					var el = $('#g'+index);
-					$('#location-tabs li').removeClass('active');
-					$(el).parent().addClass('active');
-					$.getJSON('js/mural.php', { type: index }, function(data) {
-						//loads data into the map
-						maplace.Load({
-							locations: data.locations,
-							view_all: false,
-							type: data.type,
-							force_generate_controls: true
-						});
-					});
-				}
-
-				showGroup(0);
+				
 				function initialize() {
 					var center = new google.maps.LatLng(51.5074, 0.1278);
 
@@ -210,20 +171,15 @@ html.no-js
 		.wrapper
 			include component/header.jade
 			.content.padding-column
-				#particles-js
 				.mural-img
 					img(src="img/madsteez-mural.jpg")
 				.mural-des
-					
+					p Pow Wow Hawaii 2015. 
+					p Painted by Madsteez. 
+					p Photo by Pow Wow
 				p.index-title.small-title.divided-title location
-				.map-embed.ratio-hack.clearfix
-					.control-wrap
-						//- ul#location-tabs.tabs
-						//- 	- var item = ['台北']
-						//- 		- for (var i=0; i<3; i++)
-						//- 			li: a(href="javascript:void(0)", data-load=i, id="g" + i, title=item[i])=item[i]
-						//- #controls-mixed
-					#gmap
+				.google-maps
+					<iframe src="https://www.google.com/maps/d/u/0/embed?mid=19s8FCjqTaJEw3mL0B5paTyTV8GU" width="640" height="480"></iframe>
 				.section-divider
 				p.index-title.small-title.divided-title Related Murals
 				.row.related-block.artists-content-block
@@ -242,7 +198,7 @@ html.no-js
 								i.fa.fa-angle-left(aria-hidden="true")
 								span ANO Mural
 						.small-4.columns.center-top
-							a.center-underline Back To Murals
+							a.center-underline(href="javascript: history.go(-1)") Back To Murals
 						.small-4.columns
 							p Next Mural
 							a.next-underline

@@ -143,6 +143,12 @@
 					}
 				}
 			}
+			.sm-lang-box-wrapper {
+				display: none;
+				.lang-select-box {
+					margin: 0 auto;
+				}
+			}
 		}
 	}
 }

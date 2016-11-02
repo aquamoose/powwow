@@ -276,219 +276,9 @@
       	$('.google-maps').click(function(){
       		$(this).find('iframe').addClass('clicked')}).mouseleave(function(){
       			$(this).find('iframe').removeClass('clicked')});
-      
-      	//- Barba.Prefetch.init();
-      	//- Barba.Pjax.start();
-      	//- Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
-      	//- 	$(function(){
-      			
-      	//- 		function videoResize() {
-      	//- 			var videoHeight = $(".video-wrap iframe").width();
-      	//- 			$(".video-wrap iframe").attr("width", "100%");
-      	//- 			$(".video-wrap iframe").attr("height", videoHeight / 1.778);
-      	//- 		}
-      	//- 		setTimeout(function(){
-      	//- 			videoResize();
-      	//- 		}, 1000);
-      
-      	//- 		$(window).resize(function(){
-      	//- 			videoResize();
-      	//- 		});	
-      
-      	
-      	//- 		$('.item').hover(function(){
-      	//- 			$('.item').not(this).css('opacity', '0.4');
-      	//- 		}, function(){
-      	//- 			$('.item').not(this).css('opacity', '1');
-      	//- 		});
-      	//- 		[].slice.call( document.querySelectorAll( 'select.filter-select' ) ).forEach( function(el){	
-      	//- 			new SelectFx(el);
-      	//- 		});
-      	//- 		lightbox.option({
-      	//- 			'fadeDuration': 300,
-      	//- 			'resizeDuration': 300
-      	//- 		});
-      	//- 		$('.mural-container').gridalicious({
-      	//- 			selector: '.item',
-      	//- 			width: 400
-      	//- 		});
-      	//- 		$('.panel').click(function(){
-      	//- 			$('html,body').animate({
-      	//- 				scrollTop: $("#content").offset().top - 50},
-      	//- 			'slow');
-      	//- 		});
-      	//- 		var maplace = new Maplace({
-      	//- 			map_div: '#gmap',
-      	//- 			controls_div: '#controls-mixed',
-      	//- 			controls_type: 'list',
-      	//- 			controls_on_map: false,
-      	//- 			map_options : {
-      	//- 				scrollwheel : false
-      	//- 			}
-      	//- 		});
-      
-      	//- 		$('#location-tabs a').click(function(e) {
-      	//- 			e.preventDefault();
-      	//- 			var index = $(this).attr('data-load');
-      	//- 			showGroup(index);
-      	//- 		});
-      	//- 		$('.tabs-title a').each(function(){
-      	//- 			$(this).click(function(e){
-      	//- 				$('.tabs-title a').removeClass('is-active');
-      	//- 				$(this).addClass('is-active');
-      	//- 				var link = $(this).attr('href');
-      	//- 				$('.event-list-wrapper').scrollTo($(link), 800);
-      	//- 				e.preventDefault();
-      	//- 			})
-      	//- 		});
-      	//- 		function showGroup(index) {
-      	//- 			var el = $('#g'+index);
-      	//- 			$('#location-tabs li').removeClass('active');
-      	//- 			$(el).parent().addClass('active');
-      	//- 			$.getJSON('js/ajax.php', { type: index }, function(data) {
-      	//- 				//loads data into the map
-      	//- 				maplace.Load({
-      	//- 					locations: data.locations,
-      	//- 					view_all: false,
-      	//- 					type: data.type,
-      	//- 					force_generate_controls: true
-      	//- 				});
-      	//- 			});
-      	//- 		}
-      
-      	//- 		showGroup(0);
-      	//- 		function initialize() {
-      	//- 			var center = new google.maps.LatLng(51.5074, 0.1278);
-      
-      	//- 			var map = new google.maps.Map(document.getElementByClassName('canvas_map'), {
-      	//- 				zoom: 3,
-      	//- 				center: center,
-      	//- 				mapTypeId: google.maps.MapTypeId.ROADMAP
-      	//- 			});
-      
-      	//- 			var markers = [];
-      	//- 			var marker = new google.maps.Marker({
-      	//- 				position: new google.maps.LatLng(51.5074, 0.1278)
-      	//- 			});
-      	//- 			markers.push(marker);
-      
-      	//- 			var options = {
-      	//- 				imagePath: 'img/m',
-      	//- 				girdSize: 80
-      	//- 			};
-      
-      	//- 			var markerCluster = new MarkerClusterer(map, markers, options);
-      	//- 		}	
-      	//- 		$('.event-list-panel').each(function(){
-      	//- 			if($(window).width() > 480 ) {
-      	//- 				$(this).hover(function(){
-      	//- 					$(this).find('.panel-hack').addClass('hover');
-      	//- 					$(this).find('.panel-hack').addClass('expand');
-      	//- 					$(this).next().find('.panel-hack').addClass('shrink-right');
-      	//- 					$(this).prev().find('.panel-hack').addClass('shrink-left');
-      	//- 					$(this).css('z-index', '999');
-      	//- 					$('.event-list-panel').not(this).css('opacity', '0.4');
-      
-      	//- 				}, function(){
-      	//- 					$(this).find('.panel-hack').removeClass('hover');
-      	//- 					$(this).find('.panel-hack').removeClass('expand');
-      	//- 					$(this).next().find('.panel-hack').removeClass('shrink-right');
-      	//- 					$(this).prev().find('.panel-hack').removeClass('shrink-left');
-      	//- 					$('.event-list-panel').not(this).css('opacity', '1');
-      	//- 					$(this).css('z-index', '5');
-      	//- 				});
-      	//- 			} else {
-      	//- 				$(this).hover(function(){
-      	//- 					$(this).find('.panel-hack').addClass('hover');
-      	//- 					$(this).find('.panel-hack').removeClass('expand');
-      	//- 					$(this).next().find('.panel-hack').removeClass('shrink-right');
-      	//- 					$(this).prev().find('.panel-hack').removeClass('shrink-left');
-      	//- 				});	
-      	//- 			}
-      	//- 		});
-      	//- 	});
-      	//- });
-      
-      	//- var FadeTransition = Barba.BaseTransition.extend({
-      	//-   start: function() {
-      	//-     /**
-      	//-      * This function is automatically called as soon the Transition starts
-      	//-      * this.newContainerLoading is a Promise for the loading of the new container
-      	//-      * (Barba.js also comes with an handy Promise polyfill!)
-      	//-      */
-      
-      	//-     // As soon the loading is finished and the old page is faded out, let's fade the new page
-      	//-     Promise
-      	//-       .all([this.newContainerLoading, this.fadeOut()])
-      	//-       .then(this.fadeIn.bind(this));
-      	//-   },
-      
-      	//-   fadeOut: function() {
-      	//-     /**
-      	//-      * this.oldContainer is the HTMLElement of the old Container
-      	//-      */
-      		
-      	//-     return $(this.oldContainer).animate({ opacity: 0 }).promise();
-      	//-   },
-      
-      	//-   fadeIn: function() {
-      	//-     /**
-      	//-      * this.newContainer is the HTMLElement of the new Container
-      	//-      * At this stage newContainer is on the DOM (inside our #barba-container and with visibility: hidden)
-      	//-      * Please note, newContainer is available just after newContainerLoading is resolved!
-      	//-      */
-      
-      	//-     var _this = this;
-      	//-     var $el = $(this.newContainer);
-      
-      	//-     $(this.oldContainer).hide();
-      
-      	//-     $el.css({
-      	//-       visibility : 'visible',
-      	//-       opacity : 0
-      	//-     });
-      
-      	//-     $el.animate({ opacity: 1 }, 2000, function() {
-      	//-       /**
-      	//-        * Do not forget to call .done() as soon your transition is finished!
-      	//-        * .done() will automatically remove from the DOM the old Container
-      	//-        */
-      
-      	//-       _this.done();
-      	//-     });
-      	//-   }
-      	//- });
-      	
-      
-      	//- /**
-      	//-  * Next step, you have to tell Barba to use the new Transition
-      	//-  */
-      
-      	//- Barba.Pjax.getTransition = function() {
-      	//-   /**
-      	//-    * Here you can use your own logic!
-      	//-    * For example you can use different Transition based on the current page or link...
-      	//-    */
-      	//-    var transitionObj = FadeTransition;
-      	 		
-      	//- 	//- if (Barba.HistoryManager.prevStatus().namespace === 'event') {
-      	//-  //-       $('#barba-wrapper').show();
-      	//-  //-       $('.transition-page').show('300');
-      	       
-      	//-  //-    } else {
-      	//-  //-    	$('#barba-wrapper').hide();
-      	//-  //-    	setTimeout(function(){
-      	//- 	//- 		//- $('.transition-page').hide('300');
-      	//- 	//- 		$('#barba-wrapper').show('300');
-      
-      				 
-      	//- 	//- 	}, 800);
-      			
-      	//-  //-    }		
-      	//- return transitionObj;
-      	 
-      	//- };
-      	
+      	$('.artists-content-block').each(function(){
+      		$(this).find('.index-artist-block').last().addClass('end');
+      	});
               
       });
     </script>
@@ -507,7 +297,7 @@
         <div class="medium-10 columns header-nav mobile-hide">
           <div class="row">
             <div class="medium-3 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
-            <div class="medium-3 columns"><a href="event-list.html" class="linkFade">FESTIVALS</a></div>
+            <div class="medium-3 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
             <div class="medium-3 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
             <div class="medium-3 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
           </div>
@@ -537,15 +327,106 @@
           <div class="sm-menu row">
             <div class="small-12 columns"><a href="index.html" class="linkFade">HOME</a></div>
             <div class="small-12 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
-            <div class="small-12 columns"><a href="activities.html" class="linkFade">FESTIVALS</a></div>
+            <div class="small-12 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
             <div class="small-12 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
             <div class="small-12 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
             <div class="small-12 columns"><a href="about.html" class="linkFade">ABOUT</a></div>
+            <div class="sm-lang-box-wrapper">
+              <div class="lang-select-box">
+                <select class="cs-select lang-select cs-skin-underline">
+                  <option selected="selected" value="eng">Eng</option>
+                  <option value="chi">Chi</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="content padding-50">
         <div class="google-maps"><iframe src="https://www.google.com/maps/d/u/0/embed?mid=19s8FCjqTaJEw3mL0B5paTyTV8GU" width="640" height="480"></iframe></div>
+        <div class="index-result">
+          <div class="artists-content-block">
+            <div class="row">
+              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="festival.html" class="linkFade">
+                  <div class="ratio-hack">
+                    <div style="background-image: url(img/event1.jpg);" class="i-artist-thumb">
+                      <div class="i-artist-overlay"></div>
+                      <div class="artist-name-cat">
+                        <p>POW! WOW! TAIWAN!</p>
+                        <p class="underline"></p>
+                        <p>2015</p>
+                      </div>
+                    </div>
+                  </div></a></div>
+              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="festival.html" class="linkFade">
+                  <div class="ratio-hack">
+                    <div style="background-image: url(img/event2.jpg);" class="i-artist-thumb">
+                      <div class="i-artist-overlay"></div>
+                      <div class="artist-name-cat">
+                        <p>POW! WOW! TAIWAN!</p>
+                        <p class="underline"></p>
+                        <p>2014</p>
+                      </div>
+                    </div>
+                  </div></a></div>
+              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="festival.html" class="linkFade">
+                  <div class="ratio-hack">
+                    <div style="background-image: url(img/event3.jpg);" class="i-artist-thumb">
+                      <div class="i-artist-overlay"></div>
+                      <div class="artist-name-cat">
+                        <p>POW! WOW! HAWAII!</p>
+                        <p class="underline"></p>
+                        <p>2015</p>
+                      </div>
+                    </div>
+                  </div></a></div>
+              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="festival.html" class="linkFade">
+                  <div class="ratio-hack">
+                    <div style="background-image: url(img/event4.jpg);" class="i-artist-thumb">
+                      <div class="i-artist-overlay"></div>
+                      <div class="artist-name-cat">
+                        <p>POW! WOW! HAWAII!</p>
+                        <p class="underline"></p>
+                        <p>2014</p>
+                      </div>
+                    </div>
+                  </div></a></div>
+              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="festival.html" class="linkFade">
+                  <div class="ratio-hack">
+                    <div style="background-image: url(img/event5.jpg);" class="i-artist-thumb">
+                      <div class="i-artist-overlay"></div>
+                      <div class="artist-name-cat">
+                        <p>POW! WOW! LONG BEACH!</p>
+                        <p class="underline"></p>
+                        <p>2015</p>
+                      </div>
+                    </div>
+                  </div></a></div>
+              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="festival.html" class="linkFade">
+                  <div class="ratio-hack">
+                    <div style="background-image: url(img/event6.jpg);" class="i-artist-thumb">
+                      <div class="i-artist-overlay"></div>
+                      <div class="artist-name-cat">
+                        <p>POW! WOW! JAPAN!</p>
+                        <p class="underline"></p>
+                        <p>2015</p>
+                      </div>
+                    </div>
+                  </div></a></div>
+              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="festival.html" class="linkFade">
+                  <div class="ratio-hack">
+                    <div style="background-image: url(img/event7.jpg);" class="i-artist-thumb">
+                      <div class="i-artist-overlay"></div>
+                      <div class="artist-name-cat">
+                        <p>POW! WOW! JAPAN!</p>
+                        <p class="underline"></p>
+                        <p>2014</p>
+                      </div>
+                    </div>
+                  </div></a></div>
+            </div>
+          </div>
+        </div>
         <div class="index-block index-brand">
           <div class="brand-block">
             <p class="index-title">brands</p>
@@ -569,7 +450,7 @@
             <div class="footer-nav">
               <div><a href="index.html" class="linkFade">Home</a></div>
               <div><a href="mural-list.html" class="linkFade">Murals</a></div>
-              <div><a href="index-festival.html" class="linkFade">Festivals</a></div>
+              <div><a href="festival-list.html" class="linkFade">Festivals</a></div>
               <div><a href="participants.html" class="linkFade">Participants</a></div>
               <div><a href="location.html" class="linkFade">Location</a></div>
               <div><a href="#" class="linkFade">About</a></div>
@@ -579,10 +460,8 @@
             <div class="footer-social">
               <p class="footer-title">SOCIAL</p>
               <div class="footer-nav">
-                <div><a href="# " class="linkFade">Facebook</a></div>
-                <div><a href="#" class="linkFade">Instagram</a></div>
-                <div><a href="#" class="linkFade">Pinterest</a></div>
-                <div><a href="#" class="linkFade">Youtube</a></div>
+                <div><a href="https://www.facebook.com/PowWowHawaii/" class="linkFade">Facebook</a></div>
+                <div><a href="https://www.instagram.com/powwowworldwide/" class="linkFade">Instagram</a></div>
               </div>
             </div>
           </div>

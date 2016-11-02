@@ -7,7 +7,7 @@
 				p POW! WOW! TAIWAN!
 		.medium-6.small-12.columns.footer-nav-block
 			.footer-nav
-				- var list = [{ name : 'Home', data : 'index.html'}, { name : 'Murals', data : 'mural-list.html' },{ name : 'Festivals', data : 'index-festival.html' },{ name : 'Participants', data : 'participants.html'}, { name : 'Location', data : 'location.html' },{ name : 'About', data : '#' }]
+				- var list = [{ name : 'Home', data : 'index.html'}, { name : 'Murals', data : 'mural-list.html' },{ name : 'Festivals', data : 'festival-list.html' },{ name : 'Participants', data : 'participants.html'}, { name : 'Location', data : 'location.html' },{ name : 'About', data : '#' }]
 						each item in list
 							div: a(href=item.data).linkFade=item.name
 			//- .footer-nav
@@ -18,6 +18,6 @@
 			.footer-social
 				p.footer-title SOCIAL
 				.footer-nav
-					- var list = [{ name : 'Facebook', data : '# '}, { name : 'Instagram', data : '#' }, { name : 'Pinterest', data : '#' }, { name : 'Youtube', data : '#'}]
+					- var list = [{ name : 'Facebook', data : 'https://www.facebook.com/PowWowHawaii/'}, { name : 'Instagram', data : 'https://www.instagram.com/powwowworldwide/' }]
 							each item in list
 								div: a(href=item.data).linkFade=item.name

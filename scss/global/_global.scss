@@ -34,7 +34,9 @@
 	bottom: 0;
 	right: 0;
 }
-
+.sm-parallax {
+	height: auto;
+}
 .borderless {
 	border: none;
 }
@@ -43,6 +45,7 @@
     padding-bottom: 50%; // This is the aspect ratio
     height: 0;
     overflow: hidden;
+    min-height: 400px;
 	iframe {
 		display: block;
 		pointer-events: none;

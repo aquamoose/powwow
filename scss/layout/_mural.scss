@@ -202,15 +202,18 @@
 }
 .event-back {
 	position: relative;
-	top: 70px;
+	top: 50px;
 	z-index: 999;
 }
 .barba-container {
 	position: relative;
 }
-.parallax-container {
-	position: relative;
-	
+.mural-des {
+	margin-bottom: 20px;
+	p {
+		font-size: 1.5em;
+		margin-bottom: 0;
+	}
 }
 .mural-img {
 	padding-top: 50px;

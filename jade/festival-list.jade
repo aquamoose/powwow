@@ -30,6 +30,7 @@ html.no-js
 		script(src='js/jquery.grid-a-licious.js')
 		script(src='js/materialize.js')
 		script(src='js/stick.js')
+		script(src='https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js')
 		link(rel='stylesheet', href='font/aller.css')
 		link(rel='stylesheet', href='css/flexslider.css')
 		link(rel='stylesheet', href='css/materialize.css')
@@ -47,6 +48,7 @@ html.no-js
 			function redirectPage() {
 				window.location = linkLocation;
 			}
+
 			$(window).load(function(){
 				$('.loader').fadeOut(500);
 				$('.loader-bg').fadeOut(1000);
@@ -121,9 +123,9 @@ html.no-js
 						});
 					}, 500);
 				});
-				//- $('.index-block').each(function(){
-				//- 	$(this).find('.index-artist-block').last().addClass('end');
-				//- });
+				$('.index-block').each(function(){
+					$(this).find('.index-artist-block').last().addClass('end');
+				});
 				$('.item').hover(function(){
 					$('.item').not(this).css('opacity', '0.4');
 				}, function(){
@@ -135,16 +137,35 @@ html.no-js
 					e.preventDefault(); 
 					goToByScroll($(this).attr("id"));           
 				});
+				$('.parallax').parallax();
 				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
 					new SelectFx(el);
 				});     
 				
 				//- $('.pin-block').waterfall();
-				$('.mural-container').gridalicious({
-					selector: '.item',
-					width: 400
+				//- $('.mural-container').gridalicious({
+				//- 	selector: '.item',
+				//- 	animate: true,
+				//- 	width: 400
+				//- });
+				$('.sticky-header').stick_in_parent({
+					offset_top: 50
 				});
-			
+				$('.panel-column a').click(function(){
+					$('html,body').animate({
+						scrollTop: $("#content").offset().top - 50},
+					'slow');
+				});
+				var config = {
+					viewFactor: 0.15,
+					duration: 800,
+					distance: '0px',
+					scale: 0.8
+				}
+				window.sr = ScrollReveal(config);
+				sr.reveal('.panel-column');
+
+				
 			});
 	body
 		.loader-bg
@@ -155,10 +176,55 @@ html.no-js
 		.wrapper
 			include component/header.jade
 			.content
+				.parallax-container
+					.parallax
+						img(src='img/banner1.jpg')
+						.pattern-hack
+					.banner-slogan
+						p.page-slogan festival
+						p.page-sub-slogan pow wow festivals from all around the world
+						.banner-button.arrow-down: a#contentlink(href="#") SEE FESTIVALS
+				a#content(href="#")
 				.index-block.index-mural.padding-top-120.padding-column#barba-wrapper
+					.filter-wrap
+						.filter-outer-box
+							span.filter-label Filter
+							.filter-box
+								select.cs-select.filter-select.cs-skin-underline
+									option(selected, disabled) Choose Filter
+									option(value="none") None
+									option(value="2016") 2016
+									option(calue="2015") 2015
+									option(value="2014") 2014
+									option(value="2013") 2013
+									option(value="2012") 2012
+									option(value="2011") 2011
+									option(value="2010") 2010
+									
+						.filter-outer-box
+							span.filter-label Arrange
+							.arrange-box
+								select.cs-select.filter-select.cs-skin-underline
+									option(selected, disabled) Choose Filter
+									option(value="newest") Newest
+									option(value="oldest") Oldest
+									option(value="az") A-Z
+									option(value="za") Z-A
+						.filter-submit 
+							button APPLY
 					.barba-container
-						p.index-title.small-title.divided-title POWWOW LONG BEACH 2016
-						include component/mural-tab1.jade
+						.mural-panel.row
+							- var list = [{ name : "POWWOW LONG BEACH", data : "http://powwowhawaii.com/wp-content/uploads/2016/07/20160712-DSC02981.jpg", date : "2016" }, { name : "POWWOW DC", data : "http://powwowhawaii.com/wp-content/uploads/2016/07/Persue-Yok-Sheryo-5-26-FS-1.jpg", date : "2016" },{ name : "POWWOW SXSW", data : "http://powwowhawaii.com/wp-content/uploads/2016/03/day5_fafi_kamea_gress.jpg", date : "2016" },{ name : "POWWOW HAWAII", data : "http://powwowhawaii.com/wp-content/uploads/2016/03/usugrow-20160214.jpg", date : "2016" },{ name : "OTHER", data : "http://powwowhawaii.com/wp-content/uploads/2016/07/Telmo-Miel.jpg", date : "2016" },{ name : "POWWOW TAIWAN", data : "http://powwowhawaii.com/wp-content/uploads/2016/03/DSC09144.jpg", date : "2016" }, { name : "POWWOW JAPAN", data : "http://powwowhawaii.com/wp-content/uploads/2016/03/DSC05508.jpg", date : "2016" },{ name : "POWWOW LONG BEACH", data : "http://powwowhawaii.com/wp-content/uploads/2015/07/2-1277x848.jpg", date : "2015" },{ name : "POWWOW SXSW", data : "http://powwowhawaii.com/wp-content/uploads/2015/04/pw-sxsw-3-1277x848.jpg", date : "2015" },{ name : "POWWOW HAWAII", data : "http://powwowhawaii.com/wp-content/uploads/2015/03/olek-1-1277x848.jpg", date : "2015" },{ name : "OTHER", data : "http://powwowhawaii.com/wp-content/uploads/2016/07/Andrew-Hem-Yoskay-Yamamoto-Edwin-Ushiro.jpg", date : "2015" },{ name : "POWWOW TAIWAN", data : "http://powwowhawaii.com/wp-content/uploads/2014/04/pwtw_process_18-1277x848.jpg", date : "2014" },{ name : "POWWOW HAWAII", data : "http://powwowhawaii.com/wp-content/uploads/2014/03/7K9A0020-3-1277x848.jpg", date : "2014" },{ name : "OTHER", data : "http://powwowhawaii.com/wp-content/uploads/2016/07/Aaron-Li-Hill.jpg", date : "2014" },{ name : "POWWOW HAWAII", data : "http://powwowhawaii.com/wp-content/uploads/2013/05/7K9A0019-1277x848.jpg", date : "2013" },{ name : "OTHER", data : "http://powwowhawaii.com/wp-content/uploads/2016/07/Defer.jpg", date : "2013" },{ name : "POWWOW HAWAII", data : "http://powwowhawaii.com/wp-content/uploads/2013/05/DSC02060-1277x848.jpg", date : "2012" },{ name : "OTHER", data : "http://powwowhawaii.com/wp-content/uploads/2016/07/Sket-One.jpg", date : "2012" },{ name : "POWWOW HAWAII", data : "http://powwowhawaii.com/wp-content/uploads/2013/05/IMG_0003-1277x848.jpg", date : "2011" },{ name : "OTHER", data : "http://powwowhawaii.com/wp-content/uploads/2016/07/The-Draculas-01.jpg", date : "2011" },{ name : "POWWOW HONG KONG", data : "http://powwowhawaii.com/wp-content/uploads/2013/05/artist_01-1277x848.jpg", date : "2010" }]
+								each item in list
+									.medium-4.small-12.columns.panel-column.end.safari_only
+										a(href="festival.html").linkFade
+											.ratio-hack
+												div.i-artist-thumb(style="background-image: url("+item.data+");")
+													.i-artist-overlay
+													.artist-name-cat
+														p=item.name
+														p.underline
+														p=item.date
 			include component/footer.jade
 			a.back-to-top.ripple(href="#") TOP
 		script.

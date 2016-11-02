@@ -66,6 +66,9 @@
 		position: absolute;
 		right: 15px;
 	}
+	.screen-menu .sm-wrapper .sm-menu {
+		font-size: 0.75em;
+	}
 	.location-filter-wrap {
 		float: none;
 		.filter-label {
@@ -281,7 +284,11 @@
 	.lang-box-wrapper {
 		display: none;
 	}
-	
+	.screen-menu .sm-wrapper .sm-menu div.sm-lang-box-wrapper {
+		display: block;
+		margin: 0 auto;
+		text-align: center;
+	}
 }
 @media only screen and (max-width: 400px) {
 	.screen-menu .sm-wrapper .sm-menu {

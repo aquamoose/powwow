@@ -161,60 +161,7 @@ html.no-js
 				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
 					new SelectFx(el);
 				});  
-				var maplace = new Maplace({
-					map_div: '#gmap',
-					controls_div: '#controls-mixed',
-					controls_type: 'list',
-					controls_on_map: false,
-					map_options : {
-						scrollwheel : false
-					}
-				});
-
-				$('#location-tabs a').click(function(e) {
-					e.preventDefault();
-					var index = $(this).attr('data-load');
-					showGroup(index);
-				});
-
-				function showGroup(index) {
-					var el = $('#g'+index);
-					$('#location-tabs li').removeClass('active');
-					$(el).parent().addClass('active');
-					$.getJSON('js/ajax.php', { type: index }, function(data) {
-						//loads data into the map
-						maplace.Load({
-							locations: data.locations,
-							view_all: false,
-							type: data.type,
-							force_generate_controls: true
-						});
-					});
-				}
-
-				showGroup(0);
-				function initialize() {
-					var center = new google.maps.LatLng(51.5074, 0.1278);
-
-					var map = new google.maps.Map(document.getElementByClassName('canvas_map'), {
-						zoom: 3,
-						center: center,
-						mapTypeId: google.maps.MapTypeId.ROADMAP
-					});
-
-					var markers = [];
-					var marker = new google.maps.Marker({
-						position: new google.maps.LatLng(51.5074, 0.1278)
-					});
-					markers.push(marker);
-
-					var options = {
-						imagePath: 'img/m',
-						girdSize: 80
-					};
-
-					var markerCluster = new MarkerClusterer(map, markers, options);
-				}
+				
 			});
 	body
 		.loader-bg
@@ -254,17 +201,10 @@ html.no-js
 							<iframe width="100%" height="56%" src="https://www.youtube.com/embed/Y1kWxFTWIWQ" frameborder="0" allowfullscreen></iframe>
 						.video-wrap.medium-6.small-12.column
 							<iframe width="100%" height="56%" src="https://www.youtube.com/embed/Y1kWxFTWIWQ" frameborder="0" allowfullscreen></iframe>
-				.section-divider
 				p.index-title.small-title.divided-title location
-				.map-embed.ratio-hack.clearfix.revealer
-					//- .control-wrap
-					//- 	ul#location-tabs.tabs
-					//- 		- var item = ['台北','台中','台南']
-					//- 			- for (var i=0; i<3; i++)
-					//- 				li: a(href="javascript:void(0)", data-load=i, id="g" + i, title=item[i])=item[i]
-					//- 	#controls-mixed
-					#gmap
-				.section-divider
+				.map-embed.revealer
+					.google-maps
+						<iframe src="https://www.google.com/maps/d/u/0/embed?mid=19s8FCjqTaJEw3mL0B5paTyTV8GU" width="640" height="480"></iframe>
 				p.index-title.small-title.divided-title Related Artists
 				.row.related-block.artists-content-block
 					- var list = [{ name : "alexface", data : "graffiti artist" },{ name : "caratoes", data : "music artist" },{ name : "nychos", data : "music artist"}]

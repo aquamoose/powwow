@@ -27,8 +27,7 @@ html.no-js
 		script(src='js/classie.js')
 		script(src='js/selectFx.js')
 		script(src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js")
-		script(src='js/maplace.js')
-		script(src='js/markerclusterer.js')
+		script(src='js/jquery.grid-a-licious.js')
 		link(rel='stylesheet', href='font/aller.css')
 		link(rel='stylesheet', href='css/foundation.css')
 		link(rel='stylesheet', href='css/font-awesome.css')
@@ -93,7 +92,6 @@ html.no-js
 					return false;
 				});
 
-				//- particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1600}},"color":{"value":"#000000"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.3,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":1,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#000000","opacity":0.3,"width":1},"move":{"enable":true,"speed":1,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":true,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":100,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
 
 				$('.ripple').on('click', function (event) {
 					var $div = $('<div/>'),
@@ -122,133 +120,15 @@ html.no-js
 						});
 					}, 500);
 				});
-			
+				$('.gallery').gridalicious({
+					selector: '.artist-gallery',
+					width: 400
+				});
 				
 				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
 					new SelectFx(el);
 				});  
-				var maplace = new Maplace({
-					map_div: '#gmap',
-					controls_on_map: false,
-					map_options : {
-						scrollwheel : false
-					}
-				});
-
-				$('#location-tabs a').click(function(e) {
-					e.preventDefault();
-					var index = $(this).attr('data-load');
-					showGroup(index);
-				});
-
-				function showGroup(index) {
-					var el = $('#g'+index);
-					$('#location-tabs li').removeClass('active');
-					$(el).parent().addClass('active');
-					$.getJSON('js/location.php', { type: index }, function(data) {
-						//loads data into the map
-						maplace.Load({
-							locations: data.locations,
-							view_all: false,
-							type: data.type,
-							force_generate_controls: true,
-							view_clustered: true
-						});
-					});
-				}
-
-				showGroup(0);
-
-				//- var f = Array();
-				//- $('#location-tabs li a').each(function(i, v){
-				//- 	f[i] = $(this).attr('data-tag');
-				//- });
-				//- var selector = $('.location-filter-box').find('.cs-placeholder').text();
-				//- $('.filter-submit button').click(function(e){
-				//- 	var base = $('.location-filter-box').find('.cs-placeholder');
-				//- 	var selector = base.text();
-				//- 	var elLength = $('#location-tabs li').length;
-				//- 	if(selector === 'Year') {
-				//- 		function showGroup(index) {
-				//- 			var el = $('#g'+index);
-				//- 			$('#location-tabs li').removeClass('active');
-				//- 			$(el).parent().addClass('active');
-				//- 			$.getJSON('js/ajax2.php', { type: index }, function(data) {
-				//- 				//loads data into the map
-				//- 				maplace.Load({
-				//- 					locations: data.locations,
-				//- 					view_all: false,
-				//- 					type: data.type,
-				//- 					force_generate_controls: true
-				//- 				});
-				//- 			});
-				//- 		}
-				//- 		var dates = ['2015', '2014'];
-				//- 		var aLength = dates.length;
-				//- 		$('#location-tabs li a').each(function(i){
-				//- 			$(this).text(dates[i]).attr('data-tag', dates[i]);
-				//- 		});
-				//- 		$('#location-tabs li').show().slice(aLength).hide();
-				//- 		$('#location-tabs a').click(function(e) {
-				//- 			e.preventDefault();
-				//- 			var index = $(this).attr('data-load');
-				//- 			showGroup(index);
-				//- 		});
-				//- 		showGroup(0);
-				//- 	}
-				//- 	if(selector === 'Location') {
-				//- 		function showGroup(index) {
-				//- 			var el = $('#g'+index);
-				//- 			$('#location-tabs li').removeClass('active');
-				//- 			$(el).parent().addClass('active');
-				//- 			$.getJSON('js/location.php', { type: index }, function(data) {
-				//- 				//loads data into the map
-				//- 				maplace.Load({
-				//- 					locations: data.locations,
-				//- 					view_all: false,
-				//- 					type: data.type,
-				//- 					force_generate_controls: true
-				//- 				});
-				//- 			});
-				//- 		}
-				//- 		var dates = ['台北', '台中', '台南'];
-				//- 		var aLength = dates.length;
-				//- 		$('#location-tabs li a').each(function(i){
-				//- 			$(this).text(dates[i]).attr('data-tag', dates[i]);
-				//- 		});
-				//- 		//- $('#location-tabs li').show();
-				//- 		$('#location-tabs li').show().slice(aLength).hide();
-				//- 		$('#location-tabs a').click(function(e) {
-				//- 			e.preventDefault();
-				//- 			var index = $(this).attr('data-load');
-				//- 			showGroup(index);
-				//- 		});
-				//- 		showGroup(0);
-				//- 	}
-				//- });	
 				
-				function initialize() {
-					var center = new google.maps.LatLng(51.5074, 0.1278);
-
-					var map = new google.maps.Map(document.getElementByClassName('canvas_map'), {
-						zoom: 3,
-						center: center,
-						mapTypeId: google.maps.MapTypeId.ROADMAP
-					});
-
-					var markers = [];
-					var marker = new google.maps.Marker({
-						position: new google.maps.LatLng(51.5074, 0.1278)
-					});
-					markers.push(marker);
-
-					var options = {
-						imagePath: 'img/m',
-						girdSize: 80
-					};
-
-					var markerCluster = new MarkerClusterer(map, markers, options);
-				}
 			});
 	body
 		.loader-bg
@@ -262,30 +142,17 @@ html.no-js
 				#particles-js
 				.banner-slogan
 					p.page-slogan.artist-slogan Location
-				//- .filter-wrap.location-filter-wrap
-				//- 	.filter-outer-box
-				//- 		span.filter-label Filter
-				//- 		.filter-box.location-filter-box
-				//- 			select.cs-select.filter-select.cs-skin-underline
-				//- 				option(selected, disabled) Choose Filter
-				//- 				option(value="all") All
-				//- 				option(value="location") Location
-				//- 				option(value="year") Year
-				//- 	span.filter-span or
-				//- 	.filter-outer-box
-				//- 		form.location-search
-				//- 			input.location-textfield(type="text", name="search", placeholder="Search for artist")
-				//- 	.filter-submit 
-				//- 		button APPLY
-				//- .clearfix
-				.map-embed.ratio-hack.clearfix
-					//- .control-wrap
-					//- 	ul#location-tabs.tabs
-					//- 		- var item = ['台北','台中','台南']
-					//- 			- for (var i=0; i<3; i++)
-					//- 				li: a(href="javascript:void(0)", data-load=i, id="g" + i, title=item[i], data-tag=i)=item[i]
-					//- 	#controls-mixed
-					#gmap
+				.google-maps
+					<iframe src="https://www.google.com/maps/d/u/0/embed?mid=19s8FCjqTaJEw3mL0B5paTyTV8GU" width="640" height="480"></iframe>
+				.gallery-wrap
+					p.index-title.small-title Murals
+					.gallery
+						- var item = ['colasa-painting']
+							- for (var i=0; i<10; i++)
+								.artist-gallery.revealer
+									a.borderless(href="img/"+ item + i + ".jpg", data-lightbox="lightbox"): img(src="img/" + item + i + ".jpg")
+									.card-bg-fix
+					.clearfix
 			include component/footer.jade
 			a.back-to-top.ripple(href="#") TOP
 	script(src='js/lightbox.js')

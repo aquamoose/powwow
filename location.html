@@ -26,8 +26,7 @@
     <script src="js/classie.js"></script>
     <script src="js/selectFx.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
-    <script src="js/maplace.js"></script>
-    <script src="js/markerclusterer.js"></script>
+    <script src="js/jquery.grid-a-licious.js"></script>
     <link rel="stylesheet" href="font/aller.css">
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/font-awesome.css">
@@ -92,7 +91,6 @@
       		return false;
       	});
       
-      	//- particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1600}},"color":{"value":"#000000"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.3,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":1,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#000000","opacity":0.3,"width":1},"move":{"enable":true,"speed":1,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":true,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":100,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
       
       	$('.ripple').on('click', function (event) {
       		var $div = $('<div/>'),
@@ -121,133 +119,15 @@
       			});
       		}, 500);
       	});
-      
+      	$('.gallery').gridalicious({
+      		selector: '.artist-gallery',
+      		width: 400
+      	});
       	
       	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
       		new SelectFx(el);
       	});  
-      	var maplace = new Maplace({
-      		map_div: '#gmap',
-      		controls_on_map: false,
-      		map_options : {
-      			scrollwheel : false
-      		}
-      	});
-      
-      	$('#location-tabs a').click(function(e) {
-      		e.preventDefault();
-      		var index = $(this).attr('data-load');
-      		showGroup(index);
-      	});
-      
-      	function showGroup(index) {
-      		var el = $('#g'+index);
-      		$('#location-tabs li').removeClass('active');
-      		$(el).parent().addClass('active');
-      		$.getJSON('js/location.php', { type: index }, function(data) {
-      			//loads data into the map
-      			maplace.Load({
-      				locations: data.locations,
-      				view_all: false,
-      				type: data.type,
-      				force_generate_controls: true,
-      				view_clustered: true
-      			});
-      		});
-      	}
-      
-      	showGroup(0);
-      
-      	//- var f = Array();
-      	//- $('#location-tabs li a').each(function(i, v){
-      	//- 	f[i] = $(this).attr('data-tag');
-      	//- });
-      	//- var selector = $('.location-filter-box').find('.cs-placeholder').text();
-      	//- $('.filter-submit button').click(function(e){
-      	//- 	var base = $('.location-filter-box').find('.cs-placeholder');
-      	//- 	var selector = base.text();
-      	//- 	var elLength = $('#location-tabs li').length;
-      	//- 	if(selector === 'Year') {
-      	//- 		function showGroup(index) {
-      	//- 			var el = $('#g'+index);
-      	//- 			$('#location-tabs li').removeClass('active');
-      	//- 			$(el).parent().addClass('active');
-      	//- 			$.getJSON('js/ajax2.php', { type: index }, function(data) {
-      	//- 				//loads data into the map
-      	//- 				maplace.Load({
-      	//- 					locations: data.locations,
-      	//- 					view_all: false,
-      	//- 					type: data.type,
-      	//- 					force_generate_controls: true
-      	//- 				});
-      	//- 			});
-      	//- 		}
-      	//- 		var dates = ['2015', '2014'];
-      	//- 		var aLength = dates.length;
-      	//- 		$('#location-tabs li a').each(function(i){
-      	//- 			$(this).text(dates[i]).attr('data-tag', dates[i]);
-      	//- 		});
-      	//- 		$('#location-tabs li').show().slice(aLength).hide();
-      	//- 		$('#location-tabs a').click(function(e) {
-      	//- 			e.preventDefault();
-      	//- 			var index = $(this).attr('data-load');
-      	//- 			showGroup(index);
-      	//- 		});
-      	//- 		showGroup(0);
-      	//- 	}
-      	//- 	if(selector === 'Location') {
-      	//- 		function showGroup(index) {
-      	//- 			var el = $('#g'+index);
-      	//- 			$('#location-tabs li').removeClass('active');
-      	//- 			$(el).parent().addClass('active');
-      	//- 			$.getJSON('js/location.php', { type: index }, function(data) {
-      	//- 				//loads data into the map
-      	//- 				maplace.Load({
-      	//- 					locations: data.locations,
-      	//- 					view_all: false,
-      	//- 					type: data.type,
-      	//- 					force_generate_controls: true
-      	//- 				});
-      	//- 			});
-      	//- 		}
-      	//- 		var dates = ['台北', '台中', '台南'];
-      	//- 		var aLength = dates.length;
-      	//- 		$('#location-tabs li a').each(function(i){
-      	//- 			$(this).text(dates[i]).attr('data-tag', dates[i]);
-      	//- 		});
-      	//- 		//- $('#location-tabs li').show();
-      	//- 		$('#location-tabs li').show().slice(aLength).hide();
-      	//- 		$('#location-tabs a').click(function(e) {
-      	//- 			e.preventDefault();
-      	//- 			var index = $(this).attr('data-load');
-      	//- 			showGroup(index);
-      	//- 		});
-      	//- 		showGroup(0);
-      	//- 	}
-      	//- });	
       	
-      	function initialize() {
-      		var center = new google.maps.LatLng(51.5074, 0.1278);
-      
-      		var map = new google.maps.Map(document.getElementByClassName('canvas_map'), {
-      			zoom: 3,
-      			center: center,
-      			mapTypeId: google.maps.MapTypeId.ROADMAP
-      		});
-      
-      		var markers = [];
-      		var marker = new google.maps.Marker({
-      			position: new google.maps.LatLng(51.5074, 0.1278)
-      		});
-      		markers.push(marker);
-      
-      		var options = {
-      			imagePath: 'img/m',
-      			girdSize: 80
-      		};
-      
-      		var markerCluster = new MarkerClusterer(map, markers, options);
-      	}
       });
     </script>
   </head>
@@ -265,7 +145,7 @@
         <div class="medium-10 columns header-nav mobile-hide">
           <div class="row">
             <div class="medium-3 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
-            <div class="medium-3 columns"><a href="event-list.html" class="linkFade">FESTIVALS</a></div>
+            <div class="medium-3 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
             <div class="medium-3 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
             <div class="medium-3 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
           </div>
@@ -295,10 +175,18 @@
           <div class="sm-menu row">
             <div class="small-12 columns"><a href="index.html" class="linkFade">HOME</a></div>
             <div class="small-12 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
-            <div class="small-12 columns"><a href="activities.html" class="linkFade">FESTIVALS</a></div>
+            <div class="small-12 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
             <div class="small-12 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
             <div class="small-12 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
             <div class="small-12 columns"><a href="about.html" class="linkFade">ABOUT</a></div>
+            <div class="sm-lang-box-wrapper">
+              <div class="lang-select-box">
+                <select class="cs-select lang-select cs-skin-underline">
+                  <option selected="selected" value="eng">Eng</option>
+                  <option value="chi">Chi</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -307,8 +195,42 @@
         <div class="banner-slogan">
           <p class="page-slogan artist-slogan">Location</p>
         </div>
-        <div class="map-embed ratio-hack clearfix">
-          <div id="gmap"></div>
+        <div class="google-maps"><iframe src="https://www.google.com/maps/d/u/0/embed?mid=19s8FCjqTaJEw3mL0B5paTyTV8GU" width="640" height="480"></iframe></div>
+        <div class="gallery-wrap">
+          <p class="index-title small-title">Murals</p>
+          <div class="gallery">
+            <div class="artist-gallery revealer"><a href="img/colasa-painting0.jpg" data-lightbox="lightbox" class="borderless"><img src="img/colasa-painting0.jpg"></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="artist-gallery revealer"><a href="img/colasa-painting1.jpg" data-lightbox="lightbox" class="borderless"><img src="img/colasa-painting1.jpg"></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="artist-gallery revealer"><a href="img/colasa-painting2.jpg" data-lightbox="lightbox" class="borderless"><img src="img/colasa-painting2.jpg"></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="artist-gallery revealer"><a href="img/colasa-painting3.jpg" data-lightbox="lightbox" class="borderless"><img src="img/colasa-painting3.jpg"></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="artist-gallery revealer"><a href="img/colasa-painting4.jpg" data-lightbox="lightbox" class="borderless"><img src="img/colasa-painting4.jpg"></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="artist-gallery revealer"><a href="img/colasa-painting5.jpg" data-lightbox="lightbox" class="borderless"><img src="img/colasa-painting5.jpg"></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="artist-gallery revealer"><a href="img/colasa-painting6.jpg" data-lightbox="lightbox" class="borderless"><img src="img/colasa-painting6.jpg"></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="artist-gallery revealer"><a href="img/colasa-painting7.jpg" data-lightbox="lightbox" class="borderless"><img src="img/colasa-painting7.jpg"></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="artist-gallery revealer"><a href="img/colasa-painting8.jpg" data-lightbox="lightbox" class="borderless"><img src="img/colasa-painting8.jpg"></a>
+              <div class="card-bg-fix"></div>
+            </div>
+            <div class="artist-gallery revealer"><a href="img/colasa-painting9.jpg" data-lightbox="lightbox" class="borderless"><img src="img/colasa-painting9.jpg"></a>
+              <div class="card-bg-fix"></div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
         </div>
       </div>
       <div class="footer">
@@ -323,7 +245,7 @@
             <div class="footer-nav">
               <div><a href="index.html" class="linkFade">Home</a></div>
               <div><a href="mural-list.html" class="linkFade">Murals</a></div>
-              <div><a href="index-festival.html" class="linkFade">Festivals</a></div>
+              <div><a href="festival-list.html" class="linkFade">Festivals</a></div>
               <div><a href="participants.html" class="linkFade">Participants</a></div>
               <div><a href="location.html" class="linkFade">Location</a></div>
               <div><a href="#" class="linkFade">About</a></div>
@@ -333,10 +255,8 @@
             <div class="footer-social">
               <p class="footer-title">SOCIAL</p>
               <div class="footer-nav">
-                <div><a href="# " class="linkFade">Facebook</a></div>
-                <div><a href="#" class="linkFade">Instagram</a></div>
-                <div><a href="#" class="linkFade">Pinterest</a></div>
-                <div><a href="#" class="linkFade">Youtube</a></div>
+                <div><a href="https://www.facebook.com/PowWowHawaii/" class="linkFade">Facebook</a></div>
+                <div><a href="https://www.instagram.com/powwowworldwide/" class="linkFade">Instagram</a></div>
               </div>
             </div>
           </div>

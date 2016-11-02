@@ -3,7 +3,7 @@
 		a(href="index.html").linkFade: img(src="img/powwowlogo.png")
 	.medium-10.columns.header-nav.mobile-hide
 		.row
-			- var list = [{ name : 'MURALS', data : 'mural-list.html' },{ name : 'FESTIVALS', data : 'event-list.html' },{ name : 'PARTICIPANTS', data : 'participants.html' },{ name : 'LOCATION', data : 'location.html' }]
+			- var list = [{ name : 'MURALS', data : 'mural-list.html' },{ name : 'FESTIVALS', data : 'festival-list.html' },{ name : 'PARTICIPANTS', data : 'participants.html' },{ name : 'LOCATION', data : 'location.html' }]
 				each item in list
 					.medium-3.columns: a(href=item.data).linkFade= item.name
 	.medium-1.columns.header-menu.mobile-fix
@@ -11,7 +11,7 @@
 			span.menu-button
 				button.lines-button.x(type="button", role="button", aria-label="Toggle Navigation")
 					span.lines 
-	div.lang-box-wrapper
+	.lang-box-wrapper
 		.lang-select-box
 			select.cs-select.lang-select.cs-skin-underline
 				option(selected="selected", value="eng") Eng
@@ -27,6 +27,11 @@
 				input.search-textfield(type="text", name="search", placeholder="What're we looking for?")
 				//- input.search-submit(value="", type="submit")
 		.sm-menu.row
-			- var list = [{name: 'HOME', data: 'index.html'}, { name : 'MURALS', data : 'mural-list.html' },{ name : 'FESTIVALS', data : 'activities.html' },{ name : 'PARTICIPANTS', data : 'participants.html' },{ name : 'LOCATION', data : 'location.html' },{ name : 'ABOUT', data : 'about.html' }]
+			- var list = [{name: 'HOME', data: 'index.html'}, { name : 'MURALS', data : 'mural-list.html' },{ name : 'FESTIVALS', data : 'festival-list.html' },{ name : 'PARTICIPANTS', data : 'participants.html' },{ name : 'LOCATION', data : 'location.html' },{ name : 'ABOUT', data : 'about.html' }]
 				each item in list
 					.small-12.columns: a(href=item.data).linkFade=item.name
+			.sm-lang-box-wrapper
+				.lang-select-box
+					select.cs-select.lang-select.cs-skin-underline
+						option(selected="selected", value="eng") Eng
+						option(value="chi") Chi

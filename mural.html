@@ -94,7 +94,6 @@
       		return false;
       	});
       
-      	particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":1600}},"color":{"value":"#000000"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.3,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":1,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#000000","opacity":0.3,"width":1},"move":{"enable":true,"speed":1,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":true,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":false,"mode":"push"},"resize":true},"modes":{"grab":{"distance":100,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
       
       	$('.ripple').on('click', function (event) {
       		var $div = $('<div/>'),
@@ -132,51 +131,13 @@
       	$(window).resize(function(){
       		videoResize();
       	});	
-      
-      	$('.artist-gallery').hover(function(){
-      		$('.artist-gallery').not(this).css('opacity', '0.4');
-      	}, function(){
-      		$('.artist-gallery').not(this).css('opacity', '1');
-      	});
       	
       	
       
       	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
       		new SelectFx(el);
       	});  
-      	var maplace = new Maplace({
-      		map_div: '#gmap',
-      		controls_div: '#controls-mixed',
-      		controls_type: 'list',
-      		controls_on_map: false,
-      		map_options : {
-      			scrollwheel : false
-      		}
-      	});
-      
-      	$('#location-tabs a').click(function(e) {
-      		e.preventDefault();
-      		var index = $(this).attr('data-load');
-      		showGroup(index);
-      	});
-      
-      
-      	function showGroup(index) {
-      		var el = $('#g'+index);
-      		$('#location-tabs li').removeClass('active');
-      		$(el).parent().addClass('active');
-      		$.getJSON('js/mural.php', { type: index }, function(data) {
-      			//loads data into the map
-      			maplace.Load({
-      				locations: data.locations,
-      				view_all: false,
-      				type: data.type,
-      				force_generate_controls: true
-      			});
-      		});
-      	}
-      
-      	showGroup(0);
+      	
       	function initialize() {
       		var center = new google.maps.LatLng(51.5074, 0.1278);
       
@@ -216,7 +177,7 @@
         <div class="medium-10 columns header-nav mobile-hide">
           <div class="row">
             <div class="medium-3 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
-            <div class="medium-3 columns"><a href="event-list.html" class="linkFade">FESTIVALS</a></div>
+            <div class="medium-3 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
             <div class="medium-3 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
             <div class="medium-3 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
           </div>
@@ -246,23 +207,30 @@
           <div class="sm-menu row">
             <div class="small-12 columns"><a href="index.html" class="linkFade">HOME</a></div>
             <div class="small-12 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
-            <div class="small-12 columns"><a href="activities.html" class="linkFade">FESTIVALS</a></div>
+            <div class="small-12 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
             <div class="small-12 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
             <div class="small-12 columns"><a href="location.html" class="linkFade">LOCATION</a></div>
             <div class="small-12 columns"><a href="about.html" class="linkFade">ABOUT</a></div>
+            <div class="sm-lang-box-wrapper">
+              <div class="lang-select-box">
+                <select class="cs-select lang-select cs-skin-underline">
+                  <option selected="selected" value="eng">Eng</option>
+                  <option value="chi">Chi</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="content padding-column">
-        <div id="particles-js"></div>
         <div class="mural-img"><img src="img/madsteez-mural.jpg"></div>
-        <div class="mural-des"></div>
-        <p class="index-title small-title divided-title">location</p>
-        <div class="map-embed ratio-hack clearfix">
-          <div class="control-wrap">
-          </div>
-          <div id="gmap"></div>
+        <div class="mural-des">
+          <p>Pow Wow Hawaii 2015. </p>
+          <p>Painted by Madsteez. </p>
+          <p>Photo by Pow Wow</p>
         </div>
+        <p class="index-title small-title divided-title">location</p>
+        <div class="google-maps"><iframe src="https://www.google.com/maps/d/u/0/embed?mid=19s8FCjqTaJEw3mL0B5paTyTV8GU" width="640" height="480"></iframe></div>
         <div class="section-divider"></div>
         <p class="index-title small-title divided-title">Related Murals</p>
         <div class="row related-block artists-content-block">
@@ -293,7 +261,7 @@
             <div class="small-4 columns">
               <p>Previous Mural</p><a class="prev-underline"><i aria-hidden="true" class="fa fa-angle-left"></i><span>ANO Mural</span></a>
             </div>
-            <div class="small-4 columns center-top"><a class="center-underline">Back To Murals</a></div>
+            <div class="small-4 columns center-top"><a href="javascript: history.go(-1)" class="center-underline">Back To Murals</a></div>
             <div class="small-4 columns">
               <p>Next Mural</p><a class="next-underline"><span>Jeff Soto Mural</span><i aria-hidden="true" class="fa fa-angle-right"></i></a>
             </div>
@@ -312,7 +280,7 @@
             <div class="footer-nav">
               <div><a href="index.html" class="linkFade">Home</a></div>
               <div><a href="mural-list.html" class="linkFade">Murals</a></div>
-              <div><a href="index-festival.html" class="linkFade">Festivals</a></div>
+              <div><a href="festival-list.html" class="linkFade">Festivals</a></div>
               <div><a href="participants.html" class="linkFade">Participants</a></div>
               <div><a href="location.html" class="linkFade">Location</a></div>
               <div><a href="#" class="linkFade">About</a></div>
@@ -322,10 +290,8 @@
             <div class="footer-social">
               <p class="footer-title">SOCIAL</p>
               <div class="footer-nav">
-                <div><a href="# " class="linkFade">Facebook</a></div>
-                <div><a href="#" class="linkFade">Instagram</a></div>
-                <div><a href="#" class="linkFade">Pinterest</a></div>
-                <div><a href="#" class="linkFade">Youtube</a></div>
+                <div><a href="https://www.facebook.com/PowWowHawaii/" class="linkFade">Facebook</a></div>
+                <div><a href="https://www.instagram.com/powwowworldwide/" class="linkFade">Instagram</a></div>
               </div>
             </div>
           </div>

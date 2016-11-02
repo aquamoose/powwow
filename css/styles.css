@@ -439,6 +439,9 @@ th {
   bottom: 0;
   right: 0; }
 
+.sm-parallax {
+  height: auto; }
+
 .borderless {
   border: none; }
 
@@ -446,7 +449,8 @@ th {
   position: relative;
   padding-bottom: 50%;
   height: 0;
-  overflow: hidden; }
+  overflow: hidden;
+  min-height: 400px; }
   .google-maps iframe {
     display: block;
     pointer-events: none;
@@ -755,6 +759,10 @@ body {
             -o-transition: all 0.3s ease-in-out;
             -webkit-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out; }
+      .screen-menu .sm-wrapper .sm-menu .sm-lang-box-wrapper {
+        display: none; }
+        .screen-menu .sm-wrapper .sm-menu .sm-lang-box-wrapper .lang-select-box {
+          margin: 0 auto; }
 
 .sm-overlay {
   opacity: 0;
@@ -894,6 +902,9 @@ body {
           transform: scale(0.9); }
       .artists-content-block .index-artist-block a:hover .i-artist-overlay {
         opacity: 0.75; }
+
+.index-result {
+  margin-top: 20px; }
 
 .brand-block {
   padding-bottom: 50px; }
@@ -1157,14 +1168,17 @@ body {
 
 .event-back {
   position: relative;
-  top: 70px;
+  top: 50px;
   z-index: 999; }
 
 .barba-container {
   position: relative; }
 
-.parallax-container {
-  position: relative; }
+.mural-des {
+  margin-bottom: 20px; }
+  .mural-des p {
+    font-size: 1.5em;
+    margin-bottom: 0; }
 
 .mural-img {
   padding-top: 50px;
@@ -1234,6 +1248,8 @@ body {
 
 .artist-video {
   margin-bottom: 50px; }
+  .artist-video .small-title {
+    padding-top: 20px; }
 
 .video-wrap iframe {
   position: relative; }
@@ -1966,7 +1982,8 @@ textarea {
 .lang-select-box {
   padding: 0;
   text-align: right;
-  max-width: 70px; }
+  max-width: 70px;
+  font-size: 1em; }
 
 div.cs-select {
   display: inline-block;
@@ -2249,7 +2266,7 @@ div.cs-skin-underline {
 
 .index-title {
   text-align: center;
-  padding: 80px 0;
+  padding: 50px 0;
   font-size: 4em;
   color: white;
   text-transform: uppercase;
@@ -2258,7 +2275,7 @@ div.cs-skin-underline {
 
 .about-title {
   text-align: center;
-  padding: 40px 0;
+  padding: 30px 0;
   font-size: 4em;
   color: white;
   text-transform: uppercase;
@@ -2336,49 +2353,8 @@ div.cs-skin-underline {
   height: 100%;
   bottom: 0; }
 
-#gmap {
-  width: 100%;
-  height: 50vw;
-  vertical-align: top; }
-
-.control-wrap {
-  width: 59%;
-  float: right; }
-
-#controls-mixed {
-  margin-top: 20px; }
-  #controls-mixed ul {
-    display: inline; }
-    #controls-mixed ul li {
-      display: inline-block; }
-      #controls-mixed ul li a {
-        display: block;
-        width: 100px;
-        height: 100px;
-        overflow: hidden;
-        -moz-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
-        -webkit-transition: all 0.3s ease;
-        transition: all 0.3s ease; }
-    #controls-mixed ul:hover li a:not(:hover) {
-      opacity: 0.5; }
-
-.gm-style-iw div img {
-  width: 100%; }
-
-.show-array {
-  display: inline-block; }
-
-.map-info-artist {
-  display: block;
-  color: #333;
-  font-size: 1.4em;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease; }
-  .map-info-artist:hover {
-    color: #cb4040; }
+.map-embed {
+  margin-bottom: 60px; }
 
 .prev-next-pagi {
   margin-bottom: 50px; }
@@ -2589,6 +2565,8 @@ div.cs-skin-underline {
   .header-menu {
     position: absolute;
     right: 15px; }
+  .screen-menu .sm-wrapper .sm-menu {
+    font-size: 0.75em; }
   .location-filter-wrap {
     float: none; }
     .location-filter-wrap .filter-label {
@@ -2724,7 +2702,11 @@ div.cs-skin-underline {
         display: block;
         position: relative; }
   .lang-box-wrapper {
-    display: none; } }
+    display: none; }
+  .screen-menu .sm-wrapper .sm-menu div.sm-lang-box-wrapper {
+    display: block;
+    margin: 0 auto;
+    text-align: center; } }
 
 @media only screen and (max-width: 400px) {
   .screen-menu .sm-wrapper .sm-menu {
