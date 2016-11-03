@@ -2605,6 +2605,8 @@ div.cs-skin-underline {
 @media only screen and (max-width: 640px) {
   .screen-menu .sm-wrapper .search-wrap {
     margin-bottom: 5px; }
+  .medium-1.columns.header-menu.mobile-fix {
+    width: 50px; }
   .search-textfield {
     height: 30px;
     background-size: 29px 29px;
@@ -2703,10 +2705,8 @@ div.cs-skin-underline {
         position: relative; }
   .lang-box-wrapper {
     display: none; }
-  .screen-menu .sm-wrapper .sm-menu div.sm-lang-box-wrapper {
-    display: block;
-    margin: 0 auto;
-    text-align: center; } }
+  .screen-menu .sm-wrapper .sm-menu .sm-lang-box-wrapper {
+    display: block; } }
 
 @media only screen and (max-width: 400px) {
   .screen-menu .sm-wrapper .sm-menu {
