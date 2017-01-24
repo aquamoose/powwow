@@ -19,20 +19,23 @@
     <meta name="apple-mobile-web-app-title" content="POW! WOW!">
     <meta name="application-name" content="POW! WOW!">
     <meta name="theme-color" content="#ffffff">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="js/foundation.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/selectFx.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
-    <script src="js/materialize.js"></script>
-    <script src="https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js"></script>
     <link rel="stylesheet" href="font/aller.css">
-    <link rel="stylesheet" href="css/flexslider.css">
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/timeliner.css">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,300" rel="stylesheet" type="text/css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/foundation.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/selectFx.js"></script>
+    <script src="js/scrollTo.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js"></script>
     <script>
       function goToByScroll(id){
       	id = id.replace("link", "");
@@ -50,29 +53,18 @@
       });
       $(document).ready(function() {
        	$('body').fadeIn(1000);
-       
-          $(".linkFade").click(function(event){
+       	$(".linkFade").click(function(event){
               event.preventDefault();
               linkLocation = this.href;
               $("body").fadeOut(1000, redirectPage);      
           });
-      
       	$(document).foundation();
       	
-      	$('.lines-button').click(function(e) {
-      		e.preventDefault();
-      		$('.lines-button').toggleClass('close');
-      		var open = $('.screen-menu').hasClass('sm-overlay-open');
-      		if(open) {
-      			$('.screen-menu').removeClass('sm-overlay-open');
-      			$('body').css({'overflow-y': 'auto'});
-      			$('.header').find('.menu-button').show();
-      		} else {
-      			$('.screen-menu').addClass('sm-overlay-open');
-      			$('body').css({'overflow-y': 'hidden'});
-      			$('.header').find('.menu-button').hide();
-      		}
-      	});
+      	
+      	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
+      		new SelectFx(el);
+      	}); 
+      	
       	
       	$(window).scroll(function(){
       		if ($(this).scrollTop() > 50) {
@@ -117,24 +109,6 @@
       			});
       		}, 500);
       	});
-      	$('.index-block').each(function(){
-      		$(this).find('.index-artist-block').last().addClass('end');
-      	});
-      	$('.pin').hover(function(){
-      		$('.pin').not(this).css('opacity', '0.4');
-      	}, function(){
-      		$('.pin').not(this).css('opacity', '1');
-      	});
-      	
-      	
-      	$("#contentlink").click(function(e) { 
-      		e.preventDefault(); 
-      		goToByScroll($(this).attr("id"));           
-      	});
-      	$('.parallax').parallax();
-      	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
-      		new SelectFx(el);
-      	});    
       	var config = {
       		viewFactor: 0.15,
       		duration: 800,
@@ -142,9 +116,8 @@
       		scale: 0.8
       	}
       	window.sr = ScrollReveal(config);
-      	sr.reveal('.revealer'); 
-      	
-      	
+      	sr.reveal('.revealer');
+      
       });
     </script>
   </head>
@@ -164,7 +137,7 @@
             <div class="medium-3 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
             <div class="medium-3 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
             <div class="medium-3 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
-            <div class="medium-3 columns"><a href="location.html" class="linkFade">VIDEO</a></div>
+            <div class="medium-3 columns"><a href="video-list.html" class="linkFade">VIDEO</a></div>
           </div>
         </div>
         <div class="medium-1 columns header-menu mobile-fix">
@@ -194,8 +167,8 @@
             <div class="small-12 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
             <div class="small-12 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
             <div class="small-12 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
-            <div class="small-12 columns"><a href="location.html" class="linkFade">VIDEO</a></div>
-            <div class="small-12 columns"><a href="location.html" class="linkFade">PROJECTS</a></div>
+            <div class="small-12 columns"><a href="video-list.html" class="linkFade">VIDEO</a></div>
+            <div class="small-12 columns"><a href="project-list.html" class="linkFade">PROJECTS</a></div>
             <div class="small-12 columns"><a href="location.html" class="linkFade">EDUCATION</a></div>
             <div class="small-12 columns"><a href="about.html" class="linkFade">ABOUT</a></div>
             <div class="small-12 columns"><a href="http://shop.powwowhawaii.com/" target="_blank">Shop	</a></div>
@@ -211,82 +184,28 @@
         </div>
       </div>
       <div class="content">
-        <div class="parallax-container">
-          <div class="parallax"><img src="img/banner1.jpg"></div>
-          <div class="banner-slogan">
-            <p class="page-slogan">videos</p>
-            <p class="page-sub-slogan">pow! wow! videos</p>
-            <div class="banner-button arrow-down"><a id="contentlink" href="#">SEE VIDEOS</a></div>
-          </div>
-        </div><a id="content" href="#"></a>
-        <div class="index-block index-mural padding-top-120 padding-column">
-          <div class="artists-content-block">
-            <div class="row">
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/alexface_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>POW! WOW! IN KOBE</p>
-                      </div>
-                    </div>
-                  </div></a></div>
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/caratoes_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>POW! WOW! WORCESTER 2016</p>
-                      </div>
-                    </div>
-                  </div></a></div>
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/colasa_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>Imprint Presents: Ernest Zacharevic and Martha Cooper Talk</p>
-                      </div>
-                    </div>
-                  </div></a></div>
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/debe_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>POW! WOW! SCHOOL OF MUSIC 2016</p>
-                      </div>
-                    </div>
-                  </div></a></div>
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/girenhao_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>POW! WOW! LONG BEACH 2016 VIDEO BY HEX</p>
-                      </div>
-                    </div>
-                  </div></a></div>
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/horton_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>POW! WOW! LONG BEACH THROUGH THE EYES OF JORDAN AHERN</p>
-                      </div>
-                    </div>
-                  </div></a></div>
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/nychos_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>POW! WOW! SXSW 2015 OFFICIAL RECAP VIDEO</p>
-                      </div>
-                    </div>
-                  </div></a></div>
+        <div class="content padding-column p-bottom-50"><a href="javascript: history.go(-1)" class="prev-underline back-panel event-back"><i aria-hidden="true" class="fa fa-angle-left"></i><span>Back To Event</span></a>
+          <div class="menu-divider"></div>
+          <p class="about-title small-title revealer">pear tarr (cambodia) interview</p>
+          <div class="powwow-history">
+            <div class="pow-section revealer"> 
+              <p class="interview-question">You lived between New Zealand and Cambodia, how did that impact your creative process?</p>
+              <p class="interview-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p class="interview-question">What would you tell your 10 year old self? </p>
+              <p class="interview-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p class="interview-question">What is something that you would never want to draw or paint?</p>
+              <p class="interview-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p class="interview-question">Who would you like to meet (dead or alive) and what would you ask this person? Why? </p>
+              <p class="interview-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p class="interview-question">What is next for you, as an artist? If you could change anything in the world right now, what would it be?</p>
+              <p class="interview-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p class="interview-question">How do you define Street Art? </p>
+              <p class="interview-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p class="interview-question">What is the future of street art / graffiti and where do you fit in? How would you prefer it to be? </p>
+              <p class="interview-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p class="interview-question">Say something to the young blood who want to making street art as well?</p>
+              <p class="interview-answer">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
-            <div class="clearfix"></div>
           </div>
         </div>
       </div>
@@ -304,8 +223,8 @@
               <div><a href="mural-list.html" class="linkFade">Murals</a></div>
               <div><a href="festival-list.html" class="linkFade">Festivals</a></div>
               <div><a href="participants.html" class="linkFade">Participants</a></div>
-              <div><a href="location.html" class="linkFade">Video</a></div>
-              <div><a href="location.html" class="linkFade">Projects</a></div>
+              <div><a href="video-list.html" class="linkFade">Video</a></div>
+              <div><a href="project-list.html" class="linkFade">Projects</a></div>
               <div><a href="location.html" class="linkFade">Education</a></div>
               <div><a href="about.html" class="linkFade">About</a></div>
               <div><a href="http://shop.powwowhawaii.com/" target="_blank">Shop</a></div>

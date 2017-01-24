@@ -3,7 +3,7 @@
 		a(href="index.html").linkFade: img(src="img/powwowlogo.png")
 	.medium-10.columns.header-nav.mobile-hide
 		.row
-			- var list = [{ name : 'MURALS', data : 'mural-list.html' },{ name : 'FESTIVALS', data : 'festival-list.html' },{ name : 'PARTICIPANTS', data : 'participants.html' },{ name : 'LOCATION', data : 'location.html' }]
+			- var list = [{ name : 'MURALS', data : 'mural-list.html' },{ name : 'FESTIVALS', data : 'festival-list.html' },{ name : 'PARTICIPANTS', data : 'participants.html' },{ name : 'VIDEO', data : 'video-list.html' }]
 				each item in list
 					.medium-3.columns: a(href=item.data).linkFade= item.name
 	.medium-1.columns.header-menu.mobile-fix
@@ -27,9 +27,10 @@
 				input.search-textfield(type="text", name="search", placeholder="What're we looking for?")
 				//- input.search-submit(value="", type="submit")
 		.sm-menu.row
-			- var list = [{name: 'HOME', data: 'index.html'}, { name : 'MURALS', data : 'mural-list.html' },{ name : 'FESTIVALS', data : 'festival-list.html' },{ name : 'PARTICIPANTS', data : 'participants.html' },{ name : 'LOCATION', data : 'location.html' },{ name : 'ABOUT', data : 'about.html' }]
+			- var list = [{name: 'HOME', data: 'index.html'}, { name : 'MURALS', data : 'mural-list.html', cl : 'linkFade' },{ name : 'FESTIVALS', data : 'festival-list.html', cl : 'linkFade' },{ name : 'PARTICIPANTS', data : 'participants.html', cl : 'linkFade' },{ name : 'VIDEO', data : 'video-list.html', cl : 'linkFade' },{ name : 'PROJECTS', data : 'project-list.html', cl : 'linkFade' },{ name : 'EDUCATION', data : 'location.html', cl : 'linkFade' },{ name : 'ABOUT', data : 'about.html', cl : 'linkFade' }]
 				each item in list
-					.small-12.columns: a(href=item.data).linkFade=item.name
+					.small-12.columns: a(href=item.data, target=item.target).linkFade=item.name
+				.small-12.columns: a(href='http://shop.powwowhawaii.com/', target='_blank') Shop	
 			.sm-lang-box-wrapper
 				.lang-select-box
 					select.cs-select.lang-select.cs-skin-underline

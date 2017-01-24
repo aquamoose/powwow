@@ -20,21 +20,18 @@ html.no-js
 		<meta name="apple-mobile-web-app-title" content="POW! WOW!">
 		<meta name="application-name" content="POW! WOW!">
 		<meta name="theme-color" content="#ffffff">
-		script(src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.22&key=AIzaSyC_kLitJTrG9CrohPBaoPDu15qjBu7F1Lg")
 		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
 		script(src='js/foundation.js')
 		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
 		script(src='js/classie.js')
 		script(src='js/selectFx.js')
-		script(src='js/particles.js')
-		script(src='js/waterfall-light.js')
 		script(src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js")
-		script(src='js/maplace.js')
-		script(src='js/markerclusterer.js')
+		script(src='js/materialize.js')
+		script(src='https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js')
 		link(rel='stylesheet', href='font/aller.css')
+		link(rel='stylesheet', href='css/flexslider.css')
 		link(rel='stylesheet', href='css/foundation.css')
-		link(rel='stylesheet', href='css/lightbox.css')
-		link(rel='stylesheet', href='css/font-awesome.css')
+		link(rel='stylesheet', href='css/materialize.css')
 		link(rel='stylesheet', href='css/styles.css')
 		link(href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300', rel='stylesheet', type='text/css')
 		script.
@@ -60,9 +57,9 @@ html.no-js
 			        linkLocation = this.href;
 			        $("body").fadeOut(1000, redirectPage);      
 			    });
-			         
-			    
+
 				$(document).foundation();
+				
 				$('.lines-button').click(function(e) {
 					e.preventDefault();
 					$('.lines-button').toggleClass('close');
@@ -94,8 +91,6 @@ html.no-js
 					$("html, body").animate({ scrollTop: 0 }, 500);
 					return false;
 				});
-
-
 				$('.ripple').on('click', function (event) {
 					var $div = $('<div/>'),
 					btnOffset = $(this).offset(),
@@ -123,44 +118,34 @@ html.no-js
 						});
 					}, 500);
 				});
-				function videoResize() {
-					var videoHeight = $(".video-wrap iframe").width();
-					$(".video-wrap iframe").attr("width", "100%");
-					$(".video-wrap iframe").attr("height", videoHeight / 1.778);
-				}
-				videoResize();
-				$(window).resize(function(){
-					videoResize();
-				});	
+				$('.index-block').each(function(){
+					$(this).find('.index-artist-block').last().addClass('end');
+				});
+				$('.pin').hover(function(){
+					$('.pin').not(this).css('opacity', '0.4');
+				}, function(){
+					$('.pin').not(this).css('opacity', '1');
+				});
 				
 				
-
+				$("#contentlink").click(function(e) { 
+					e.preventDefault(); 
+					goToByScroll($(this).attr("id"));           
+				});
+				$('.parallax').parallax();
 				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
 					new SelectFx(el);
-				});  
-				
-				function initialize() {
-					var center = new google.maps.LatLng(51.5074, 0.1278);
-
-					var map = new google.maps.Map(document.getElementByClassName('canvas_map'), {
-						zoom: 3,
-						center: center,
-						mapTypeId: google.maps.MapTypeId.ROADMAP
-					});
-
-					var markers = [];
-					var marker = new google.maps.Marker({
-						position: new google.maps.LatLng(51.5074, 0.1278)
-					});
-					markers.push(marker);
-
-					var options = {
-						imagePath: 'img/m',
-						girdSize: 80
-					};
-
-					var markerCluster = new MarkerClusterer(map, markers, options);
+				});    
+				var config = {
+					viewFactor: 0.15,
+					duration: 800,
+					distance: '0px',
+					scale: 0.8
 				}
+				window.sr = ScrollReveal(config);
+				sr.reveal('.revealer'); 
+				
+				
 			});
 	body
 		.loader-bg
@@ -170,39 +155,27 @@ html.no-js
 				.bounce3
 		.wrapper
 			include component/header.jade
-			.content.padding-column
-				.mural-img
-					img(src="img/madsteez-mural.jpg")
-					.mural-des
-						p Pow Wow Hawaii 2015. 
-						p Painted by Madsteez. 
-						p Photo by Pow Wow
-				p.index-title.small-title.divided-title location
-				.google-maps
-					<iframe src="https://www.google.com/maps/d/u/0/embed?mid=19s8FCjqTaJEw3mL0B5paTyTV8GU" width="640" height="480"></iframe>
-				.section-divider
-				p.index-title.small-title.divided-title Related Murals
-				.row.related-block.artists-content-block
-					each item in ['case', 'huatunan', 'nychos']
-						.medium-4.small-12.columns.index-artist-block
-							a
-								.ratio-hack
-									div.i-artist-thumb(style="background-image: url(img/"+item+".jpg);")
-										div.i-artist-overlay
-										p=item
-				.prev-next-pagi
-					.row
-						.small-4.columns
-							p Previous Mural
-							a.prev-underline
-								i.fa.fa-angle-left(aria-hidden="true")
-								span ANO Mural
-						.small-4.columns.center-top
-							a.center-underline(href="javascript: history.go(-1)") Back To Murals
-						.small-4.columns
-							p Next Mural
-							a.next-underline
-								span Jeff Soto Mural
-								i.fa.fa-angle-right(aria-hidden="true")
+			.content
+				.parallax-container
+					.parallax
+						img(src='img/banner1.jpg')
+					.banner-slogan
+						p.page-slogan videos
+						p.page-sub-slogan pow! wow! videos
+						.banner-button.arrow-down: a#contentlink(href="#") SEE VIDEOS
+				a#content(href="#")
+				.index-block.index-mural.padding-top-120.padding-column
+					.artists-content-block
+						.row
+							- var list = [{ name : "alexface", data : "POW! WOW! IN KOBE" },{ name : "caratoes", data : "POW! WOW! WORCESTER 2016" },{ name : "colasa", data : "Imprint Presents: Ernest Zacharevic and Martha Cooper Talk"},{ name : "debe", data : "POW! WOW! SCHOOL OF MUSIC 2016"},{ name : "girenhao", data : "POW! WOW! LONG BEACH 2016 VIDEO BY HEX"}, { name : "horton", data : "POW! WOW! LONG BEACH THROUGH THE EYES OF JORDAN AHERN"},{ name : "nychos", data : "POW! WOW! SXSW 2015 OFFICIAL RECAP VIDEO"}]
+								each item in list
+									.medium-4.small-12.columns.index-artist-block.revealer.safari_only
+										a.linkFade(href="video.html")
+											.ratio-hack
+												div.i-artist-thumb(style="background-image: url(img/"+item.name+"_thumb.jpg);")
+													.i-artist-overlay
+													.artist-name-cat
+														p=item.data
+						.clearfix
 			include component/footer.jade
 			a.back-to-top.ripple(href="#") TOP

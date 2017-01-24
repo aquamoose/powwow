@@ -1,0 +1,230 @@
+doctype html
+html.no-js
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		title Pow! Wow! Taiwan!
+		meta(name='description', content='')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		meta(property='og:site_name', content='Pow! Wow! Taiwan!')
+		meta(property='og:type', content='website')
+		meta(property='og:title', content='')
+		meta(property='og:url', content='')
+		meta(property='og:image', content='')
+		meta(property='og:description', content='')
+		<link rel="apple-touch-icon" sizes="180x180" href="fav/apple-touch-icon.png">
+		<link rel="icon" type="image/png" href="fav/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="fav/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="fav/manifest.json">
+		<link rel="mask-icon" href="fav/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="apple-mobile-web-app-title" content="POW! WOW!">
+		<meta name="application-name" content="POW! WOW!">
+		<meta name="theme-color" content="#ffffff">
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+		script(src='js/foundation.js')
+		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
+		script(src='js/classie.js')
+		script(src='js/selectFx.js')
+		script(src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js")
+		script(src='js/barba.min.js')
+		script(src='js/jquery.grid-a-licious.js')
+		script(src='js/materialize.js')
+		script(src='js/stick.js')
+		script(src='https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js')
+		link(rel='stylesheet', href='font/aller.css')
+		link(rel='stylesheet', href='css/flexslider.css')
+		link(rel='stylesheet', href='css/materialize.css')
+		link(rel='stylesheet', href='css/foundation.css')
+		link(rel='stylesheet', href='css/font-awesome.css')
+		link(rel='stylesheet', href='css/styles.css')
+		link(href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300', rel='stylesheet', type='text/css')
+		script.
+			function goToByScroll(id){
+				id = id.replace("link", "");
+				$('html,body').animate({
+					scrollTop: $("#"+id).offset().top - 50},
+				'slow');
+			}
+			function redirectPage() {
+				window.location = linkLocation;
+			}
+
+			$(window).load(function(){
+				$('.loader').fadeOut(500);
+				$('.loader-bg').fadeOut(1000);
+
+			});
+			$(document).ready(function() {
+			 	$('body').fadeIn(1000);
+			 
+			    $(".linkFade").click(function(event){
+			        event.preventDefault();
+			        linkLocation = this.href;
+			        $("body").fadeOut(1000, redirectPage);      
+			    });
+
+				$(document).foundation();
+				
+				$('.lines-button').click(function(e) {
+					e.preventDefault();
+					$('.lines-button').toggleClass('close');
+					var open = $('.screen-menu').hasClass('sm-overlay-open');
+					if(open) {
+						$('.screen-menu').removeClass('sm-overlay-open');
+						$('body').css({'overflow-y': 'auto'});
+						$('.header').find('.menu-button').show();
+					} else {
+						$('.screen-menu').addClass('sm-overlay-open');
+						$('body').css({'overflow-y': 'hidden'});
+						$('.header').find('.menu-button').hide();
+					}
+				});
+				
+				$(window).scroll(function(){
+					if ($(this).scrollTop() > 50) {
+						$('.back-to-top').addClass('back-top-show');
+					} else if($('.back-to-top').hasClass('back-top-show')) {
+						$('.back-to-top').addClass('back-top-hide').removeClass('back-top-show');
+						window.setTimeout(function(){
+							$('.back-to-top').removeClass('back-top-hide');
+						}, 100);
+					} else {
+						$('.back-to-top').removeClass('back-top-show');
+					}
+				});
+				$('.back-to-top').click(function(){
+					$("html, body").animate({ scrollTop: 0 }, 500);
+					return false;
+				});
+				$('.ripple').on('click', function (event) {
+					var $div = $('<div/>'),
+					btnOffset = $(this).offset(),
+					xPos = event.pageX - btnOffset.left,
+					yPos = event.pageY - btnOffset.top;
+
+					if ($(window).width() > 641) {
+						$div.addClass('ripple-effect');
+						var $ripple = $(".ripple-effect");
+
+						$ripple.css("height", $(this).height());
+						$ripple.css("width", $(this).height());
+						$div
+						.css({
+							top: yPos - ($ripple.height()/2),
+							left: xPos - ($ripple.width()/2),
+							background: $(this).data("ripple-color")
+						}) 
+						.appendTo($(this));
+
+					} 
+					window.setTimeout(function(){
+						$div.fadeOut('normal', function(){
+							$(this).remove();
+						});
+					}, 500);
+				});
+				$('.index-block').each(function(){
+					$(this).find('.index-artist-block').last().addClass('end');
+				});
+				$('.item').hover(function(){
+					$('.item').not(this).css('opacity', '0.4');
+				}, function(){
+					$('.item').not(this).css('opacity', '1');
+				});
+
+				
+				$("#contentlink").click(function(e) { 
+					e.preventDefault(); 
+					goToByScroll($(this).attr("id"));           
+				});
+				$('.parallax').parallax();
+				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
+					new SelectFx(el);
+				});     
+				
+				//- $('.pin-block').waterfall();
+				//- $('.mural-container').gridalicious({
+				//- 	selector: '.item',
+				//- 	animate: true,
+				//- 	width: 400
+				//- });
+				$('.sticky-header').stick_in_parent({
+					offset_top: 50
+				});
+				$('.panel-column a').click(function(){
+					$('html,body').animate({
+						scrollTop: $("#content").offset().top - 50},
+					'slow');
+				});
+				var config = {
+					viewFactor: 0.15,
+					duration: 800,
+					distance: '0px',
+					scale: 0.8
+				}
+				window.sr = ScrollReveal(config);
+				sr.reveal('.panel-column');
+
+				
+			});
+	body
+		.loader-bg
+			.spinner
+				.bounce1
+				.bounce2
+				.bounce3
+		.wrapper
+			include component/header.jade
+			.content
+				.parallax-container
+					.parallax
+						img(src='img/banner1.jpg')
+						.pattern-hack
+					.banner-slogan
+						p.page-slogan projects
+						p.page-sub-slogan see all the other projects and events around the world
+						.banner-button.arrow-down: a#contentlink(href="#") SEE PROJECTS
+				a#content(href="#")
+				.index-block.index-mural.padding-top-120.padding-column#barba-wrapper
+					.filter-wrap
+						.filter-outer-box
+							span.filter-label Filter
+							.filter-box
+								select.cs-select.filter-select.cs-skin-underline
+									option(selected, disabled) Choose Filter
+									option(value="none") None
+									option(value="2016") 2016
+									option(calue="2015") 2015
+									option(value="2014") 2014
+									option(value="2013") 2013
+									option(value="2012") 2012
+									option(value="2011") 2011
+									option(value="2010") 2010
+									
+						.filter-outer-box
+							span.filter-label Arrange
+							.arrange-box
+								select.cs-select.filter-select.cs-skin-underline
+									option(selected, disabled) Choose Filter
+									option(value="newest") Newest
+									option(value="oldest") Oldest
+									option(value="az") A-Z
+									option(value="za") Z-A
+						.filter-submit 
+							button APPLY
+					.barba-container
+						.mural-panel.row
+							- var list = [{ name : "POWWOW LONG BEACH", data : "http://powwowhawaii.com/wp-content/uploads/2016/07/20160712-DSC02981.jpg", date : "2016" },{ name : "POWWOW DC", data : "http://powwowhawaii.com/wp-content/uploads/2016/07/Persue-Yok-Sheryo-5-26-FS-1.jpg", date : "2016" },{ name : "POWWOW SXSW", data : "http://powwowhawaii.com/wp-content/uploads/2016/03/day5_fafi_kamea_gress.jpg", date : "2016" },{ name : "POWWOW HAWAII", data : "http://powwowhawaii.com/wp-content/uploads/2016/03/usugrow-20160214.jpg", date : "2016" },{ name : "POWWOW TAIWAN", data : "http://powwowhawaii.com/wp-content/uploads/2016/03/DSC09144.jpg", date : "2016" },{ name : "POWWOW JAPAN", data : "http://powwowhawaii.com/wp-content/uploads/2016/03/DSC05508.jpg", date : "2016" },{ name : "POWWOW LONG BEACH", data : "http://powwowhawaii.com/wp-content/uploads/2015/07/2-1277x848.jpg", date : "2015" },{ name : "POWWOW SXSW", data : "http://powwowhawaii.com/wp-content/uploads/2015/04/pw-sxsw-3-1277x848.jpg", date : "2015" },{ name : "POWWOW HAWAII", data : "http://powwowhawaii.com/wp-content/uploads/2015/03/olek-1-1277x848.jpg", date : "2015" },{ name : "POWWOW TAIWAN", data : "http://powwowhawaii.com/wp-content/uploads/2014/04/pwtw_process_18-1277x848.jpg", date : "2014" },{ name : "POWWOW HAWAII", data : "http://powwowhawaii.com/wp-content/uploads/2014/03/7K9A0020-3-1277x848.jpg", date : "2014" },{ name : "POWWOW HAWAII", data : "http://powwowhawaii.com/wp-content/uploads/2013/05/7K9A0019-1277x848.jpg", date : "2013" },{ name : "POWWOW HAWAII", data : "http://powwowhawaii.com/wp-content/uploads/2013/05/DSC02060-1277x848.jpg", date : "2012" },{ name : "POWWOW HAWAII", data : "http://powwowhawaii.com/wp-content/uploads/2013/05/IMG_0003-1277x848.jpg", date : "2011" },{ name : "POWWOW HONG KONG", data : "http://powwowhawaii.com/wp-content/uploads/2013/05/artist_01-1277x848.jpg", date : "2010" }]
+								each item in list
+									.medium-4.small-12.columns.panel-column.end.safari_only
+										a(href="project.html").linkFade
+											.ratio-hack
+												div.i-artist-thumb(style="background-image: url("+item.data+");")
+													.i-artist-overlay
+													.artist-name-cat
+														p=item.name
+														p.underline
+														p=item.date
+			include component/footer.jade
+			a.back-to-top.ripple(href="#") TOP
+		script.

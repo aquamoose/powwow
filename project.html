@@ -19,20 +19,26 @@
     <meta name="apple-mobile-web-app-title" content="POW! WOW!">
     <meta name="application-name" content="POW! WOW!">
     <meta name="theme-color" content="#ffffff">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="js/foundation.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/selectFx.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
-    <script src="js/materialize.js"></script>
-    <script src="https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js"></script>
     <link rel="stylesheet" href="font/aller.css">
-    <link rel="stylesheet" href="css/flexslider.css">
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/timeliner.css">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,300" rel="stylesheet" type="text/css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/foundation.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/selectFx.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/scrollTo.js"></script>
+    <script src="js/barba.min.js"></script>
+    <script src="js/jquery.grid-a-licious.js"></script>
+    <script src="js/timeliner.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
     <script>
       function goToByScroll(id){
       	id = id.replace("link", "");
@@ -50,15 +56,12 @@
       });
       $(document).ready(function() {
        	$('body').fadeIn(1000);
-       
-          $(".linkFade").click(function(event){
+       	$(".linkFade").click(function(event){
               event.preventDefault();
               linkLocation = this.href;
               $("body").fadeOut(1000, redirectPage);      
           });
-      
       	$(document).foundation();
-      	
       	$('.lines-button').click(function(e) {
       		e.preventDefault();
       		$('.lines-button').toggleClass('close');
@@ -117,34 +120,39 @@
       			});
       		}, 500);
       	});
-      	$('.index-block').each(function(){
-      		$(this).find('.index-artist-block').last().addClass('end');
-      	});
-      	$('.pin').hover(function(){
-      		$('.pin').not(this).css('opacity', '0.4');
+      	$('.item').hover(function(){
+      		$('.item').not(this).css('opacity', '0.4');
       	}, function(){
-      		$('.pin').not(this).css('opacity', '1');
+      		$('.item').not(this).css('opacity', '1');
       	});
-      	
-      	
-      	$("#contentlink").click(function(e) { 
-      		e.preventDefault(); 
-      		goToByScroll($(this).attr("id"));           
+      	$.timeliner({
+      		baseSpeed: 300,
+      		speed: 1
       	});
-      	$('.parallax').parallax();
+      	$.fn.is_on_screen = function(){
+      		var win = $(window);
+      		var viewport = {
+      			top : win.scrollTop(),
+      			left : win.scrollLeft()
+      		};
+      		viewport.right = viewport.left + win.width();
+      		viewport.bottom = viewport.top + win.height();
+      
+      		var bounds = this.offset();
+      		bounds.right = bounds.left + this.outerWidth();
+      		bounds.bottom = bounds.top + this.outerHeight();
+      
+      		return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+      	};
       	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
       		new SelectFx(el);
-      	});    
-      	var config = {
-      		viewFactor: 0.15,
-      		duration: 800,
-      		distance: '0px',
-      		scale: 0.8
-      	}
-      	window.sr = ScrollReveal(config);
-      	sr.reveal('.revealer'); 
+      	}); 
+      	$('.mural-container').gridalicious({
+      		selector: '.item',
+      		width: 400
+      	});
       	
-      	
+      
       });
     </script>
   </head>
@@ -164,7 +172,7 @@
             <div class="medium-3 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
             <div class="medium-3 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
             <div class="medium-3 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
-            <div class="medium-3 columns"><a href="location.html" class="linkFade">VIDEO</a></div>
+            <div class="medium-3 columns"><a href="video-list.html" class="linkFade">VIDEO</a></div>
           </div>
         </div>
         <div class="medium-1 columns header-menu mobile-fix">
@@ -194,8 +202,8 @@
             <div class="small-12 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
             <div class="small-12 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
             <div class="small-12 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
-            <div class="small-12 columns"><a href="location.html" class="linkFade">VIDEO</a></div>
-            <div class="small-12 columns"><a href="location.html" class="linkFade">PROJECTS</a></div>
+            <div class="small-12 columns"><a href="video-list.html" class="linkFade">VIDEO</a></div>
+            <div class="small-12 columns"><a href="project-list.html" class="linkFade">PROJECTS</a></div>
             <div class="small-12 columns"><a href="location.html" class="linkFade">EDUCATION</a></div>
             <div class="small-12 columns"><a href="about.html" class="linkFade">ABOUT</a></div>
             <div class="small-12 columns"><a href="http://shop.powwowhawaii.com/" target="_blank">Shop	</a></div>
@@ -210,83 +218,53 @@
           </div>
         </div>
       </div>
-      <div class="content">
-        <div class="parallax-container">
-          <div class="parallax"><img src="img/banner1.jpg"></div>
-          <div class="banner-slogan">
-            <p class="page-slogan">videos</p>
-            <p class="page-sub-slogan">pow! wow! videos</p>
-            <div class="banner-button arrow-down"><a id="contentlink" href="#">SEE VIDEOS</a></div>
-          </div>
-        </div><a id="content" href="#"></a>
-        <div class="index-block index-mural padding-top-120 padding-column">
-          <div class="artists-content-block">
-            <div class="row">
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/alexface_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>POW! WOW! IN KOBE</p>
-                      </div>
-                    </div>
-                  </div></a></div>
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/caratoes_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>POW! WOW! WORCESTER 2016</p>
-                      </div>
-                    </div>
-                  </div></a></div>
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/colasa_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>Imprint Presents: Ernest Zacharevic and Martha Cooper Talk</p>
-                      </div>
-                    </div>
-                  </div></a></div>
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/debe_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>POW! WOW! SCHOOL OF MUSIC 2016</p>
-                      </div>
-                    </div>
-                  </div></a></div>
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/girenhao_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>POW! WOW! LONG BEACH 2016 VIDEO BY HEX</p>
-                      </div>
-                    </div>
-                  </div></a></div>
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/horton_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>POW! WOW! LONG BEACH THROUGH THE EYES OF JORDAN AHERN</p>
-                      </div>
-                    </div>
-                  </div></a></div>
-              <div class="medium-4 small-12 columns index-artist-block revealer safari_only"><a href="artist.html" class="linkFade">
-                  <div class="ratio-hack">
-                    <div style="background-image: url(img/nychos_thumb.jpg);" class="i-artist-thumb">
-                      <div class="i-artist-overlay"></div>
-                      <div class="artist-name-cat">
-                        <p>POW! WOW! SXSW 2015 OFFICIAL RECAP VIDEO</p>
-                      </div>
-                    </div>
-                  </div></a></div>
+      <div class="content"><a id="content" href="#"></a>
+        <div id="barba-wrapper" class="content p-bottom-50">
+          <div class="barba-container">
+            <div id="particles-js"></div><a href="javascript: history.go(-1)" class="prev-underline back-panel event-back"><i aria-hidden="true" class="fa fa-angle-left"></i><span>Back To Projects</span></a>
+            <div class="event-des">
+              <p class="index-title small-title">RVCA X POW! WOW!: THE POD EXHIBITION</p>
+              <p class="padding-column">On February 13th, 2015 POW! WOW! and RVCA held an exhibition at the Modern Honolulu, curated by PM Tenore. The visitors had a chance to see the collection of surfboards that surfing superstar Kelly Slater and RVCA artist Kevin Ancell collaborated on.<br><br>This idea initially came into focus after watching the movie Blackfish and seeing the wild captures, captive breeding and sad life of majestic Orcas in marine mammal parks. The whole experience inspired Slater to paint his boards to mimic Orcas markings and help raise awareness about the issue through it. After discussing this idea with Ancell they came up with an idea to paint the boards using tags, and in particular the infamous DFW tag. The boards created through this project are used as plaques to honor the people and whales that are affected with this issue and inspire others to join the #FreeTheFuckingWhales initiative.</p>
             </div>
-            <div class="clearfix"></div>
+            <p class="index-title small-title">Gallery</p>
+            <div class="artists-content-block">
+              <div class="mural-container">
+                <div class="item"><a href="img/paradise1.jpg" data-lightbox="lightbox" class="no-barba zoomicon"><img src="img/paradise1.jpg" data-caption="The hundred-pacer snake is the spirit animal of the Bunun Tribe"></a>
+                  <div class="card-bg-fix"></div>
+                </div>
+                <div class="item"><a href="img/paradise2.jpg" data-lightbox="lightbox" class="no-barba zoomicon"><img src="img/paradise2.jpg" data-caption="Bounce and ANO doing great things that are powered by surface"></a>
+                  <div class="card-bg-fix"></div>
+                </div>
+                <div class="item"><a href="img/paradise3.jpg" data-lightbox="lightbox" class="no-barba zoomicon"><img src="img/paradise3.jpg" data-caption="Finished mural by Ben Horton at Huashan Cultural Park"></a>
+                  <div class="card-bg-fix"></div>
+                </div>
+                <div class="item"><a href="img/paradise4.jpg" data-lightbox="lightbox" class="no-barba zoomicon"><img src="img/paradise4.jpg" data-caption="Finished mural at Visavisjing hair salon in Taipei by Case Maclaim"></a>
+                  <div class="card-bg-fix"></div>
+                </div>
+                <div class="item"><a href="img/paradise5.jpg" data-lightbox="lightbox" class="no-barba zoomicon"><img src="img/paradise5.jpg" data-caption="Finished mural by Dragon76"></a>
+                  <div class="card-bg-fix"></div>
+                </div>
+                <div class="item"><a href="img/paradise6.jpg" data-lightbox="lightbox" class="no-barba zoomicon"><img src="img/paradise6.jpg" data-caption="&quot;My hands and your heart exist only in a frame of understanding particular to ones own illusion&quot;"></a>
+                  <div class="card-bg-fix"></div>
+                </div>
+                <div class="item"><a href="img/paradise7.jpg" data-lightbox="lightbox" class="no-barba zoomicon"><img src="img/paradise7.jpg" data-caption="Huatunan brings the tiger down from the mountains"></a>
+                  <div class="card-bg-fix"></div>
+                </div>
+                <div class="item"><a href="img/paradise8.jpg" data-lightbox="lightbox" class="no-barba zoomicon"><img src="img/paradise8.jpg" data-caption="Renewal of Life"></a>
+                  <div class="card-bg-fix"></div>
+                </div>
+                <div class="item"><a href="img/paradise9.jpg" data-lightbox="lightbox" class="no-barba zoomicon"><img src="img/paradise9.jpg" data-caption="Nychos in a blink of an eye"></a>
+                  <div class="card-bg-fix"></div>
+                </div>
+                <div class="item"><a href="img/paradise10.jpg" data-lightbox="lightbox" class="no-barba zoomicon"><img src="img/paradise10.jpg" data-caption="Part of a series of Tainan Hai'An Road murals from POW! WOW! Taiwan's &quot;Tainan Station Block Party&quot; with Tainan Deptartment of Culture"></a>
+                  <div class="card-bg-fix"></div>
+                </div>
+                <div class="item"><a href="img/paradise11.jpg" data-lightbox="lightbox" class="no-barba zoomicon"><img src="img/paradise11.jpg" data-caption="Omen + Satr + Creepymouse1 at Blueprint Cultural Park in Tainan"></a>
+                  <div class="card-bg-fix"></div>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -304,8 +282,8 @@
               <div><a href="mural-list.html" class="linkFade">Murals</a></div>
               <div><a href="festival-list.html" class="linkFade">Festivals</a></div>
               <div><a href="participants.html" class="linkFade">Participants</a></div>
-              <div><a href="location.html" class="linkFade">Video</a></div>
-              <div><a href="location.html" class="linkFade">Projects</a></div>
+              <div><a href="video-list.html" class="linkFade">Video</a></div>
+              <div><a href="project-list.html" class="linkFade">Projects</a></div>
               <div><a href="location.html" class="linkFade">Education</a></div>
               <div><a href="about.html" class="linkFade">About</a></div>
               <div><a href="http://shop.powwowhawaii.com/" target="_blank">Shop</a></div>
@@ -321,7 +299,14 @@
             </div>
           </div>
         </div>
-      </div><a href="#" class="back-to-top ripple">TOP</a>
+      </div>
     </div>
   </body>
+  <script src="js/lightbox.js"></script>
+  <script>
+    lightbox.option({
+    		'fadeDuration': 300,
+    		'resizeDuration': 300
+    	});
+  </script>
 </html>

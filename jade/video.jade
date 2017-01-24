@@ -139,28 +139,7 @@ html.no-js
 					new SelectFx(el);
 				});  
 				
-				function initialize() {
-					var center = new google.maps.LatLng(51.5074, 0.1278);
-
-					var map = new google.maps.Map(document.getElementByClassName('canvas_map'), {
-						zoom: 3,
-						center: center,
-						mapTypeId: google.maps.MapTypeId.ROADMAP
-					});
-
-					var markers = [];
-					var marker = new google.maps.Marker({
-						position: new google.maps.LatLng(51.5074, 0.1278)
-					});
-					markers.push(marker);
-
-					var options = {
-						imagePath: 'img/m',
-						girdSize: 80
-					};
-
-					var markerCluster = new MarkerClusterer(map, markers, options);
-				}
+				
 			});
 	body
 		.loader-bg
@@ -171,38 +150,27 @@ html.no-js
 		.wrapper
 			include component/header.jade
 			.content.padding-column
-				.mural-img
-					img(src="img/madsteez-mural.jpg")
-					.mural-des
-						p Pow Wow Hawaii 2015. 
-						p Painted by Madsteez. 
-						p Photo by Pow Wow
-				p.index-title.small-title.divided-title location
-				.google-maps
-					<iframe src="https://www.google.com/maps/d/u/0/embed?mid=19s8FCjqTaJEw3mL0B5paTyTV8GU" width="640" height="480"></iframe>
-				.section-divider
-				p.index-title.small-title.divided-title Related Murals
-				.row.related-block.artists-content-block
-					each item in ['case', 'huatunan', 'nychos']
-						.medium-4.small-12.columns.index-artist-block
-							a
-								.ratio-hack
-									div.i-artist-thumb(style="background-image: url(img/"+item+".jpg);")
-										div.i-artist-overlay
-										p=item
+				.menu-divider
+				.video-wrap
+					<iframe src="https://player.vimeo.com/video/198009608" width="100%" height="56%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				.mural-des
+					p Pow Wow Hawaii 2015. 
+					p Painted by Madsteez. 
+					p Photo by Pow Wow
+				
 				.prev-next-pagi
 					.row
 						.small-4.columns
-							p Previous Mural
+							p Previous Video
 							a.prev-underline
 								i.fa.fa-angle-left(aria-hidden="true")
-								span ANO Mural
+								span Pow! Wow! Worcester 2016
 						.small-4.columns.center-top
-							a.center-underline(href="javascript: history.go(-1)") Back To Murals
+							a.center-underline.linkFade(href="javascript: history.go(-1)") Back To Videos
 						.small-4.columns
-							p Next Mural
+							p Next Video
 							a.next-underline
-								span Jeff Soto Mural
+								span Imprint Presents: Ernest Zacharevic and Martha Cooper Talk
 								i.fa.fa-angle-right(aria-hidden="true")
 			include component/footer.jade
 			a.back-to-top.ripple(href="#") TOP

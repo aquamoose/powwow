@@ -172,6 +172,9 @@ html.no-js
 		.wrapper
 			include component/header.jade
 			.content.padding-column
+				a.prev-underline.back-panel.event-back(href="javascript: history.go(-1)")
+							i.fa.fa-angle-left(aria-hidden="true")
+							span Back To Event
 				.banner-slogan
 					p.page-slogan.artist-slogan Colasa
 				.artist-des.revealer
