@@ -49,6 +49,8 @@
     height: 0;
     overflow: hidden;
     min-height: 400px;
+    width: 48%;
+    display: inline-block;
 	iframe {
 		display: block;
 		pointer-events: none;

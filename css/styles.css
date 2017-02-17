@@ -453,7 +453,9 @@ th {
   padding-bottom: 50%;
   height: 0;
   overflow: hidden;
-  min-height: 400px; }
+  min-height: 400px;
+  width: 48%;
+  display: inline-block; }
   .google-maps iframe {
     display: block;
     pointer-events: none;
@@ -906,7 +908,10 @@ body {
         opacity: 0.75; }
 
 .index-result {
-  margin-top: 20px; }
+  margin-top: 20px;
+  width: 48%;
+  display: inline-block;
+  vertical-align: top; }
 
 .brand-block {
   padding-bottom: 50px; }
