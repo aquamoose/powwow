@@ -66,7 +66,20 @@ html.no-js
 					new SelectFx(el);
 				}); 
 				
-				
+				$('.lines-button').click(function(e) {
+					e.preventDefault();
+					$('.lines-button').toggleClass('close');
+					var open = $('.screen-menu').hasClass('sm-overlay-open');
+					if(open) {
+						$('.screen-menu').removeClass('sm-overlay-open');
+						$('body').css({'overflow-y': 'auto'});
+						$('.header').find('.menu-button').show();
+					} else {
+						$('.screen-menu').addClass('sm-overlay-open');
+						$('body').css({'overflow-y': 'hidden'});
+						$('.header').find('.menu-button').hide();
+					}
+				});
 				$(window).scroll(function(){
 					if ($(this).scrollTop() > 50) {
 						$('.back-to-top').addClass('back-top-show');
@@ -132,26 +145,22 @@ html.no-js
 				.content.padding-column.p-bottom-50
 					a.prev-underline.back-panel.event-back(href="javascript: history.go(-1)")
 							i.fa.fa-angle-left(aria-hidden="true")
-							span Back To Interview
+							span Back To Education
 					.menu-divider
-					p.about-title.small-title.revealer pPOW! WOW! SCHOOL OF ART
+					p.about-title.small-title.revealer POW! WOW! SCHOOL OF ART
 					.powwow-history
 						.pow-section.revealer 
-							p.interview-question You lived between New Zealand and Cambodia, how did that impact your creative process?
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							p.interview-question What would you tell your 10 year old self? 
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							p.interview-question What is something that you would never want to draw or paint?
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							p.interview-question Who would you like to meet (dead or alive) and what would you ask this person? Why? 
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							p.interview-question What is next for you, as an artist? If you could change anything in the world right now, what would it be?
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							p.interview-question How do you define Street Art? 
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							p.interview-question What is the future of street art / graffiti and where do you fit in? How would you prefer it to be? 
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							p.interview-question Say something to the young blood who want to making street art as well?
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							p The 808 URBAN and POW WOW SCHOOL OF ART works with dedicated students over a period of nine months through various after school and Saturday art classes. Led by 808 Urban’s John “Prime” Hina, these workshops will explore contemporary urban art and its influence on commercial culture from the 1950s to the present. Students will discuss changing societal concepts regarding contemporary public “street” art while exploring a variety of artistic concepts, including basic design, color theory, and symbolism. Additional elements that will naturally come from these workshops include self-expression, and cultural awareness, as well as respect for community and nature.
+							p These workshops are an effort to prepare students for future POW WOW Hawaii gatherings. The more art these students do in preparation for these gatherings, the more the students will be able to learn from these national and international urban artists. The hope is that the participating students will be able to conceive, develop, and collaborate on a large mural in Kakaʻako as part of POW WOW Hawai’i.
+							p The following schools have participated in a POW WOW Hawaii education program include: Kamehameha Schools, Roosevelt High School, McKinley High School, YMCA, Voyager Charter Schools, Punahou School, Farrington High School and Washington Middle School.
+						.pow-section.revealer
+							p The ultimate mission is to validate student art experiences and introduce young people to various forms of public expression. Working closely with 808 Urban to continue to support a gathering of contemporary artists that engages with the broader community in the process and creation of art. The final product of the project will beautify a portion of the students’ urban landscape.
+							p If you have any questions about the 808 URBAN and POW WOW SCHOOL OF ART, please feel free to contact:
+							p Prime, 
+								a(mailto="prime.808urban@gmail.com") prime.808urban@gmail.com
+							p Sierra Dew, 
+								a(mailto="sierra@808urban.org") sierra@808urban.org
+							p Jasper Wong, 
+								a(mailto=" jasper@powwowhawaii.com")  jasper@powwowhawaii.com
 			include component/footer.jade
 			a.back-to-top.ripple(href="#") TOP

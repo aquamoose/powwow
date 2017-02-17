@@ -61,7 +61,20 @@ html.no-js
 			    });
 				$(document).foundation();
 				
-				
+				$('.lines-button').click(function(e) {
+					e.preventDefault();
+					$('.lines-button').toggleClass('close');
+					var open = $('.screen-menu').hasClass('sm-overlay-open');
+					if(open) {
+						$('.screen-menu').removeClass('sm-overlay-open');
+						$('body').css({'overflow-y': 'auto'});
+						$('.header').find('.menu-button').show();
+					} else {
+						$('.screen-menu').addClass('sm-overlay-open');
+						$('body').css({'overflow-y': 'hidden'});
+						$('.header').find('.menu-button').hide();
+					}
+				});
 				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
 					new SelectFx(el);
 				}); 
@@ -132,26 +145,12 @@ html.no-js
 				.content.padding-column.p-bottom-50
 					a.prev-underline.back-panel.event-back(href="javascript: history.go(-1)")
 							i.fa.fa-angle-left(aria-hidden="true")
-							span Back To Interview
+							span Back To Education
 					.menu-divider
-					p.about-title.small-title.revealer pPOW! WOW! SCHOOL OF ART
+					p.about-title.small-title.revealer ART AND MUSIC DISCUSSION PANELS
 					.powwow-history
 						.pow-section.revealer 
-							p.interview-question You lived between New Zealand and Cambodia, how did that impact your creative process?
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							p.interview-question What would you tell your 10 year old self? 
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							p.interview-question What is something that you would never want to draw or paint?
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							p.interview-question Who would you like to meet (dead or alive) and what would you ask this person? Why? 
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							p.interview-question What is next for you, as an artist? If you could change anything in the world right now, what would it be?
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							p.interview-question How do you define Street Art? 
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							p.interview-question What is the future of street art / graffiti and where do you fit in? How would you prefer it to be? 
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							p.interview-question Say something to the young blood who want to making street art as well?
-							p.interview-answer Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							p Partnering with the University of Hawaii’s Intersection Program, our art discussion panels have boasted a wide range of speakers from artists to media moguls to brand owners. Featured participants have included the likes of Suitman, Jeff Hamada of Booooooom, Eugene Kan of Hypebeast, Ken Harman of Hi Fructose and Spoke Art, Frank Liew of Qubic and Carbon, Mark Bode, Prime, Estria, Noah Callahan Bever of Complex, Joy Yoon of Huffington Post, and Angry Woebots. On the other end of the spectrum, our music discussion panels have included DJ Neil Armstrong, Roslynn Cobarrubias of Myspace Music, DJ Compose, Hisham Dahud, and producer Christian Mochizuki.
+							p Our free panels are offered to the community in hopes that it will both inspire and educate students and young professionals. They will hear first hand the real life experiences of successful individuals that have realized their dreams. Past panels have been held in the University of Hawaii Art Auditorium and Loft in Space.
 			include component/footer.jade
 			a.back-to-top.ripple(href="#") TOP

@@ -19,23 +19,23 @@
     <meta name="apple-mobile-web-app-title" content="POW! WOW!">
     <meta name="application-name" content="POW! WOW!">
     <meta name="theme-color" content="#ffffff">
-    <script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.22&amp;key=AIzaSyC_kLitJTrG9CrohPBaoPDu15qjBu7F1Lg"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="js/foundation.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="js/classie.js"></script>
-    <script src="js/selectFx.js"></script>
-    <script src="js/particles.js"></script>
-    <script src="js/waterfall-light.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
-    <script src="js/maplace.js"></script>
-    <script src="js/markerclusterer.js"></script>
     <link rel="stylesheet" href="font/aller.css">
     <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/materialize.css">
     <link rel="stylesheet" href="css/lightbox.css">
     <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/timeliner.css">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,300" rel="stylesheet" type="text/css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/foundation.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/selectFx.js"></script>
+    <script src="js/scrollTo.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js"></script>
     <script>
       function goToByScroll(id){
       	id = id.replace("link", "");
@@ -53,15 +53,18 @@
       });
       $(document).ready(function() {
        	$('body').fadeIn(1000);
-       
-          $(".linkFade").click(function(event){
+       	$(".linkFade").click(function(event){
               event.preventDefault();
               linkLocation = this.href;
               $("body").fadeOut(1000, redirectPage);      
           });
-               
-          
       	$(document).foundation();
+      	
+      	
+      	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
+      		new SelectFx(el);
+      	}); 
+      	
       	$('.lines-button').click(function(e) {
       		e.preventDefault();
       		$('.lines-button').toggleClass('close');
@@ -76,7 +79,6 @@
       			$('.header').find('.menu-button').hide();
       		}
       	});
-      	
       	$(window).scroll(function(){
       		if ($(this).scrollTop() > 50) {
       			$('.back-to-top').addClass('back-top-show');
@@ -93,8 +95,6 @@
       		$("html, body").animate({ scrollTop: 0 }, 500);
       		return false;
       	});
-      
-      
       	$('.ripple').on('click', function (event) {
       		var $div = $('<div/>'),
       		btnOffset = $(this).offset(),
@@ -122,44 +122,15 @@
       			});
       		}, 500);
       	});
-      	function videoResize() {
-      		var videoHeight = $(".video-wrap iframe").width();
-      		$(".video-wrap iframe").attr("width", "100%");
-      		$(".video-wrap iframe").attr("height", videoHeight / 1.778);
+      	var config = {
+      		viewFactor: 0.15,
+      		duration: 800,
+      		distance: '0px',
+      		scale: 0.8
       	}
-      	videoResize();
-      	$(window).resize(function(){
-      		videoResize();
-      	});	
-      	
-      	
+      	window.sr = ScrollReveal(config);
+      	sr.reveal('.revealer');
       
-      	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
-      		new SelectFx(el);
-      	});  
-      	
-      	function initialize() {
-      		var center = new google.maps.LatLng(51.5074, 0.1278);
-      
-      		var map = new google.maps.Map(document.getElementByClassName('canvas_map'), {
-      			zoom: 3,
-      			center: center,
-      			mapTypeId: google.maps.MapTypeId.ROADMAP
-      		});
-      
-      		var markers = [];
-      		var marker = new google.maps.Marker({
-      			position: new google.maps.LatLng(51.5074, 0.1278)
-      		});
-      		markers.push(marker);
-      
-      		var options = {
-      			imagePath: 'img/m',
-      			girdSize: 80
-      		};
-      
-      		var markerCluster = new MarkerClusterer(map, markers, options);
-      	}
       });
     </script>
   </head>
@@ -225,49 +196,22 @@
           </div>
         </div>
       </div>
-      <div class="content padding-column">
-        <div class="mural-img"><img src="img/madsteez-mural.jpg">
-          <div class="mural-des">
-            <p>Pow Wow Hawaii 2015. </p>
-            <p>Painted by Madsteez. </p>
-            <p>Photo by Pow Wow</p>
-          </div>
-        </div>
-        <p class="index-title small-title divided-title">location</p>
-        <div class="google-maps"><iframe src="https://www.google.com/maps/d/u/0/embed?mid=19s8FCjqTaJEw3mL0B5paTyTV8GU" width="640" height="480"></iframe></div>
-        <div class="section-divider"></div>
-        <p class="index-title small-title divided-title">Related Murals</p>
-        <div class="row related-block artists-content-block">
-          <div class="medium-4 small-12 columns index-artist-block"><a>
-              <div class="ratio-hack">
-                <div style="background-image: url(img/case.jpg);" class="i-artist-thumb">
-                  <div class="i-artist-overlay"></div>
-                  <p>case</p>
-                </div>
-              </div></a></div>
-          <div class="medium-4 small-12 columns index-artist-block"><a>
-              <div class="ratio-hack">
-                <div style="background-image: url(img/huatunan.jpg);" class="i-artist-thumb">
-                  <div class="i-artist-overlay"></div>
-                  <p>huatunan</p>
-                </div>
-              </div></a></div>
-          <div class="medium-4 small-12 columns index-artist-block"><a>
-              <div class="ratio-hack">
-                <div style="background-image: url(img/nychos.jpg);" class="i-artist-thumb">
-                  <div class="i-artist-overlay"></div>
-                  <p>nychos</p>
-                </div>
-              </div></a></div>
-        </div>
-        <div class="prev-next-pagi">
-          <div class="row">
-            <div class="small-4 columns">
-              <p>Previous Mural</p><a class="prev-underline"><i aria-hidden="true" class="fa fa-angle-left"></i><span>ANO Mural</span></a>
+      <div class="content">
+        <div class="content padding-column p-bottom-50"><a href="javascript: history.go(-1)" class="prev-underline back-panel event-back"><i aria-hidden="true" class="fa fa-angle-left"></i><span>Back To Education</span></a>
+          <div class="menu-divider"></div>
+          <p class="about-title small-title revealer">POW! WOW! SCHOOL OF ART</p>
+          <div class="powwow-history">
+            <div class="pow-section revealer"> 
+              <p>The 808 URBAN and POW WOW SCHOOL OF ART works with dedicated students over a period of nine months through various after school and Saturday art classes. Led by 808 Urban’s John “Prime” Hina, these workshops will explore contemporary urban art and its influence on commercial culture from the 1950s to the present. Students will discuss changing societal concepts regarding contemporary public “street” art while exploring a variety of artistic concepts, including basic design, color theory, and symbolism. Additional elements that will naturally come from these workshops include self-expression, and cultural awareness, as well as respect for community and nature.</p>
+              <p>These workshops are an effort to prepare students for future POW WOW Hawaii gatherings. The more art these students do in preparation for these gatherings, the more the students will be able to learn from these national and international urban artists. The hope is that the participating students will be able to conceive, develop, and collaborate on a large mural in Kakaʻako as part of POW WOW Hawai’i.</p>
+              <p>The following schools have participated in a POW WOW Hawaii education program include: Kamehameha Schools, Roosevelt High School, McKinley High School, YMCA, Voyager Charter Schools, Punahou School, Farrington High School and Washington Middle School.</p>
             </div>
-            <div class="small-4 columns center-top"><a href="javascript: history.go(-1)" class="center-underline">Back To Murals</a></div>
-            <div class="small-4 columns">
-              <p>Next Mural</p><a class="next-underline"><span>Jeff Soto Mural</span><i aria-hidden="true" class="fa fa-angle-right"></i></a>
+            <div class="pow-section revealer">
+              <p>The ultimate mission is to validate student art experiences and introduce young people to various forms of public expression. Working closely with 808 Urban to continue to support a gathering of contemporary artists that engages with the broader community in the process and creation of art. The final product of the project will beautify a portion of the students’ urban landscape.</p>
+              <p>If you have any questions about the 808 URBAN and POW WOW SCHOOL OF ART, please feel free to contact:</p>
+              <p>Prime, <a mailto="prime.808urban@gmail.com">prime.808urban@gmail.com</a></p>
+              <p>Sierra Dew, <a mailto="sierra@808urban.org">sierra@808urban.org</a></p>
+              <p>Jasper Wong, <a mailto=" jasper@powwowhawaii.com"> jasper@powwowhawaii.com</a></p>
             </div>
           </div>
         </div>

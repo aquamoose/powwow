@@ -19,20 +19,21 @@
     <meta name="apple-mobile-web-app-title" content="POW! WOW!">
     <meta name="application-name" content="POW! WOW!">
     <meta name="theme-color" content="#ffffff">
-    <script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.22&amp;key=AIzaSyC_kLitJTrG9CrohPBaoPDu15qjBu7F1Lg"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="js/foundation.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="js/classie.js"></script>
     <script src="js/selectFx.js"></script>
-    <script src="js/particles.js"></script>
-    <script src="js/waterfall-light.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
-    <script src="js/maplace.js"></script>
-    <script src="js/markerclusterer.js"></script>
+    <script src="js/barba.min.js"></script>
+    <script src="js/jquery.grid-a-licious.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/stick.js"></script>
+    <script src="https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js"></script>
     <link rel="stylesheet" href="font/aller.css">
+    <link rel="stylesheet" href="css/flexslider.css">
+    <link rel="stylesheet" href="css/materialize.css">
     <link rel="stylesheet" href="css/foundation.css">
-    <link rel="stylesheet" href="css/lightbox.css">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,300" rel="stylesheet" type="text/css">
@@ -46,6 +47,7 @@
       function redirectPage() {
       	window.location = linkLocation;
       }
+      
       $(window).load(function(){
       	$('.loader').fadeOut(500);
       	$('.loader-bg').fadeOut(1000);
@@ -59,9 +61,9 @@
               linkLocation = this.href;
               $("body").fadeOut(1000, redirectPage);      
           });
-               
-          
+      
       	$(document).foundation();
+      	
       	$('.lines-button').click(function(e) {
       		e.preventDefault();
       		$('.lines-button').toggleClass('close');
@@ -93,8 +95,6 @@
       		$("html, body").animate({ scrollTop: 0 }, 500);
       		return false;
       	});
-      
-      
       	$('.ripple').on('click', function (event) {
       		var $div = $('<div/>'),
       		btnOffset = $(this).offset(),
@@ -122,44 +122,49 @@
       			});
       		}, 500);
       	});
-      	function videoResize() {
-      		var videoHeight = $(".video-wrap iframe").width();
-      		$(".video-wrap iframe").attr("width", "100%");
-      		$(".video-wrap iframe").attr("height", videoHeight / 1.778);
-      	}
-      	videoResize();
-      	$(window).resize(function(){
-      		videoResize();
-      	});	
-      	
-      	
+      	$('.index-block').each(function(){
+      		$(this).find('.index-artist-block').last().addClass('end');
+      	});
+      	$('.item').hover(function(){
+      		$('.item').not(this).css('opacity', '0.4');
+      	}, function(){
+      		$('.item').not(this).css('opacity', '1');
+      	});
       
+      	
+      	$("#contentlink").click(function(e) { 
+      		e.preventDefault(); 
+      		goToByScroll($(this).attr("id"));           
+      	});
+      	$('.parallax').parallax();
       	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
       		new SelectFx(el);
-      	});  
+      	});     
       	
-      	function initialize() {
-      		var center = new google.maps.LatLng(51.5074, 0.1278);
-      
-      		var map = new google.maps.Map(document.getElementByClassName('canvas_map'), {
-      			zoom: 3,
-      			center: center,
-      			mapTypeId: google.maps.MapTypeId.ROADMAP
-      		});
-      
-      		var markers = [];
-      		var marker = new google.maps.Marker({
-      			position: new google.maps.LatLng(51.5074, 0.1278)
-      		});
-      		markers.push(marker);
-      
-      		var options = {
-      			imagePath: 'img/m',
-      			girdSize: 80
-      		};
-      
-      		var markerCluster = new MarkerClusterer(map, markers, options);
+      	//- $('.pin-block').waterfall();
+      	//- $('.mural-container').gridalicious({
+      	//- 	selector: '.item',
+      	//- 	animate: true,
+      	//- 	width: 400
+      	//- });
+      	$('.sticky-header').stick_in_parent({
+      		offset_top: 50
+      	});
+      	$('.panel-column a').click(function(){
+      		$('html,body').animate({
+      			scrollTop: $("#content").offset().top - 50},
+      		'slow');
+      	});
+      	var config = {
+      		viewFactor: 0.15,
+      		duration: 800,
+      		distance: '0px',
+      		scale: 0.8
       	}
+      	window.sr = ScrollReveal(config);
+      	sr.reveal('.panel-column');
+      
+      	
       });
     </script>
   </head>
@@ -225,49 +230,78 @@
           </div>
         </div>
       </div>
-      <div class="content padding-column">
-        <div class="mural-img"><img src="img/madsteez-mural.jpg">
-          <div class="mural-des">
-            <p>Pow Wow Hawaii 2015. </p>
-            <p>Painted by Madsteez. </p>
-            <p>Photo by Pow Wow</p>
+      <div class="content">
+        <div class="parallax-container">
+          <div class="parallax"><img src="img/banner1.jpg">
+            <div class="pattern-hack"></div>
           </div>
-        </div>
-        <p class="index-title small-title divided-title">location</p>
-        <div class="google-maps"><iframe src="https://www.google.com/maps/d/u/0/embed?mid=19s8FCjqTaJEw3mL0B5paTyTV8GU" width="640" height="480"></iframe></div>
-        <div class="section-divider"></div>
-        <p class="index-title small-title divided-title">Related Murals</p>
-        <div class="row related-block artists-content-block">
-          <div class="medium-4 small-12 columns index-artist-block"><a>
-              <div class="ratio-hack">
-                <div style="background-image: url(img/case.jpg);" class="i-artist-thumb">
-                  <div class="i-artist-overlay"></div>
-                  <p>case</p>
-                </div>
-              </div></a></div>
-          <div class="medium-4 small-12 columns index-artist-block"><a>
-              <div class="ratio-hack">
-                <div style="background-image: url(img/huatunan.jpg);" class="i-artist-thumb">
-                  <div class="i-artist-overlay"></div>
-                  <p>huatunan</p>
-                </div>
-              </div></a></div>
-          <div class="medium-4 small-12 columns index-artist-block"><a>
-              <div class="ratio-hack">
-                <div style="background-image: url(img/nychos.jpg);" class="i-artist-thumb">
-                  <div class="i-artist-overlay"></div>
-                  <p>nychos</p>
-                </div>
-              </div></a></div>
-        </div>
-        <div class="prev-next-pagi">
-          <div class="row">
-            <div class="small-4 columns">
-              <p>Previous Mural</p><a class="prev-underline"><i aria-hidden="true" class="fa fa-angle-left"></i><span>ANO Mural</span></a>
+          <div class="banner-slogan">
+            <p class="page-slogan">projects</p>
+            <p class="page-sub-slogan">see all the other projects and events around the world</p>
+            <div class="banner-button arrow-down"><a id="contentlink" href="#">SEE PROJECTS</a></div>
+          </div>
+        </div><a id="content" href="#"></a>
+        <div id="barba-wrapper" class="index-block index-mural padding-top-120 padding-column">
+          <div class="filter-wrap">
+            <div class="filter-outer-box"><span class="filter-label">Filter</span>
+              <div class="filter-box">
+                <select class="cs-select filter-select cs-skin-underline">
+                  <option selected disabled>Choose Filter</option>
+                  <option value="none">None</option>
+                  <option value="2016">2016</option>
+                  <option calue="2015">2015</option>
+                  <option value="2014">2014</option>
+                  <option value="2013">2013</option>
+                  <option value="2012">2012</option>
+                  <option value="2011">2011</option>
+                  <option value="2010">2010</option>
+                </select>
+              </div>
             </div>
-            <div class="small-4 columns center-top"><a href="javascript: history.go(-1)" class="center-underline">Back To Murals</a></div>
-            <div class="small-4 columns">
-              <p>Next Mural</p><a class="next-underline"><span>Jeff Soto Mural</span><i aria-hidden="true" class="fa fa-angle-right"></i></a>
+            <div class="filter-outer-box"><span class="filter-label">Arrange</span>
+              <div class="arrange-box">
+                <select class="cs-select filter-select cs-skin-underline">
+                  <option selected disabled>Choose Filter</option>
+                  <option value="newest">Newest</option>
+                  <option value="oldest">Oldest</option>
+                  <option value="az">A-Z</option>
+                  <option value="za">Z-A</option>
+                </select>
+              </div>
+            </div>
+            <div class="filter-submit"> 
+              <button>APPLY</button>
+            </div>
+          </div>
+          <div class="barba-container">
+            <div class="mural-panel row">
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="education-art.html" class="linkFade">
+                  <div class="ratio-hack">
+                    <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2013/02/pw_ed_01-260x172.jpg);" class="i-artist-thumb">
+                      <div class="i-artist-overlay"></div>
+                      <div class="artist-name-cat">
+                        <p>POW! WOW! SCHOOL OF ART</p>
+                      </div>
+                    </div>
+                  </div></a></div>
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="education-music.html" class="linkFade">
+                  <div class="ratio-hack">
+                    <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2013/04/pw_musicschool_01-260x172.jpg);" class="i-artist-thumb">
+                      <div class="i-artist-overlay"></div>
+                      <div class="artist-name-cat">
+                        <p>POW! WOW! SCHOOL OF MUSIC</p>
+                      </div>
+                    </div>
+                  </div></a></div>
+              <div class="medium-4 small-12 columns panel-column end safari_only"><a href="education-discussion.html" class="linkFade">
+                  <div class="ratio-hack">
+                    <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2013/02/pw_panels_01-260x172.jpg);" class="i-artist-thumb">
+                      <div class="i-artist-overlay"></div>
+                      <div class="artist-name-cat">
+                        <p>ART AND MUSIC DISCUSSION PANELS</p>
+                      </div>
+                    </div>
+                  </div></a></div>
             </div>
           </div>
         </div>
@@ -305,5 +339,6 @@
         </div>
       </div><a href="#" class="back-to-top ripple">TOP</a>
     </div>
+    <script></script>
   </body>
 </html>

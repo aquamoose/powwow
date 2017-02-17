@@ -27,7 +27,7 @@
 				input.search-textfield(type="text", name="search", placeholder="What're we looking for?")
 				//- input.search-submit(value="", type="submit")
 		.sm-menu.row
-			- var list = [{name: 'HOME', data: 'index.html'}, { name : 'MURALS', data : 'mural-list.html', cl : 'linkFade' },{ name : 'FESTIVALS', data : 'festival-list.html', cl : 'linkFade' },{ name : 'PARTICIPANTS', data : 'participants.html', cl : 'linkFade' },{ name : 'VIDEO', data : 'video-list.html', cl : 'linkFade' },{ name : 'PROJECTS', data : 'project-list.html', cl : 'linkFade' },{ name : 'EDUCATION', data : 'location.html', cl : 'linkFade' },{ name : 'ABOUT', data : 'about.html', cl : 'linkFade' }]
+			- var list = [{name: 'HOME', data: 'index.html'}, { name : 'MURALS', data : 'mural-list.html', cl : 'linkFade' },{ name : 'FESTIVALS', data : 'festival-list.html', cl : 'linkFade' },{ name : 'PARTICIPANTS', data : 'participants.html', cl : 'linkFade' },{ name : 'VIDEO', data : 'video-list.html', cl : 'linkFade' },{ name : 'PROJECTS', data : 'project-list.html', cl : 'linkFade' },{ name : 'EDUCATION', data : 'education-list.html', cl : 'linkFade' },{ name : 'ABOUT', data : 'about.html', cl : 'linkFade' }]
 				each item in list
 					.small-12.columns: a(href=item.data, target=item.target).linkFade=item.name
 				.small-12.columns: a(href='http://shop.powwowhawaii.com/', target='_blank') Shop	
