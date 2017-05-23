@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <!-- Default meta block-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pow! Wow! Worldwide!</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:site_name" content="Pow! Wow! Worldwide!">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:description" content=""><link rel="apple-touch-icon" sizes="180x180" href="fav/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="fav/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="fav/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="fav/manifest.json">
+    <link rel="mask-icon" href="fav/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="apple-mobile-web-app-title" content="POW! WOW!">
+    <meta name="application-name" content="POW! WOW!">
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="js/foundation.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/selectFx.js"></script>
+    <script src="js/scrollTo.js"></script>
+    <script src="js/timeliner.js"></script>
+    <link rel="stylesheet" href="font/aller.css">
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+    <link rel="stylesheet" href="css/timeliner.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,300" rel="stylesheet" type="text/css">
+    <!-- Default block for css assets-->
+    <script>
+      function goToByScroll(id){
+        id = id.replace("link", "");
+        $('html,body').animate({
+          scrollTop: $("#"+id).offset().top - 50},
+        'slow');
+      }
+      
+      function redirectPage() {
+        window.location = linkLocation;
+      }
+      //- $(window).load(function(){
+      //-   $('.loader').fadeOut(500);
+      //-   $('.loader-bg').fadeOut(1000);
+      //- });
+      $(document).ready(function() {
+        $('body').fadeIn(1000);
+       
+          $(".linkFade").click(function(event){
+              event.preventDefault();
+              linkLocation = this.href;
+              $("body").fadeOut(500, redirectPage);      
+          });
+        $(document).foundation();
+        $('.lines-button').click(function(e) {
+          e.preventDefault();
+          $('.lines-button').toggleClass('close');
+          $('.header-mobile').toggleClass('header-mobile-open', 300);
+          var open = $('.lines-button').hasClass('close');
+          if(!open) {
+            $('.submenu').hide(300);
+            $('.mobile-menu-section').attr('aria-expanded', 'false');
+          }
+        });
+        $(window).scroll(function(){
+          if ($(this).scrollTop() > 50) {
+            $('.back-to-top').addClass('back-top-show');
+          } else if($('.back-to-top').hasClass('back-top-show')) {
+            $('.back-to-top').addClass('back-top-hide').removeClass('back-top-show');
+            window.setTimeout(function(){
+              $('.back-to-top').removeClass('back-top-hide');
+            }, 100);
+          } else {
+            $('.back-to-top').removeClass('back-top-show');
+          }
+        });
+        $('.back-to-top').click(function(){
+          $("html, body").animate({ scrollTop: 0 }, 500);
+          return false;
+        });
+        
+        $('.ripple').on('click', function (event) {
+          var $div = $('<div/>'),
+          btnOffset = $(this).offset(),
+          xPos = event.pageX - btnOffset.left,
+          yPos = event.pageY - btnOffset.top;
+      
+          if ($(window).width() > 641) {
+            $div.addClass('ripple-effect');
+            var $ripple = $(".ripple-effect");
+      
+            $ripple.css("height", $(this).height());
+            $ripple.css("width", $(this).height());
+            $div
+            .css({
+              top: yPos - ($ripple.height()/2),
+              left: xPos - ($ripple.width()/2),
+              background: $(this).data("ripple-color")
+            }) 
+            .appendTo($(this));
+      
+          } 
+          window.setTimeout(function(){
+            $div.fadeOut('normal', function(){
+              $(this).remove();
+            });
+          }, 500);
+        });
+        [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){ 
+          new SelectFx(el);
+        });
+        var focusInput = true;
+        $('.searchBtn').click(function(e){
+          e.preventDefault();
+          if($('.header .header-nav').hasClass('header-open')) {
+            $('.header .header-nav').removeClass('header-open');
+            $('.search-textfield').blur().removeClass('search-open').val('');
+            $('.content').css('padding-top', '30px');
+          } else {
+            $('.header .header-nav').addClass('header-open');
+            $('.search-textfield').focus().addClass('search-open')
+            $('.content').css('padding-top', '70px');
+          } 
+        });      
+      });   
+    </script>
+  </head>
+  <body>
+    <!-- Default block for the navigation-->
+    <div class="header">
+      <div class="logo header-logo"><a href="index.html" class="linkFade"><img src="img/powwowlogo-taiwan.png"></a></div>
+      <div class="lang-box-wrapper">
+        <div class="lang-select-box">
+          <select class="cs-select lang-select cs-skin-underline">
+            <option selected="selected" value="eng">Eng</option>
+            <option value="chi">Chi</option>
+          </select>
+        </div>
+      </div>
+      <div class="header-nav mobile-hide">
+        <ul data-dropdown-menu class="dropdown menu">
+          <li><a href="#">ABOUT</a>
+            <ul class="menu">
+              <li><a href="news.html" class="linkFade">News</a></li>
+              <li><a href="general-information.html" class="linkFade">General Information</a></li>
+              <li><a href="history.html" class="linkFade">History</a></li>
+              <li><a href="directors.html" class="linkFade">Directors</a></li>
+              <li><a href="native-american-powwows.html" class="linkFade">Native American Powwows</a></li>
+            </ul>
+          </li>
+          <li><a href="#">FESTIVALS</a>
+            <ul class="menu">
+              <li><a href="festival-recap.html" class="linkFade">See All Recaps</a></li>
+              <li><a href="powwow-hawaii.html" class="linkFade">Hawaii</a></li>
+              <li><a href="#" class="linkFade">Austin, Texas</a></li>
+              <li><a href="#" class="linkFade">Antelope Valley</a></li>
+              <li><a href="#" class="linkFade">Worcester</a></li>
+              <li><a href="powwow-taiwan.html" class="linkFade">Taiwan</a></li>
+              <li><a href="#" class="linkFade">Japan</a></li>
+              <li><a href="#" class="linkFade">Etc</a></li>
+            </ul>
+          </li>
+          <li><a href="#">MURALS</a>
+            <ul class="menu">
+              <li><a href="murals-all.html" class="linkFade">All</a></li>
+              <li><a href="#" class="linkFade">Hawaii</a></li>
+              <li><a href="#" class="linkFade">Austin, Texas</a></li>
+              <li><a href="taiwan-murals.html" class="linkFade">Taiwan</a></li>
+              <li><a href="#" class="linkFade">Etc</a></li>
+            </ul>
+          </li>
+          <li><a href="participants.html" class="linkFade">PARTICIPANTS</a></li>
+          <li><a href="schedule.html" class="linkFade">SCHEDULE</a></li>
+          <li><a href="video.html" class="linkFade">VIDEOS</a></li>
+          <li><a href="projects.html" class="linkFade">PROJECTS</a></li>
+          <li><a href="#">EDUCATION</a>
+            <ul class="menu">
+              <li><a href="pow-wow-school-of-art.html" class="linkFade">POW! WOW! School of Art</a></li>
+              <li><a href="pow-wow-school-of-music.html" class="linkFade">POW! WOW! School of Music</a></li>
+              <li><a href="discussion-panel.html" class="linkFade">Lectures</a></li>
+            </ul>
+          </li>
+          <li><a href="https://shop.powwowhawaii.com/" target="_blank">SHOP</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li class="search-wrap"><a href="#" class="searchBtn"></a>
+            <form class="search">
+              <input type="text" name="search" placeholder="What are we looking for?" class="search-textfield">
+            </form>
+          </li>
+        </ul>
+      </div>
+      <div class="header-menu"><span class="menu-button">
+          <button type="button" role="button" aria-label="Toggle Navigation" class="lines-button x"><span class="lines"></span></button></span></div>
+      <div class="header-mobile">
+        <ul data-accordion-menu class="vertical menu">
+          <li><a href="#" class="searchBtn"></a>
+            <form>
+              <input type="text" name="search" placeholder="What are we looking for?" class="search-mobile">
+            </form>
+          </li>
+          <li class="mobile-menu-section"><a href="#" class="mobile-menu-title">About</a>
+            <ul class="menu vertical">
+              <li><a href="news.html" class="linkFade">News</a></li>
+              <li><a href="general-information.html" class="linkFade">General Information</a></li>
+              <li><a href="history.html" class="linkFade">History</a></li>
+              <li><a href="directors.html" class="linkFade">Directors</a></li>
+              <li><a href="native-american-powwows.html" class="linkFade">Native American Powwows</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-section"><a href="#" class="mobile-menu-title">Festivals</a>
+            <ul class="menu vertical">
+              <li><a href="festival-recap.html" class="linkFade">See All Recaps</a></li>
+              <li><a href="powwow-hawaii.html" class="linkFade">Hawaii</a></li>
+              <li><a href="#" class="linkFade">Austin, Texas</a></li>
+              <li><a href="directors.html" class="linkFade">Antelope Valley</a></li>
+              <li><a href="#" class="linkFade">Worcester</a></li>
+              <li><a href="powwow-taiwan.html" class="linkFade">Taiwan</a></li>
+              <li><a href="#" class="linkFade">Japan</a></li>
+              <li><a href="#" class="linkFade">Etc</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-section"><a href="#" class="mobile-menu-title">Murals</a>
+            <ul class="menu vertical">
+              <li><a href="murals-all.html" class="linkFade">All</a></li>
+              <li><a href="#" class="linkFade">Hawaii</a></li>
+              <li><a href="#" class="linkFade">Austin, Texas</a></li>
+              <li><a href="taiwan-murals.html" class="linkFade">Taiwan</a></li>
+              <li><a href="#" class="linkFade">Etc</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-section"><a href="participants.html" class="mobile-menu-title">Participants</a></li>
+          <li class="mobile-menu-section"><a href="schedule.html" class="mobile-menu-title">Schedule</a></li>
+          <li class="mobile-menu-section"><a href="video.html" class="mobile-menu-title">Videos</a></li>
+          <li class="mobile-menu-section"><a href="projects.html" class="mobile-menu-title">Projects</a></li>
+          <li class="mobile-menu-section"><a href="#" class="mobile-menu-title">Education</a>
+            <ul class="menu vertical">
+              <li><a href="pow-wow-school-of-art.html" class="linkFade">POW! WOW! School of Art</a></li>
+              <li><a href="pow-wow-school-of-music.html" class="linkFade">POW! WOW! School of Music</a></li>
+              <li><a href="discussion-panel.html" class="linkFade">Lectures</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-section"><a href="https://shop.powwowhawaii.com/" target="_blank" class="mobile-menu-title">Shop</a></li>
+          <li class="mobile-menu-section"><a href="contact.html" class="mobile-menu-title">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Default content block-->
+    <div class="content">
+      <div class="page-title">
+        <p>pow! wow! taiwan murals</p>
+      </div>
+      <div id="map"></div>
+      <div class="filter-wrap">
+        <div class="filter-outer-box"><span class="filter-label">Filter</span>
+          <div class="filter-box">
+            <select class="cs-select filter-select cs-skin-underline">
+              <option selected disabled>Choose Location</option>
+              <option value="none">None</option>
+              <option value="taipei">Taipei</option>
+              <option value="taichung">Taichung</option>
+              <option value="tainan">Tainan</option>
+              <option value="kaoshung">Kaoshung</option>
+            </select>
+          </div>
+        </div>
+        <div class="filter-submit"> 
+          <button>APPLY</button>
+        </div>
+      </div>
+      <div class="grid-wrapper">
+        <div class="row">
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="luise-ono-ximen-mural.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/03/luiseone_ximen.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>Luise Ono Wall in Ximen</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/03/bounce_01_ximen.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>Bounce Wall in Ximen</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/03/CandyBird.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>Candybird Wall in Taichung</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/03/Girenhao-2.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>Girenhao Wall in Wei Wu Ying</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/03/Danae-2_Byaserktw.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>Danae Wall in Wei Wu Ying</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/03/bao_tainan.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>Bao Wall in Tainan</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/03/Final_FLEKSONE_bySean-Marc-Lee.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>Taiwan Festival Canvas</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/03/Final_DEBE_MROGAY_bySean-Marc-Lee.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>Taiwan Festival Canvas</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/03/Final_Black_bySean-Marc-Lee.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>Taiwan Festival Canvas</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/03/Final_SATR_bySean-Marc-Lee.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>Taiwan Festival Canvas</p>
+              </div></a></div>
+        </div>
+      </div>
+      <div class="sponsor">
+        <div class="sponsor-title">
+          <div class="page-title">
+            <p>taiwan sponsors</p>
+          </div>
+        </div>
+        <div class="brands"><span><img src="img/sp-montana-logo.png"></span><span><img src="img/sp-hawaiian-airline-logo.png"></span><span><img src="img/sp-monster-logo.png"></span><span><img src="img/sp-olukai-logo.png"></span><span><img src="img/sp-eptm-logo.png"></span><span><img src="img/sp-thinkspace-logo.png"></span><span><img src="img/sp-1xrun-logo.png"></span></div>
+      </div>
+    </div>
+    <!-- Default footer block-->
+    <div class="footer">
+      <div class="footer-block">
+        <div class="footer-logo"><a><img src="img/powwowlogo-vertical.png"></a>
+          <div>
+            <p>Copyright © 2016 All Rights Reserved </p>
+            <p>POW! WOW! TAIWAN!</p>
+          </div>
+        </div>
+        <div class="footer-social">
+          <div>
+            <p>CONNECT WITH POW! WOW!</p>
+          </div>
+          <div><a href="https://twitter.com/powwowworldwide"><i aria-hidden="true" class="fa fa-twitter fa-lg"></i></a><a href="https://www.facebook.com/PowWowHawaii"><i aria-hidden="true" class="fa fa-facebook-official fa-lg"></i></a><a href="https://vimeo.com/powwowhawaii"><i aria-hidden="true" class="fa fa-vimeo fa-lg"></i></a><a href="http://powwowblog.tumblr.com/"><i aria-hidden="true" class="fa fa-tumblr-square fa-lg"></i></a></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function myMap() {
+      	var myLoc = new google.maps.LatLng(51.5074, 0.1278);
+      
+      	var map = new google.maps.Map(document.getElementById('map'), {
+      		zoom: 2,
+      		center: myLoc
+      	});
+      	var contentString = "<div class='info-box'><p><a href='#'>Ano</a></p><img src='img/mock/ano.jpg'></div>";
+      	var infoWindow = new google.maps.InfoWindow({
+      		content: contentString,
+      		maxWidth: 500
+      	});
+      	var marker = new google.maps.Marker({
+      		position: myLoc,
+      		map: map,
+      		title: 'Ano'
+      	});
+      	google.maps.event.addListener(marker, 'click', function(){
+      		infoWindow.open(map,marker);
+      	});
+      	google.maps.event.addListener(map, 'click', function(){
+      		infoWindow.close();
+      	});
+      	google.maps.event.addDomListener(infoWindow, 'close', function(){
+      		google.maps.event.trigger(map, 'close');
+      		var center = map.getCenter();
+      		map.setCenter(center);
+      	});
+      	google.maps.event.addDomListener(window, 'resize', function(){
+      		var center = map.getCenter();
+      		google.maps.event.trigger(map, 'resize');
+      		map.setCenter(center);
+      	});
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_kLitJTrG9CrohPBaoPDu15qjBu7F1Lg&amp;callback=myMap"></script>
+  </body>
+</html>

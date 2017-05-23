@@ -1,0 +1,59 @@
+.tabs, .tabs-content {
+	border: none;
+	background: white;
+}
+
+.tabs-title > a:focus, .tabs-title > a[aria-selected='true'] {
+	background: $black;
+}
+.tabs-title > a:hover {
+	background: $black;
+}
+.schedule-timeline {
+	margin-top: 20px;
+	.schedule-timeline-title {
+		text-align: center;
+		font-weight: bold;
+		font-size: 3em;
+	}
+}
+.timeline-wrapper h2 {
+	font-size: 2em;
+}
+.schedule-tab-content {
+	@include clearfix;
+}
+.event-title-wrap {
+	div {
+		display: inline-block;
+		vertical-align: top;
+		img {
+			width: 50px;
+			margin-top: 10px;
+			@include transition(all .3s);
+		}
+	}
+	.event-title {
+		width: calc(100% - 120px);
+	}
+}
+.timeline-series dt a.open {
+	.event-title-wrap div img {
+		width: 100px;
+	}
+}
+.timeline-event-content p {
+	max-width: 100%;
+	color: $bodyText;
+	a {
+		color: $bodyText;
+		border-bottom: 1px solid transparent;
+		font-weight: bold;
+		font-style: italic;
+		@include transition(all .3s);
+		&:hover {
+			color: $black;
+			border-color: $black;
+		}
+	}
+}

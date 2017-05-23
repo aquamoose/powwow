@@ -1,10 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="39px" height="39px" viewBox="0 0 39 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
-    <title>Fill 19 Copy</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M16.4086053,29.8077524 C8.74069096,29.8077524 2.52468214,23.6999062 2.52468214,16.1534855 C2.52468214,8.60706471 8.74069096,2.4870272 16.4086053,2.4870272 C24.0765197,2.4870272 30.2937476,8.60706471 30.2937476,16.1534855 C30.2937476,23.6999062 24.0765197,29.8077524 16.4086053,29.8077524 L16.4086053,29.8077524 Z M38.6297092,36.8787121 L28.5614573,26.9671772 C31.1970742,24.1022194 32.8172107,20.3229134 32.8172107,16.1534855 C32.8172107,7.2294467 25.4711293,0 16.4086053,0 C7.34608141,0 0,7.2294467 0,16.1534855 C0,25.0653329 7.34608141,32.2947796 16.4086053,32.2947796 C20.3242398,32.2947796 23.9156032,30.9415442 26.736518,28.6861519 L36.8449991,38.6342607 C37.3387201,39.1219131 38.1372072,39.1219131 38.6297092,38.6342607 C39.1234303,38.1587996 39.1234303,37.3663645 38.6297092,36.8787121 L38.6297092,36.8787121 Z" id="Fill-19-Copy" fill="#FFFFFF"></path>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 39 39" style="enable-background:new 0 0 39 39;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#333333;}
+</style>
+<title>Fill 19 Copy</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1">
+	<path id="Fill-19-Copy" class="st0" d="M16.4,29.8c-7.7,0-13.9-6.1-13.9-13.7S8.7,2.5,16.4,2.5s13.9,6.1,13.9,13.7
+		S24.1,29.8,16.4,29.8L16.4,29.8z M38.6,36.9L28.6,27c2.6-2.9,4.3-6.6,4.3-10.8C32.8,7.2,25.5,0,16.4,0S0,7.2,0,16.2
+		c0,8.9,7.3,16.1,16.4,16.1c3.9,0,7.5-1.4,10.3-3.6l10.1,9.9c0.5,0.5,1.3,0.5,1.8,0C39.1,38.2,39.1,37.4,38.6,36.9L38.6,36.9z"/>
+</g>
 </svg>

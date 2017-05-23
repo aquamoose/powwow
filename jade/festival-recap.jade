@@ -1,0 +1,27 @@
+extend layouts/index-layout.jade
+
+block page-title
+	p pow! wow! festival recap
+
+block sponsor-title
+	p worldwide sponsors
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block main-content
+	.grid-wrapper
+		.row
+			- var list = [{name: 'Pow! Wow! Hawaii 2017', page: 'news.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/20170217-DSC06764.jpg'}, {name: 'Pow! Wow! Taiwan 2016', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/161120_0272_bySean-Marc-Lee.jpg'}, {name: 'Pow! Wow! Japan 2016', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2016/09/20161018-DSC00030.jpg'}, {name: 'Pow! Wow! Worcester 2016', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2016/09/Greg_Mike_SK_Worcester_2016_9324.jpg'}, {name: 'Pow! Wow! Antelope Valley 2016', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2016/08/20160813-DSC09333-Edit.jpg'}, {name: 'Pow! Wow! Long Beach 2016', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2016/07/20160712-DSC02981.jpg'}, {name: 'Pow! Wow! DC 2016', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2016/07/Persue-Yok-Sheryo-5-26-FS-1.jpg'}, {name: 'Pow! Wow! SXSW 2016', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2016/03/day5_fafi_kamea_gress.jpg'}, {name: 'Pow! Wow! Hawaii 2016', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2016/03/usugrow-20160214.jpg'}]
+				each item in list
+					.large-3.medium-6.small-12.column.grid-block.end
+						a(href=item.page)
+							.grid-image(style='background-image: url('+item.image+')')
+							.grid-overlay
+								p=item.name

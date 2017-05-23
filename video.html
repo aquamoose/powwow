@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html class="no-js">
   <head>
+    <!-- Default meta block-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Pow! Wow! Taiwan!</title>
+    <title>Pow! Wow! Worldwide!</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:site_name" content="Pow! Wow! Taiwan!">
+    <meta property="og:site_name" content="Pow! Wow! Worldwide!">
     <meta property="og:type" content="website">
     <meta property="og:title" content="">
     <meta property="og:url" content="">
@@ -19,243 +20,339 @@
     <meta name="apple-mobile-web-app-title" content="POW! WOW!">
     <meta name="application-name" content="POW! WOW!">
     <meta name="theme-color" content="#ffffff">
-    <script src="https://maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry&amp;v=3.22&amp;key=AIzaSyC_kLitJTrG9CrohPBaoPDu15qjBu7F1Lg"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="js/foundation.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="js/classie.js"></script>
     <script src="js/selectFx.js"></script>
-    <script src="js/particles.js"></script>
-    <script src="js/waterfall-light.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
-    <script src="js/maplace.js"></script>
-    <script src="js/markerclusterer.js"></script>
+    <script src="js/scrollTo.js"></script>
+    <script src="js/timeliner.js"></script>
     <link rel="stylesheet" href="font/aller.css">
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/lightbox.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/timeliner.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,300" rel="stylesheet" type="text/css">
+    <!-- Default block for css assets-->
     <script>
       function goToByScroll(id){
-      	id = id.replace("link", "");
-      	$('html,body').animate({
-      		scrollTop: $("#"+id).offset().top - 50},
-      	'slow');
+        id = id.replace("link", "");
+        $('html,body').animate({
+          scrollTop: $("#"+id).offset().top - 50},
+        'slow');
       }
-      function redirectPage() {
-      	window.location = linkLocation;
-      }
-      $(window).load(function(){
-      	$('.loader').fadeOut(500);
-      	$('.loader-bg').fadeOut(1000);
       
-      });
+      function redirectPage() {
+        window.location = linkLocation;
+      }
+      //- $(window).load(function(){
+      //-   $('.loader').fadeOut(500);
+      //-   $('.loader-bg').fadeOut(1000);
+      //- });
       $(document).ready(function() {
-       	$('body').fadeIn(1000);
+        $('body').fadeIn(1000);
        
           $(".linkFade").click(function(event){
               event.preventDefault();
               linkLocation = this.href;
-              $("body").fadeOut(1000, redirectPage);      
+              $("body").fadeOut(500, redirectPage);      
           });
-               
-          
-      	$(document).foundation();
-      	$('.lines-button').click(function(e) {
-      		e.preventDefault();
-      		$('.lines-button').toggleClass('close');
-      		var open = $('.screen-menu').hasClass('sm-overlay-open');
-      		if(open) {
-      			$('.screen-menu').removeClass('sm-overlay-open');
-      			$('body').css({'overflow-y': 'auto'});
-      			$('.header').find('.menu-button').show();
-      		} else {
-      			$('.screen-menu').addClass('sm-overlay-open');
-      			$('body').css({'overflow-y': 'hidden'});
-      			$('.header').find('.menu-button').hide();
-      		}
-      	});
-      	
-      	$(window).scroll(function(){
-      		if ($(this).scrollTop() > 50) {
-      			$('.back-to-top').addClass('back-top-show');
-      		} else if($('.back-to-top').hasClass('back-top-show')) {
-      			$('.back-to-top').addClass('back-top-hide').removeClass('back-top-show');
-      			window.setTimeout(function(){
-      				$('.back-to-top').removeClass('back-top-hide');
-      			}, 100);
-      		} else {
-      			$('.back-to-top').removeClass('back-top-show');
-      		}
-      	});
-      	$('.back-to-top').click(function(){
-      		$("html, body").animate({ scrollTop: 0 }, 500);
-      		return false;
-      	});
+        $(document).foundation();
+        $('.lines-button').click(function(e) {
+          e.preventDefault();
+          $('.lines-button').toggleClass('close');
+          $('.header-mobile').toggleClass('header-mobile-open', 300);
+          var open = $('.lines-button').hasClass('close');
+          if(!open) {
+            $('.submenu').hide(300);
+            $('.mobile-menu-section').attr('aria-expanded', 'false');
+          }
+        });
+        $(window).scroll(function(){
+          if ($(this).scrollTop() > 50) {
+            $('.back-to-top').addClass('back-top-show');
+          } else if($('.back-to-top').hasClass('back-top-show')) {
+            $('.back-to-top').addClass('back-top-hide').removeClass('back-top-show');
+            window.setTimeout(function(){
+              $('.back-to-top').removeClass('back-top-hide');
+            }, 100);
+          } else {
+            $('.back-to-top').removeClass('back-top-show');
+          }
+        });
+        $('.back-to-top').click(function(){
+          $("html, body").animate({ scrollTop: 0 }, 500);
+          return false;
+        });
+        
+        $('.ripple').on('click', function (event) {
+          var $div = $('<div/>'),
+          btnOffset = $(this).offset(),
+          xPos = event.pageX - btnOffset.left,
+          yPos = event.pageY - btnOffset.top;
       
+          if ($(window).width() > 641) {
+            $div.addClass('ripple-effect');
+            var $ripple = $(".ripple-effect");
       
-      	$('.ripple').on('click', function (event) {
-      		var $div = $('<div/>'),
-      		btnOffset = $(this).offset(),
-      		xPos = event.pageX - btnOffset.left,
-      		yPos = event.pageY - btnOffset.top;
+            $ripple.css("height", $(this).height());
+            $ripple.css("width", $(this).height());
+            $div
+            .css({
+              top: yPos - ($ripple.height()/2),
+              left: xPos - ($ripple.width()/2),
+              background: $(this).data("ripple-color")
+            }) 
+            .appendTo($(this));
       
-      		if ($(window).width() > 641) {
-      			$div.addClass('ripple-effect');
-      			var $ripple = $(".ripple-effect");
-      
-      			$ripple.css("height", $(this).height());
-      			$ripple.css("width", $(this).height());
-      			$div
-      			.css({
-      				top: yPos - ($ripple.height()/2),
-      				left: xPos - ($ripple.width()/2),
-      				background: $(this).data("ripple-color")
-      			}) 
-      			.appendTo($(this));
-      
-      		} 
-      		window.setTimeout(function(){
-      			$div.fadeOut('normal', function(){
-      				$(this).remove();
-      			});
-      		}, 500);
-      	});
-      	function videoResize() {
-      		var videoHeight = $(".video-wrap iframe").width();
-      		$(".video-wrap iframe").attr("width", "100%");
-      		$(".video-wrap iframe").attr("height", videoHeight / 1.778);
-      	}
-      	videoResize();
-      	$(window).resize(function(){
-      		videoResize();
-      	});	
-      	
-      	
-      
-      	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
-      		new SelectFx(el);
-      	});  
-      	
-      	
-      });
+          } 
+          window.setTimeout(function(){
+            $div.fadeOut('normal', function(){
+              $(this).remove();
+            });
+          }, 500);
+        });
+        [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){ 
+          new SelectFx(el);
+        });
+        var focusInput = true;
+        $('.searchBtn').click(function(e){
+          e.preventDefault();
+          if($('.header .header-nav').hasClass('header-open')) {
+            $('.header .header-nav').removeClass('header-open');
+            $('.search-textfield').blur().removeClass('search-open').val('');
+            $('.content').css('padding-top', '30px');
+          } else {
+            $('.header .header-nav').addClass('header-open');
+            $('.search-textfield').focus().addClass('search-open')
+            $('.content').css('padding-top', '70px');
+          } 
+        });      
+      });   
     </script>
   </head>
   <body>
-    <div class="loader-bg">
-      <div class="spinner">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
+    <!-- Default block for the navigation-->
+    <div class="header">
+      <div class="logo header-logo"><a href="index.html" class="linkFade"><img src="img/powwowlogo.png"></a></div>
+      <div class="lang-box-wrapper">
+        <div class="lang-select-box">
+          <select class="cs-select lang-select cs-skin-underline">
+            <option selected="selected" value="eng">Eng</option>
+            <option value="chi">Chi</option>
+          </select>
+        </div>
+      </div>
+      <div class="header-nav mobile-hide">
+        <ul data-dropdown-menu class="dropdown menu">
+          <li><a href="#">ABOUT</a>
+            <ul class="menu">
+              <li><a href="news.html" class="linkFade">News</a></li>
+              <li><a href="general-information.html" class="linkFade">General Information</a></li>
+              <li><a href="history.html" class="linkFade">History</a></li>
+              <li><a href="directors.html" class="linkFade">Directors</a></li>
+              <li><a href="native-american-powwows.html" class="linkFade">Native American Powwows</a></li>
+            </ul>
+          </li>
+          <li><a href="#">FESTIVALS</a>
+            <ul class="menu">
+              <li><a href="festival-recap.html" class="linkFade">See All Recaps</a></li>
+              <li><a href="powwow-hawaii.html" class="linkFade">Hawaii</a></li>
+              <li><a href="#" class="linkFade">Austin, Texas</a></li>
+              <li><a href="#" class="linkFade">Antelope Valley</a></li>
+              <li><a href="#" class="linkFade">Worcester</a></li>
+              <li><a href="powwow-taiwan.html" class="linkFade">Taiwan</a></li>
+              <li><a href="#" class="linkFade">Japan</a></li>
+              <li><a href="#" class="linkFade">Etc</a></li>
+            </ul>
+          </li>
+          <li><a href="#">MURALS</a>
+            <ul class="menu">
+              <li><a href="murals-all.html" class="linkFade">All</a></li>
+              <li><a href="#" class="linkFade">Hawaii</a></li>
+              <li><a href="#" class="linkFade">Austin, Texas</a></li>
+              <li><a href="taiwan-murals.html" class="linkFade">Taiwan</a></li>
+              <li><a href="#" class="linkFade">Etc</a></li>
+            </ul>
+          </li>
+          <li><a href="participants.html" class="linkFade">PARTICIPANTS</a></li>
+          <li><a href="schedule.html" class="linkFade">SCHEDULE</a></li>
+          <li><a href="video.html" class="linkFade">VIDEOS</a></li>
+          <li><a href="projects.html" class="linkFade">PROJECTS</a></li>
+          <li><a href="#" class="linkFade">CONSULTATION</a></li>
+          <li><a href="#">TOURS</a>
+            <ul class="menu">
+              <li><a href="#" class="linkFade">See All</a></li>
+              <li><a href="#" class="linkFade">Hawaii</a></li>
+              <li><a href="#" class="linkFade">Taiwan</a></li>
+              <li><a href="#" class="linkFade">Etc</a></li>
+            </ul>
+          </li>
+          <li><a href="#">EDUCATION</a>
+            <ul class="menu">
+              <li><a href="pow-wow-school-of-art.html" class="linkFade">POW! WOW! School of Art</a></li>
+              <li><a href="pow-wow-school-of-music.html" class="linkFade">POW! WOW! School of Music</a></li>
+              <li><a href="discussion-panel.html" class="linkFade">Lectures</a></li>
+            </ul>
+          </li>
+          <li><a href="https://shop.powwowhawaii.com/" target="_blank">SHOP</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li class="search-wrap"><a href="#" class="searchBtn"></a>
+            <form class="search">
+              <input type="text" name="search" placeholder="What are we looking for?" class="search-textfield">
+            </form>
+          </li>
+        </ul>
+      </div>
+      <div class="header-menu"><span class="menu-button">
+          <button type="button" role="button" aria-label="Toggle Navigation" class="lines-button x"><span class="lines"></span></button></span></div>
+      <div class="header-mobile">
+        <ul data-accordion-menu class="vertical menu">
+          <li><a href="#" class="searchBtn"></a>
+            <form>
+              <input type="text" name="search" placeholder="What are we looking for?" class="search-mobile">
+            </form>
+          </li>
+          <li class="mobile-menu-section"><a href="#" class="mobile-menu-title">About</a>
+            <ul class="menu vertical">
+              <li><a href="news.html" class="linkFade">News</a></li>
+              <li><a href="general-information.html" class="linkFade">General Information</a></li>
+              <li><a href="history.html" class="linkFade">History</a></li>
+              <li><a href="directors.html" class="linkFade">Directors</a></li>
+              <li><a href="native-american-powwows.html" class="linkFade">Native American Powwows</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-section"><a href="#" class="mobile-menu-title">Festivals</a>
+            <ul class="menu vertical">
+              <li><a href="festival-recap.html" class="linkFade">See All Recaps</a></li>
+              <li><a href="powwow-hawaii.html" class="linkFade">Hawaii</a></li>
+              <li><a href="#" class="linkFade">Austin, Texas</a></li>
+              <li><a href="directors.html" class="linkFade">Antelope Valley</a></li>
+              <li><a href="#" class="linkFade">Worcester</a></li>
+              <li><a href="powwow-taiwan.html" class="linkFade">Taiwan</a></li>
+              <li><a href="#" class="linkFade">Japan</a></li>
+              <li><a href="#" class="linkFade">Etc</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-section"><a href="#" class="mobile-menu-title">Murals</a>
+            <ul class="menu vertical">
+              <li><a href="murals-all.html" class="linkFade">All</a></li>
+              <li><a href="#" class="linkFade">Hawaii</a></li>
+              <li><a href="#" class="linkFade">Austin, Texas</a></li>
+              <li><a href="taiwan-murals.html" class="linkFade">Taiwan</a></li>
+              <li><a href="#" class="linkFade">Etc</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-section"><a href="participants.html" class="mobile-menu-title">Participants</a></li>
+          <li class="mobile-menu-section"><a href="schedule.html" class="mobile-menu-title">Schedule</a></li>
+          <li class="mobile-menu-section"><a href="video.html" class="mobile-menu-title">Videos</a></li>
+          <li class="mobile-menu-section"><a href="projects.html" class="mobile-menu-title">Projects</a></li>
+          <li class="mobile-menu-section"><a href="#" class="mobile-menu-title">Consultation</a></li>
+          <li class="mobile-menu-section"><a href="#" class="mobile-menu-title">Tours</a>
+            <ul class="menu vertical">
+              <li><a href="#" class="linkFade">See All</a></li>
+              <li><a href="#" class="linkFade">Hawaii</a></li>
+              <li><a href="#" class="linkFade">Taiwan</a></li>
+              <li><a href="#" class="linkFade">Etc</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-section"><a href="#" class="mobile-menu-title">Education</a>
+            <ul class="menu vertical">
+              <li><a href="pow-wow-school-of-art.html" class="linkFade">POW! WOW! School of Art</a></li>
+              <li><a href="pow-wow-school-of-music.html" class="linkFade">POW! WOW! School of Music</a></li>
+              <li><a href="discussion-panel.html" class="linkFade">Lectures</a></li>
+            </ul>
+          </li>
+          <li class="mobile-menu-section"><a href="https://shop.powwowhawaii.com/" target="_blank" class="mobile-menu-title">Shop</a></li>
+          <li class="mobile-menu-section"><a href="contact.html" class="mobile-menu-title">Contact</a></li>
+        </ul>
       </div>
     </div>
-    <div class="wrapper">
-      <div class="header row">
-        <div class="logo medium-1 small-12 columns header-logo"><a href="index.html" class="linkFade"><img src="img/powwowlogo.png"></a></div>
-        <div class="medium-10 columns header-nav mobile-hide">
-          <div class="row">
-            <div class="medium-3 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
-            <div class="medium-3 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
-            <div class="medium-3 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
-            <div class="medium-3 columns"><a href="video-list.html" class="linkFade">VIDEO</a></div>
-          </div>
-        </div>
-        <div class="medium-1 columns header-menu mobile-fix">
-          <div> <span class="menu-button">
-              <button type="button" role="button" aria-label="Toggle Navigation" class="lines-button x"><span class="lines"> </span></button></span></div>
-        </div>
-        <div class="lang-box-wrapper">
-          <div class="lang-select-box">
-            <select class="cs-select lang-select cs-skin-underline">
-              <option selected="selected" value="eng">Eng</option>
-              <option value="chi">Chi</option>
-            </select>
-          </div>
+    <!-- Default content block-->
+    <div class="content">
+      <div class="page-title">
+        <p>pow! wow! videos</p>
+      </div>
+      <div class="grid-wrapper">
+        <div class="row">
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-hawaii-2017-video.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/03/pw2017video_thumb.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>POW! WOW! HAWAII 2017 OFFICIAL VIDEO</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/03/pwconcert_thumb.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>POW! WOW! HAWAII 2017 FINALE CONCERT WITH STEVE AOKI</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/01/pwj_o_video_thumb.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>POW! WOW! JAPAN 2016 OFFICIAL VIDEO</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/01/pwj_video_thumb.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>POW! WOW! IN KOBE VIDEO</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/10/pww_thumb.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>POW! WOW! WORCESTER 2016 VIDEO</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/01/hula_talk_thumb.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>Imprint Presents: Jeff Staple 1-2-1 with Sean “HULA” Yoro</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/03/Final_FLEKSONE_bySean-Marc-Lee.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>Taiwan Festival Canvas</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2017/01/maekan_thumb.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>TImprint Presents: Ernest Zacharevic and Martha Cooper Talk</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/09/lb_thumb.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>POW! WOW! LONG BEACH 2016 VIDEO</p>
+              </div></a></div>
+          <div class="large-3 medium-6 small-12 column grid-block end"><a href="powwow-taiwan.html">
+              <div style="background-image: url(http://powwowhawaii.com/wp-content/uploads/2016/08/thumb_ahern.jpg)" class="grid-image"></div>
+              <div class="grid-overlay">
+                <p>POW! WOW! LONG BEACH THROUGH THE EYES OF JORDAN AHERN</p>
+              </div></a></div>
         </div>
       </div>
-      <div class="screen-menu sm-overlay"><span class="menu-button">
-          <button type="button" role="button" aria-label="Toggle Navigation" class="lines-button x"><span class="lines"></span></button></span>
-        <div class="sm-wrapper">
-          <p class="sm-title">MENU</p>
-          <div class="search-wrap">
-            <form class="search">
-              <input type="text" name="search" placeholder="What're we looking for?" class="search-textfield">
-            </form>
+      <div class="sponsor">
+        <div class="sponsor-title">
+          <div class="page-title">
+            <p>worldwide sponsors</p>
           </div>
-          <div class="sm-menu row">
-            <div class="small-12 columns"><a href="index.html" class="linkFade">HOME</a></div>
-            <div class="small-12 columns"><a href="mural-list.html" class="linkFade">MURALS</a></div>
-            <div class="small-12 columns"><a href="festival-list.html" class="linkFade">FESTIVALS</a></div>
-            <div class="small-12 columns"><a href="participants.html" class="linkFade">PARTICIPANTS</a></div>
-            <div class="small-12 columns"><a href="video-list.html" class="linkFade">VIDEO</a></div>
-            <div class="small-12 columns"><a href="project-list.html" class="linkFade">PROJECTS</a></div>
-            <div class="small-12 columns"><a href="education-list.html" class="linkFade">EDUCATION</a></div>
-            <div class="small-12 columns"><a href="about.html" class="linkFade">ABOUT</a></div>
-            <div class="small-12 columns"><a href="http://shop.powwowhawaii.com/" target="_blank">Shop	</a></div>
-            <div class="sm-lang-box-wrapper">
-              <div class="lang-select-box">
-                <select class="cs-select lang-select cs-skin-underline">
-                  <option selected="selected" value="eng">Eng</option>
-                  <option value="chi">Chi</option>
-                </select>
-              </div>
-            </div>
+        </div>
+        <div class="brands"><span><img src="img/sp-montana-logo.png"></span><span><img src="img/sp-hawaiian-airline-logo.png"></span><span><img src="img/sp-monster-logo.png"></span><span><img src="img/sp-olukai-logo.png"></span><span><img src="img/sp-eptm-logo.png"></span><span><img src="img/sp-thinkspace-logo.png"></span><span><img src="img/sp-1xrun-logo.png"></span></div>
+      </div>
+    </div>
+    <!-- Default footer block-->
+    <div class="footer">
+      <div class="footer-block">
+        <div class="footer-logo"><a><img src="img/powwowlogo-vertical.png"></a>
+          <div>
+            <p>Copyright © 2016 All Rights Reserved </p>
+            <p>POW! WOW! TAIWAN!</p>
           </div>
+        </div>
+        <div class="footer-social">
+          <div>
+            <p>CONNECT WITH POW! WOW!</p>
+          </div>
+          <div><a href="https://twitter.com/powwowworldwide"><i aria-hidden="true" class="fa fa-twitter fa-lg"></i></a><a href="https://www.facebook.com/PowWowHawaii"><i aria-hidden="true" class="fa fa-facebook-official fa-lg"></i></a><a href="https://vimeo.com/powwowhawaii"><i aria-hidden="true" class="fa fa-vimeo fa-lg"></i></a><a href="http://powwowblog.tumblr.com/"><i aria-hidden="true" class="fa fa-tumblr-square fa-lg"></i></a></div>
         </div>
       </div>
-      <div class="content padding-column">
-        <div class="menu-divider"></div>
-        <div class="video-wrap"><iframe src="https://player.vimeo.com/video/198009608" width="100%" height="56%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
-        <div class="mural-des">
-          <p>Pow Wow Hawaii 2015. </p>
-          <p>Painted by Madsteez. </p>
-          <p>Photo by Pow Wow</p>
-        </div>
-        <div class="prev-next-pagi">
-          <div class="row">
-            <div class="small-4 columns">
-              <p>Previous Video</p><a class="prev-underline"><i aria-hidden="true" class="fa fa-angle-left"></i><span>Pow! Wow! Worcester 2016</span></a>
-            </div>
-            <div class="small-4 columns center-top"><a href="javascript: history.go(-1)" class="center-underline linkFade">Back To Videos</a></div>
-            <div class="small-4 columns">
-              <p>Next Video</p><a class="next-underline"><span>Imprint Presents: Ernest Zacharevic and Martha Cooper Talk</span><i aria-hidden="true" class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer">
-        <div class="footer-block row">
-          <div class="medium-3 small-12 columns">
-            <div class="footer-logo"><a><img src="img/powwowlogo.png"></a>
-              <p>Copyright © 2016 All Rights Reserved </p>
-              <p>POW! WOW! TAIWAN!</p>
-            </div>
-          </div>
-          <div class="medium-6 small-12 columns footer-nav-block">
-            <div class="footer-nav">
-              <div><a href="index.html" class="linkFade">Home</a></div>
-              <div><a href="mural-list.html" class="linkFade">Murals</a></div>
-              <div><a href="festival-list.html" class="linkFade">Festivals</a></div>
-              <div><a href="participants.html" class="linkFade">Participants</a></div>
-              <div><a href="video-list.html" class="linkFade">Video</a></div>
-              <div><a href="project-list.html" class="linkFade">Projects</a></div>
-              <div><a href="education-list.html" class="linkFade">Education</a></div>
-              <div><a href="about.html" class="linkFade">About</a></div>
-              <div><a href="http://shop.powwowhawaii.com/" target="_blank">Shop</a></div>
-            </div>
-          </div>
-          <div class="medium-3 small-12 columns">
-            <div class="footer-social">
-              <p class="footer-title">SOCIAL</p>
-              <div class="footer-nav">
-                <div><a href="https://www.facebook.com/PowWowHawaii/" class="linkFade">Facebook</a></div>
-                <div><a href="https://www.instagram.com/powwowworldwide/" class="linkFade">Instagram</a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div><a href="#" class="back-to-top ripple">TOP</a>
     </div>
   </body>
 </html>

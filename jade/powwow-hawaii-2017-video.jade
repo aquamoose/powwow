@@ -1,0 +1,45 @@
+extend layouts/index-layout.jade
+
+block header
+	include component/taiwan-header.jade
+
+block page-title
+	a(href="video.html") 
+		i.fa.fa-long-arrow-left(aria-hidden="true") 
+		span &nbsp; Back to Pow! Wow! Videos
+
+block sponsor-title
+	.page-title
+		p worldwide sponsors
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block main-content
+	.info-text-wrapper
+		.video-embed
+			<iframe src="https://player.vimeo.com/video/208730234" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		.text-info
+			.info-block
+				h2.text-title.bold Pow! Wow! Hawaii 2017 Official Video
+				p Having taken their artistic vision to eight cities around the world to date, POW! WOW! recently arrived back in their hometown of Hawaii, bringing an array of international artists and musicians to collaborate with local creatives. With a vibrant blend of live art installations, exhibitions, panel discussions and concerts — including Steve Aoki, who closed the event — the POW! WOW! project continues to shine a spotlight on local art scenes while fostering a sense of community within the art world.
+				p.italic Video directed by Andrew Tran, Jonas Maon, and Cory Martin.
+			.left-column
+				.social-share
+					.page-title
+						p Share
+					.social-icon
+						a(href="https://twitter.com/powwowworldwide")
+							i.fa.fa-twitter.fa-lg(aria-hidden="true")
+						a(href="https://www.facebook.com/PowWowHawaii")
+							i.fa.fa-facebook-official.fa-lg(aria-hidden="true")
+						a(href="https://vimeo.com/powwowhawaii")
+							i.fa.fa-vimeo.fa-lg(aria-hidden="true")
+						a(href="http://powwowblog.tumblr.com/")
+							i.fa.fa-tumblr-square.fa-lg(aria-hidden="true")

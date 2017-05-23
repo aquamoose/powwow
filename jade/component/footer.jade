@@ -1,24 +1,20 @@
 .footer
-	.footer-block.row
-		.medium-3.small-12.columns
-			.footer-logo
-				a: img(src="img/powwowlogo.png")
+	.footer-block
+		.footer-logo
+			a: img(src="img/powwowlogo-vertical.png")
+			div
 				p Copyright © 2016 All Rights Reserved 
 				p POW! WOW! TAIWAN!
-		.medium-6.small-12.columns.footer-nav-block
-			.footer-nav
-				- var list = [{ name : 'Home', data : 'index.html'}, { name : 'Murals', data : 'mural-list.html' },{ name : 'Festivals', data : 'festival-list.html' },{ name : 'Participants', data : 'participants.html'}, { name : 'Video', data : 'video-list.html' }, { name : 'Projects', data : 'project-list.html' }, { name : 'Education', data : 'education-list.html' }, { name : 'About', data : 'about.html' }]
-						each item in list
-							div: a(href=item.data).linkFade=item.name
-						div: a(href='http://shop.powwowhawaii.com/', target='_blank') Shop
-			//- .footer-nav
-			//- 	- var list = []
-			//- 			each item in list
-			//- 				div: a(href=item.data).linkFade=item.name
-		.medium-3.small-12.columns
-			.footer-social
-				p.footer-title SOCIAL
-				.footer-nav
-					- var list = [{ name : 'Facebook', data : 'https://www.facebook.com/PowWowHawaii/'}, { name : 'Instagram', data : 'https://www.instagram.com/powwowworldwide/' }]
-							each item in list
-								div: a(href=item.data).linkFade=item.name
+		.footer-social
+			div
+				p CONNECT WITH POW! WOW!
+			div
+				a(href="https://twitter.com/powwowworldwide")
+					i.fa.fa-twitter.fa-lg(aria-hidden="true")
+				a(href="https://www.facebook.com/PowWowHawaii")
+					i.fa.fa-facebook-official.fa-lg(aria-hidden="true")
+				a(href="https://vimeo.com/powwowhawaii")
+					i.fa.fa-vimeo.fa-lg(aria-hidden="true")
+				a(href="http://powwowblog.tumblr.com/")
+					i.fa.fa-tumblr-square.fa-lg(aria-hidden="true")
+		

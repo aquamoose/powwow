@@ -1,0 +1,25 @@
+.one-column-description {
+	margin: 50px auto;
+	max-width: 1200px;
+	h2 {
+		text-transform: uppercase;
+		margin-bottom: 30px;
+		font-weight: bold;
+		text-align: center;
+	}
+	p {
+		font-size: 1.333em;
+		color: $bodyText;
+		a {
+			color: $bodyText;
+			font-weight: bold;
+			border-bottom: 1px solid transparent;
+			font-style: italic;
+			@include transition(all .3s);
+			&:hover {
+				color: $black;
+				border-color: $black;
+			}
+		}
+	}
+}

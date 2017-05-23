@@ -1,67 +1,60 @@
 .footer {
 	width: 100%;
+	max-width: 1280px;
+	margin: 0 auto;
 	height: auto;
-	background: #bbb;
-	padding: 100px 0 70px 0;
+	padding: 100px 0.9375em 70px 0.9375em;
 	position: relative;
-	.footer-title {
-		font-size: 1.5em;
-		color: white;
-		font-weight: bold;
-		text-transform: uppercase;
-		padding-left: 10px;
-		margin-bottom: 0;
-	}
 	.footer-logo {
-		img {
-			width: 50%;
-			margin-bottom: 10px;
-		}
-		p {
-			color: white;
-			margin-bottom: 0;
-		}	
-	}
-	.footer-nav {
 		display: inline-block;
 		vertical-align: top;
-		padding-right: 30px;
-		a {
-			color: white;
-			font-size: 1.5em;
+		max-width: 300px;
+		img {
+			width: 15%;
+			margin-bottom: 10px;
 			display: inline-block;
-			padding: 5px 0;
-			margin: 0 10px;
-			position: relative;
-			@include transition(all .3s);
-			&:hover {
-				color: #ddd;
-				&:before {
-					visibility: visible;
-					// -webkit-transform: scaleX(1);
-					// -moz-transform: scaleX(1);
-					// -o-transform: scaleX(1);
-					// transform: scaleX(1);
-					width: 33%;
-				}
-			}
-			&:before {
-				content: '';
-				position: absolute;
-				// width: 100%;
-				width: 0;
-				height: 1px;
-				bottom: 0;
-				left: 0;
-				background-color: #ddd;
-				visibility: hidden;
-				// -webkit-transform: scaleX(0);
-				// -moz-transform: scaleX(0);
-				// -o-transform: scaleX(0);
-				// transform: scaleX(0);
-				@include transition(all .3s ease-in-out);
+			vertical-align: top;
+		}
+		div {
+			display: inline-block;
+			vertical-align: top;
+			p {
+				color: $black;
+				font-style: italic;
+				margin: 0 0 0 10px;
+
 			}
 		}
-
+				
+	}
+	.footer-social {
+		display: inline-block;
+		vertical-align: top;
+		max-width: 300px;
+		p {
+			margin-bottom: 5px;
+		}
+		a {
+			padding-right: 10px;
+			font-size: 1.125em;
+			color: $black;
+			i {
+				@include transition(all .3s);
+			}
+			&:hover {
+				.fa-twitter {
+					color: #00aced;
+				}
+				.fa-facebook-official {
+					color: #3b5998;
+				}
+				.fa-vimeo {
+					color: #1ab7ea;
+				}
+				.fa-tumblr-square {
+					color: #32506d;
+				}
+			}
+		}
 	}
 }

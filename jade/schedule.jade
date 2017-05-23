@@ -1,0 +1,34 @@
+extend layouts/index-layout.jade
+
+block header
+	include component/header.jade
+
+block page-title
+	p Pow! Wow! Schedule
+
+block sponsor-title
+	p worldwide sponsors
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block content-title
+	h1.content-title pow! wow! worldwide schedule
+
+block main-content
+	.schedule-wrapper
+		.schedule-block.row.small-up-2.medium-up-3.large-up-5.collapse
+			- var list = [{page: 'hawaii-annual-listing.html', color: 'red', date: 'Feburary', title: 'POW! WOW! HAWAII'}, {page: 'hawaii-annual-listing.html', color: 'orange', date: 'March', title: 'POW! WOW! SXSW'}, {page: 'hawaii-annual-listing.html', color: 'blue', date: 'May', title: 'POW! WOW! DC'}, {page: 'hawaii-annual-listing.html', color: 'green', date: 'July', title: 'POW! WOW! LONG BEACH'}, {page: 'hawaii-annual-listing.html', color: 'purple', date: 'August', title: 'POW! WOW! ANTELOPE VALLEY'}, {page: 'hawaii-annual-listing.html', color: 'darkBlue', date: 'August', title: 'POW! WOW! WORCESTER'}, {page: 'hawaii-annual-listing.html', color: 'lightGray', date: 'October', title: 'POW! WOW! JAPAN'}, {page: 'hawaii-annual-listing.html', color: 'yellow', date: 'November', title: 'POW! WOW! TAIWAN'}]
+				each item in list
+					.schedule-grid.column.end(class=item.color)
+						a(href=item.page)
+							.grid-overlay
+								p.schedule-date=item.date
+								p.schedule-city=item.title
+					

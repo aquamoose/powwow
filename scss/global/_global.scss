@@ -1,67 +1,22 @@
 .clearfix {
 	@include clearfix;
 }
-.p-bottom-50 {
-	padding-bottom: 50px;
-}
-.padding-50 {
-	padding-top: 50px;
-}
-.row {
-	max-width: 100%;
-}
-.padding-top-120 {
-	padding-top: 120px;
-}
-.padding-column {
-	padding-left: 0.9375em;
-	padding-right: 0.9375em;
-}
-.menu-divider {
-	height: 80px;
-}
-.zoomicon {
-	cursor: zoom-in;
-}
-.section-divider {
-	width: 100px;
-	height: 1px;
-	background: #999;
-	margin: 100px auto;
-}
-.pattern-hack {
-	background: url(../img/pattern.png);
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-}
-.sm-parallax {
-	height: auto;
-}
-.borderless {
-	border: none;
-}
-.google-maps {
-	position: relative;
-    padding-bottom: 50%; // This is the aspect ratio
-    height: 0;
-    overflow: hidden;
-    min-height: 400px;
-    width: 48%;
-    display: inline-block;
-	iframe {
+.page-title, .sponsor-title {
+	border-top: 1px solid $borderGray;
+	border-bottom: 1px solid $borderGray;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	p, a {
 		display: block;
-		pointer-events: none;
-		position: absolute;
-	    top: 0;
-	    left: 0;
-	    width: 100% !important;
-	    height: 100% !important;
+		font-size: 1.25em;
+		text-transform: uppercase;
+		margin: 5px 0;
+		color: $bodyText;
+		@include transition(all .3s);
 	}
-	iframe.clicked{
-		pointer-events: auto;
+	a:hover {
+		color: $black;
 	}
 }
 .back-to-top {

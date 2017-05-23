@@ -1,176 +1,31 @@
-doctype html
-html.no-js
-	head
-		meta(charset='utf-8')
-		meta(http-equiv='X-UA-Compatible', content='IE=edge')
-		title Pow! Wow! Taiwan!
-		meta(name='description', content='')
-		meta(name='viewport', content='width=device-width, initial-scale=1')
-		meta(property='og:site_name', content='Pow! Wow! Taiwan!')
-		meta(property='og:type', content='website')
-		meta(property='og:title', content='')
-		meta(property='og:url', content='')
-		meta(property='og:image', content='')
-		meta(property='og:description', content='')
-		<link rel="apple-touch-icon" sizes="180x180" href="fav/apple-touch-icon.png">
-		<link rel="icon" type="image/png" href="fav/favicon-32x32.png" sizes="32x32">
-		<link rel="icon" type="image/png" href="fav/favicon-16x16.png" sizes="16x16">
-		<link rel="manifest" href="fav/manifest.json">
-		<link rel="mask-icon" href="fav/safari-pinned-tab.svg" color="#5bbad5">
-		<meta name="apple-mobile-web-app-title" content="POW! WOW!">
-		<meta name="application-name" content="POW! WOW!">
-		<meta name="theme-color" content="#ffffff">
-		script(src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.22&key=AIzaSyC_kLitJTrG9CrohPBaoPDu15qjBu7F1Lg")
-		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
-		script(src='js/foundation.js')
-		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
-		script(src='js/classie.js')
-		script(src='js/selectFx.js')
-		script(src='js/particles.js')
-		script(src='js/waterfall-light.js')
-		script(src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js")
-		script(src='js/maplace.js')
-		script(src='js/markerclusterer.js')
-		link(rel='stylesheet', href='font/aller.css')
-		link(rel='stylesheet', href='css/foundation.css')
-		link(rel='stylesheet', href='css/lightbox.css')
-		link(rel='stylesheet', href='css/font-awesome.css')
-		link(rel='stylesheet', href='css/styles.css')
-		link(href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300', rel='stylesheet', type='text/css')
-		script.
-			function goToByScroll(id){
-				id = id.replace("link", "");
-				$('html,body').animate({
-					scrollTop: $("#"+id).offset().top - 50},
-				'slow');
-			}
-			function redirectPage() {
-				window.location = linkLocation;
-			}
-			$(window).load(function(){
-				$('.loader').fadeOut(500);
-				$('.loader-bg').fadeOut(1000);
+extend layouts/index-layout.jade
 
-			});
-			$(document).ready(function() {
-			 	$('body').fadeIn(1000);
-			 
-			    $(".linkFade").click(function(event){
-			        event.preventDefault();
-			        linkLocation = this.href;
-			        $("body").fadeOut(1000, redirectPage);      
-			    });
-			         
-			    
-				$(document).foundation();
-				$('.lines-button').click(function(e) {
-					e.preventDefault();
-					$('.lines-button').toggleClass('close');
-					var open = $('.screen-menu').hasClass('sm-overlay-open');
-					if(open) {
-						$('.screen-menu').removeClass('sm-overlay-open');
-						$('body').css({'overflow-y': 'auto'});
-						$('.header').find('.menu-button').show();
-					} else {
-						$('.screen-menu').addClass('sm-overlay-open');
-						$('body').css({'overflow-y': 'hidden'});
-						$('.header').find('.menu-button').hide();
-					}
-				});
-				
-				$(window).scroll(function(){
-					if ($(this).scrollTop() > 50) {
-						$('.back-to-top').addClass('back-top-show');
-					} else if($('.back-to-top').hasClass('back-top-show')) {
-						$('.back-to-top').addClass('back-top-hide').removeClass('back-top-show');
-						window.setTimeout(function(){
-							$('.back-to-top').removeClass('back-top-hide');
-						}, 100);
-					} else {
-						$('.back-to-top').removeClass('back-top-show');
-					}
-				});
-				$('.back-to-top').click(function(){
-					$("html, body").animate({ scrollTop: 0 }, 500);
-					return false;
-				});
+block header
+	include component/header.jade
 
+block page-title
+	p pow! wow! videos
 
-				$('.ripple').on('click', function (event) {
-					var $div = $('<div/>'),
-					btnOffset = $(this).offset(),
-					xPos = event.pageX - btnOffset.left,
-					yPos = event.pageY - btnOffset.top;
+block sponsor-title
+	.page-title
+		p worldwide sponsors
 
-					if ($(window).width() > 641) {
-						$div.addClass('ripple-effect');
-						var $ripple = $(".ripple-effect");
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
 
-						$ripple.css("height", $(this).height());
-						$ripple.css("width", $(this).height());
-						$div
-						.css({
-							top: yPos - ($ripple.height()/2),
-							left: xPos - ($ripple.width()/2),
-							background: $(this).data("ripple-color")
-						}) 
-						.appendTo($(this));
-
-					} 
-					window.setTimeout(function(){
-						$div.fadeOut('normal', function(){
-							$(this).remove();
-						});
-					}, 500);
-				});
-				function videoResize() {
-					var videoHeight = $(".video-wrap iframe").width();
-					$(".video-wrap iframe").attr("width", "100%");
-					$(".video-wrap iframe").attr("height", videoHeight / 1.778);
-				}
-				videoResize();
-				$(window).resize(function(){
-					videoResize();
-				});	
-				
-				
-
-				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
-					new SelectFx(el);
-				});  
-				
-				
-			});
-	body
-		.loader-bg
-			.spinner
-				.bounce1
-				.bounce2
-				.bounce3
-		.wrapper
-			include component/header.jade
-			.content.padding-column
-				.menu-divider
-				.video-wrap
-					<iframe src="https://player.vimeo.com/video/198009608" width="100%" height="56%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-				.mural-des
-					p Pow Wow Hawaii 2015. 
-					p Painted by Madsteez. 
-					p Photo by Pow Wow
-				
-				.prev-next-pagi
-					.row
-						.small-4.columns
-							p Previous Video
-							a.prev-underline
-								i.fa.fa-angle-left(aria-hidden="true")
-								span Pow! Wow! Worcester 2016
-						.small-4.columns.center-top
-							a.center-underline.linkFade(href="javascript: history.go(-1)") Back To Videos
-						.small-4.columns
-							p Next Video
-							a.next-underline
-								span Imprint Presents: Ernest Zacharevic and Martha Cooper Talk
-								i.fa.fa-angle-right(aria-hidden="true")
-			include component/footer.jade
-			a.back-to-top.ripple(href="#") TOP
+block second-content
+	.grid-wrapper
+		.row
+			- var list = [{name: 'POW! WOW! HAWAII 2017 OFFICIAL VIDEO', page: 'powwow-hawaii-2017-video.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/pw2017video_thumb.jpg'}, {name: 'POW! WOW! HAWAII 2017 FINALE CONCERT WITH STEVE AOKI', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/pwconcert_thumb.jpg'}, {name: 'POW! WOW! JAPAN 2016 OFFICIAL VIDEO', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/pwj_o_video_thumb.jpg'}, {name: 'POW! WOW! IN KOBE VIDEO', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/pwj_video_thumb.jpg'}, {name: 'POW! WOW! WORCESTER 2016 VIDEO', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2016/10/pww_thumb.jpg'}, {name: 'Imprint Presents: Jeff Staple 1-2-1 with Sean “HULA” Yoro', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/hula_talk_thumb.jpg'}, {name: 'Taiwan Festival Canvas', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/Final_FLEKSONE_bySean-Marc-Lee.jpg'}, {name: 'TImprint Presents: Ernest Zacharevic and Martha Cooper Talk', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/maekan_thumb.jpg'}, {name: 'POW! WOW! LONG BEACH 2016 VIDEO', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2016/09/lb_thumb.jpg'}, {name: 'POW! WOW! LONG BEACH THROUGH THE EYES OF JORDAN AHERN', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2016/08/thumb_ahern.jpg'}]
+				each item in list
+					.large-3.medium-6.small-12.column.grid-block.end
+						a(href=item.page)
+							.grid-image(style='background-image: url('+item.image+')')
+							.grid-overlay
+								p=item.name

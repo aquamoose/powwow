@@ -1,37 +1,13 @@
-.overlay-wrap {
+.video-embed {
 	position: relative;
-	text-align: center;
-	height: 100%;
-	min-height: 100%;
-	overflow: hidden;
-	.pattern {
-	    background-image:url(../img/pattern.png);
-	    background-repeat: repeat;
-	    background-attachment:scroll;
-	    width:100%;
-	    height:100%;
-	    position:absolute;
-	    top:0;
-	    left:0;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+	iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 	}
-}
-#video{
- position: absolute;
- background: transparent;
-
-}
-.index-video-wrap {
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	top: 0;
-	right: 0;
-	overflow: hidden;
-}
-.ytplayer-container{
- position: absolute;
- top: 0;
- z-index: -3;
- height: 100%;
- bottom: 0;
 }

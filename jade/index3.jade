@@ -1,0 +1,155 @@
+doctype html
+html.no-js
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		title Pow! Wow! Taiwan!
+		meta(name='description', content='')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		meta(property='og:site_name', content='Pow! Wow! Taiwan!')
+		meta(property='og:type', content='website')
+		meta(property='og:title', content='')
+		meta(property='og:url', content='')
+		meta(property='og:image', content='')
+		meta(property='og:description', content='')
+		<link rel="apple-touch-icon" sizes="180x180" href="fav/apple-touch-icon.png">
+		<link rel="icon" type="image/png" href="fav/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="fav/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="fav/manifest.json">
+		<link rel="mask-icon" href="fav/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="apple-mobile-web-app-title" content="POW! WOW!">
+		<meta name="application-name" content="POW! WOW!">
+		<meta name="theme-color" content="#ffffff">
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+		script(src='js/foundation.js')
+		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
+		script(src='js/classie.js')
+		script(src='js/selectFx.js')
+		script(src='js/scrollTo.js')
+		link(rel='stylesheet', href='font/aller.css')
+		link(rel='stylesheet', href='css/foundation.css')
+		link(rel='stylesheet', href='css/styles.css')
+		link(rel='stylesheet', href='css/font-awesome.css')
+		link(href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300', rel='stylesheet', type='text/css')
+		script.
+			function goToByScroll(id){
+				id = id.replace("link", "");
+				$('html,body').animate({
+					scrollTop: $("#"+id).offset().top - 50},
+				'slow');
+			}
+
+			function redirectPage() {
+				window.location = linkLocation;
+			}
+			//- $(window).load(function(){
+			//- 	$('.loader').fadeOut(500);
+			//- 	$('.loader-bg').fadeOut(1000);
+			//- });
+			$(document).ready(function() {
+			 	$('body').fadeIn(1000);
+			 
+			    $(".linkFade").click(function(event){
+			        event.preventDefault();
+			        linkLocation = this.href;
+			        $("body").fadeOut(500, redirectPage);      
+			    });
+				
+				$(document).foundation();
+				$('.lines-button').click(function(e) {
+					e.preventDefault();
+					$('.lines-button').toggleClass('close');
+					var open = $('.screen-menu').hasClass('sm-overlay-open');
+					if(open) {
+						$('.screen-menu').removeClass('sm-overlay-open');
+						$('body').css({'overflow-y': 'auto'});
+						$('.header').find('.menu-button').show();
+					} else {
+						$('.screen-menu').addClass('sm-overlay-open');
+						$('body').css({'overflow-y': 'hidden'});
+						$('.header').find('.menu-button').hide();
+					}
+				});
+				$(window).scroll(function(){
+					if ($(this).scrollTop() > 50) {
+						$('.back-to-top').addClass('back-top-show');
+					} else if($('.back-to-top').hasClass('back-top-show')) {
+						$('.back-to-top').addClass('back-top-hide').removeClass('back-top-show');
+						window.setTimeout(function(){
+							$('.back-to-top').removeClass('back-top-hide');
+						}, 100);
+					} else {
+						$('.back-to-top').removeClass('back-top-show');
+					}
+				});
+				$('.back-to-top').click(function(){
+					$("html, body").animate({ scrollTop: 0 }, 500);
+					return false;
+				});
+				
+				$('.ripple').on('click', function (event) {
+					var $div = $('<div/>'),
+					btnOffset = $(this).offset(),
+					xPos = event.pageX - btnOffset.left,
+					yPos = event.pageY - btnOffset.top;
+
+					if ($(window).width() > 641) {
+						$div.addClass('ripple-effect');
+						var $ripple = $(".ripple-effect");
+
+						$ripple.css("height", $(this).height());
+						$ripple.css("width", $(this).height());
+						$div
+						.css({
+							top: yPos - ($ripple.height()/2),
+							left: xPos - ($ripple.width()/2),
+							background: $(this).data("ripple-color")
+						}) 
+						.appendTo($(this));
+
+					} 
+					window.setTimeout(function(){
+						$div.fadeOut('normal', function(){
+							$(this).remove();
+						});
+					}, 500);
+				});
+				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
+					new SelectFx(el);
+				});
+				var focusInput = true;
+				$('.searchBtn').click(function(){
+					if($('.header .header-nav').hasClass('header-open')) {
+						$('.header .header-nav').removeClass('header-open');
+						$('.search-textfield').blur().removeClass('search-open').val('');
+					} else {
+						$('.header .header-nav').addClass('header-open');
+						$('.search-textfield').focus().addClass('search-open');
+					} 
+				});		         
+			});
+	body
+		//- .loader-bg
+			.spinner
+				.bounce1
+				.bounce2
+				.bounce3
+		.wrapper
+			include component/header.jade
+			.content.padding-50
+				//- .index-result
+					.artists-content-block
+						.row
+							- var list = [{ festival : "POW! WOW! TAIWAN!", data : "2015", pic: "event1" },{ festival : "POW! WOW! TAIWAN!", data : "2014", pic: "event2" },{ festival : "POW! WOW! HAWAII!", data : "2015", pic: "event3"},{ festival : "POW! WOW! HAWAII!", data : "2014", pic: "event4"},{ festival : "POW! WOW! LONG BEACH!", data : "2015", pic: "event5"}, { festival : "POW! WOW! JAPAN!", data : "2015", pic: "event6"},{ festival : "POW! WOW! JAPAN!", data : "2014", pic: "event7"}]
+								each item in list
+									.medium-6.small-12.columns.index-artist-block.revealer.safari_only
+										a.linkFade(href="festival.html")
+											.ratio-hack
+												div.i-artist-thumb(style="background-image: url(img/"+item.pic+".jpg);")
+													.i-artist-overlay
+													.artist-name-cat
+														p=item.festival
+														p.underline
+														p=item.data
+			include component/footer.jade
+			a.back-to-top.ripple(href="#") TOP

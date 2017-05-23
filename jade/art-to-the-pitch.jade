@@ -1,0 +1,67 @@
+extend layouts/index-layout.jade
+
+block header
+	include component/header.jade
+
+block page-title
+	a(href="projects.html") 
+		i.fa.fa-long-arrow-left(aria-hidden="true") 
+		span &nbsp; Back to Pow! Wow! Projects
+
+block sponsor-title
+	p worldwide sponsors
+
+block second-title
+	.page-title
+		p project images
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block main-content
+	.info-text-wrapper
+		.mural-image
+			img(src="http://powwowhawaii.com/wp-content/uploads/2017/03/DSC2478.jpg")
+		.text-info
+			.info-block
+				h2.text-title.bold Art To The Pitch
+				p Partnering with the Paradise Soccer Club and Kicks to the Pitch, POW! WOW! held it’s first ever soccer and art tournament. It was complete with limited edition soccer jerseys designed by Defer.
+			.left-column
+				.social-share
+					.page-title
+						p Share
+					.social-icon
+						a(href="https://twitter.com/powwowworldwide")
+							i.fa.fa-twitter.fa-lg(aria-hidden="true")
+						a(href="https://www.facebook.com/PowWowHawaii")
+							i.fa.fa-facebook-official.fa-lg(aria-hidden="true")
+						a(href="https://vimeo.com/powwowhawaii")
+							i.fa.fa-vimeo.fa-lg(aria-hidden="true")
+						a(href="http://powwowblog.tumblr.com/")
+							i.fa.fa-tumblr-square.fa-lg(aria-hidden="true")
+
+
+
+block second-content
+	.grid-wrapper
+		.row
+			- var list = [{image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/DSC2478.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/DSC2479.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/DSC2480.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/DSC2495.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/DSC2501.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/DSC2509.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/DSC2525.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/DSC2528.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/DSC2531.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/DSC2537.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/DSC2557.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/DSC2564.jpg'}]
+				each item in list
+					.large-3.medium-6.small-12.column.grid-block.end
+						a(href=item.image, data-lightbox='lightbox')
+							.grid-image(style='background-image: url('+item.image+')')
+							.grid-overlay
+
+block script
+	script(src='js/lightbox.js')
+	script.
+		lightbox.option({
+			'fadeDuration': 300,
+			'resizeDuration': 300
+		});

@@ -1,206 +1,49 @@
-doctype html
-html.no-js
-	head
-		meta(charset='utf-8')
-		meta(http-equiv='X-UA-Compatible', content='IE=edge')
-		title Pow! Wow! Taiwan!
-		meta(name='description', content='')
-		meta(name='viewport', content='width=device-width, initial-scale=1')
-		meta(property='og:site_name', content='Pow! Wow! Taiwan!')
-		meta(property='og:type', content='website')
-		meta(property='og:title', content='')
-		meta(property='og:url', content='')
-		meta(property='og:image', content='')
-		meta(property='og:description', content='')
-		<link rel="apple-touch-icon" sizes="180x180" href="fav/apple-touch-icon.png">
-		<link rel="icon" type="image/png" href="fav/favicon-32x32.png" sizes="32x32">
-		<link rel="icon" type="image/png" href="fav/favicon-16x16.png" sizes="16x16">
-		<link rel="manifest" href="fav/manifest.json">
-		<link rel="mask-icon" href="fav/safari-pinned-tab.svg" color="#5bbad5">
-		<meta name="apple-mobile-web-app-title" content="POW! WOW!">
-		<meta name="application-name" content="POW! WOW!">
-		<meta name="theme-color" content="#ffffff">
-		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
-		script(src='js/foundation.js')
-		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
-		script(src='js/classie.js')
-		script(src='js/selectFx.js')
-		script(src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js")
-		script(src='js/materialize.js')
-		script(src='https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js')
-		link(rel='stylesheet', href='font/aller.css')
-		link(rel='stylesheet', href='css/flexslider.css')
-		link(rel='stylesheet', href='css/foundation.css')
-		link(rel='stylesheet', href='css/materialize.css')
-		link(rel='stylesheet', href='css/styles.css')
-		link(href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300', rel='stylesheet', type='text/css')
-		script.
-			function goToByScroll(id){
-				id = id.replace("link", "");
-				$('html,body').animate({
-					scrollTop: $("#"+id).offset().top - 50},
-				'slow');
-			}
-			function redirectPage() {
-				window.location = linkLocation;
-			}
-			$(window).load(function(){
-				$('.loader').fadeOut(500);
-				$('.loader-bg').fadeOut(1000);
+extend layouts/index-layout.jade
 
-			});
-			$(document).ready(function() {
-			 	$('body').fadeIn(1000);
-			 
-			    $(".linkFade").click(function(event){
-			        event.preventDefault();
-			        linkLocation = this.href;
-			        $("body").fadeOut(1000, redirectPage);      
-			    });
+block header
+	include component/header.jade
 
-				$(document).foundation();
-				
-				$('.lines-button').click(function(e) {
-					e.preventDefault();
-					$('.lines-button').toggleClass('close');
-					var open = $('.screen-menu').hasClass('sm-overlay-open');
-					if(open) {
-						$('.screen-menu').removeClass('sm-overlay-open');
-						$('body').css({'overflow-y': 'auto'});
-						$('.header').find('.menu-button').show();
-					} else {
-						$('.screen-menu').addClass('sm-overlay-open');
-						$('body').css({'overflow-y': 'hidden'});
-						$('.header').find('.menu-button').hide();
-					}
-				});
-				
-				$(window).scroll(function(){
-					if ($(this).scrollTop() > 50) {
-						$('.back-to-top').addClass('back-top-show');
-					} else if($('.back-to-top').hasClass('back-top-show')) {
-						$('.back-to-top').addClass('back-top-hide').removeClass('back-top-show');
-						window.setTimeout(function(){
-							$('.back-to-top').removeClass('back-top-hide');
-						}, 100);
-					} else {
-						$('.back-to-top').removeClass('back-top-show');
-					}
-				});
-				$('.back-to-top').click(function(){
-					$("html, body").animate({ scrollTop: 0 }, 500);
-					return false;
-				});
-				$('.ripple').on('click', function (event) {
-					var $div = $('<div/>'),
-					btnOffset = $(this).offset(),
-					xPos = event.pageX - btnOffset.left,
-					yPos = event.pageY - btnOffset.top;
+block page-title
+	p pow! wow! participants
 
-					if ($(window).width() > 641) {
-						$div.addClass('ripple-effect');
-						var $ripple = $(".ripple-effect");
+block sponsor-title
+	.page-title
+		p worldwide sponsors
 
-						$ripple.css("height", $(this).height());
-						$ripple.css("width", $(this).height());
-						$div
-						.css({
-							top: yPos - ($ripple.height()/2),
-							left: xPos - ($ripple.width()/2),
-							background: $(this).data("ripple-color")
-						}) 
-						.appendTo($(this));
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
 
-					} 
-					window.setTimeout(function(){
-						$div.fadeOut('normal', function(){
-							$(this).remove();
-						});
-					}, 500);
-				});
-				$('.index-block').each(function(){
-					$(this).find('.index-artist-block').last().addClass('end');
-				});
-				$('.pin').hover(function(){
-					$('.pin').not(this).css('opacity', '0.4');
-				}, function(){
-					$('.pin').not(this).css('opacity', '1');
-				});
-				
-				
-				$("#contentlink").click(function(e) { 
-					e.preventDefault(); 
-					goToByScroll($(this).attr("id"));           
-				});
-				$('.parallax').parallax();
-				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
-					new SelectFx(el);
-				});    
-				var config = {
-					viewFactor: 0.15,
-					duration: 800,
-					distance: '0px',
-					scale: 0.8
-				}
-				window.sr = ScrollReveal(config);
-				sr.reveal('.revealer'); 
-				
-				
-			});
-	body
-		.loader-bg
-			.spinner
-				.bounce1
-				.bounce2
-				.bounce3
-		.wrapper
-			include component/header.jade
-			.content
-				.parallax-container
-					.parallax
-						img(src='img/banner1.jpg')
-					.banner-slogan
-						p.page-slogan participants
-						p.page-sub-slogan check out all the awesome powwow artists
-						.banner-button.arrow-down: a#contentlink(href="#") SEE ARTISTS
-				a#content(href="#")
-				.index-block.index-mural.padding-top-120.padding-column
-					.filter-wrap
-						.filter-outer-box
-							span.filter-label Filter
-							.filter-box
-								select.cs-select.filter-select.cs-skin-underline
-									option(selected, disabled) Choose Filter
-									option(value="none") None
-									option(value="art") Graffiti Artist
-									option(calue="music") Music Artist
-									option(value="country") Events
-									option(value="date") Year
-									
-						.filter-outer-box
-							span.filter-label Arrange
-							.arrange-box
-								select.cs-select.filter-select.cs-skin-underline
-									option(selected, disabled) Choose Filter
-									option(value="newest") Newest
-									option(value="oldest") Oldest
-									option(value="az") A-Z
-									option(value="za") Z-A
-						.filter-submit 
-							button APPLY
-					.artists-content-block
-						.row
-							- var list = [{ name : "alexface", data : "graffiti artist" },{ name : "caratoes", data : "music artist" },{ name : "colasa", data : "music artist"},{ name : "debe", data : "music artist"},{ name : "girenhao", data : "graffiti artist"}, { name : "horton", data : "graffiti artist"},{ name : "nychos", data : "music artist"}]
-								each item in list
-									.medium-4.small-12.columns.index-artist-block.revealer.safari_only
-										a.linkFade(href="artist.html")
-											.ratio-hack
-												div.i-artist-thumb(style="background-image: url(img/"+item.name+"_thumb.jpg);")
-													.i-artist-overlay
-													.artist-name-cat
-														p=item.name
-														p.underline
-														p=item.data
-						.clearfix
-			include component/footer.jade
-			a.back-to-top.ripple(href="#") TOP
+block main-content
+	.filter-wrap
+		.filter-outer-box
+			span.filter-label Filter
+			.filter-box
+				select.cs-select.filter-select.cs-skin-underline
+					option(selected, disabled) Choose Type
+					- var list = [{position: 'None', value: 'none'}, {position: 'Artist', value: 'artist'}, {position: 'Musicians', value: 'musician'}, {position: 'Partners', value: 'partners'}, {position: 'Photographers', value: 'photographers'}, {position: 'Videographers', value: 'videographers'}, {position: 'Writers', value: 'writers'}]
+						each item in list
+							option(value=item.value)=item.position
+			.filter-box
+				select.cs-select.filter-select.cs-skin-underline
+					option(selected, disabled) Choose Event
+					- var list = [{position: 'None', value: 'none'}, {position: '2010 Hong-kong', value: '2011 hk'}, {position: '2011 Hawaii', value: '2011 hawaii'}, {position: '2012 Hawaii', value: '2012 hawaii'}, {position: '2013 Hawaii', value: '2013 hawaii'}, {position: '2014 Hawaii', value: '2014 hawaii'}, {position: '2014 Taiwan', value: '2014 taiwan'}, {position: '2015 Hawaii', value: '2015 hawaii'}, {position: '2015 Taiwan', value: '2015 taiwan'}, {position: '2015 Japan', value: '2015 japan'}, {position: '2015 Long Beach', value: '2015 long beach'}, {position: '2015 SXSW', value: '2015 sxsw'}, {position: '2016 Antelope Valley', value: '2016 antelope valley'}, {position: '2016 Hawaii', value: '2016 hawaii'}, {position: '2016 Japan', value: '2016 japan'}, {position: '2016 Long Beach', value: '2016 long beach'}, {position: '2016 SXSW', value: '2016 sxsw'}, {position: '2016 Washington DC', value: '2016 washington dc'}, {position: '2016 Worcester', value: '2016 worcester'}, {position: '2017 Hawaii', value: '2017 hawaii'}]
+						each item in list
+							option(value=item.value)=item.position
+							
+		.filter-submit 
+			button APPLY
+	.grid-wrapper
+		.row
+			- var list = [{name: 'Tara McPherson', page: 'tara-mcpherson.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/thumb_tara.jpg'}, {name: 'Shok-1', page: 'tara-mcpherson.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/thumb_shok1.jpg'}, {name: 'Pichiavo', page: 'tara-mcpherson.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/thumb_pichiavo.jpg'}, {name: 'Joram Roukes', page: 'tara-mcpherson.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/thumb_joram.jpg'}, {name: 'Evoca', page: 'tara-mcpherson.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/thumb_evoca.jpg'}, {name: 'Ouizi', page: 'tara-mcpherson.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/thumb_ouizi.jpg'}, {name: 'Oakoak', page: 'tara-mcpherson.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/thumb_oakoak.jpg'}, {name: 'Glazed Paradise', page: 'tara-mcpherson.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/thumb_glazedparadise.jpg'}, {name: 'Dan Witz', page: 'tara-mcpherson.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/thumb_danwitz.jpg'}, {name: 'Michelle Tanguay', page: 'tara-mcpherson.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/thumb_tanguay.jpg'}]
+				each item in list
+					.large-3.medium-6.small-12.column.grid-block.end
+						a(href=item.page)
+							.grid-image(style='background-image: url('+item.image+')')
+							.grid-overlay
+								p=item.name

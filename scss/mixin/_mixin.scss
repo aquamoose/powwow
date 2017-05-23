@@ -18,13 +18,18 @@ $red: #ec563e;
 $blue: #57b3be;
 $green: #99c860;
 $purple: #9f4d7e;
+$yellow: #dad859;
+$lightGray: #bbbbbb;
+$darkBlue: #062288;
+$bodyText: #7d7672;
 $darkGray: #615f5f;
-$borderGray: #d0d0d0;
+$borderGray: #d0ccc9;
+$black: #050505;
 @mixin line {
   display: inline-block;
   width: $button-size;
   height: $button-size/12;
-  background: $color;
+  background: $black;
   border-radius: $button-size/12; 
   transition: $transition;
 }

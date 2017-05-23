@@ -1,0 +1,28 @@
+.sponsor {
+	width: 100%;
+	max-width: 1920px;
+	.brands {
+		margin-top: 30px;
+		-ms-box-orient: horizontal;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -moz-flex;
+		display: -webkit-flex;
+		display: flex;
+		justify-content: center;
+		-webkit-flex-wrap: wrap;
+		flex-wrap: wrap;
+		
+		span {
+			padding: 0 20px 20px 20px;
+			max-width: 150px;
+			display: inline-block;
+			vertical-align: middle;
+			img {
+				vertical-align: middle;
+			}
+		}
+		
+	}
+}

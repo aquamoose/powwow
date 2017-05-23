@@ -1,0 +1,45 @@
+extend layouts/index-layout.jade
+
+block header
+	include component/header.jade
+
+block page-title
+	p Contact Pow! Wow!
+
+block sponsor-title
+	p worldwide sponsors
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block main-content
+	.contact-wrapper
+		.contact-left
+			h2 Contact
+			p Fill out the form for inquiries.
+		.contact-right
+			form
+				.input-group
+					p Name
+					div
+						input.two-column-field(type="text", placeholder="First Name")
+						input.two-column-field(type="text", placeholder="Last Name")
+				.input-group
+					p Email
+					div
+						input(type="text", placeholder="Email Address")
+				.input-group
+					p Subject
+					div
+						input(type="text", placeholder="Enter Subject")
+				.input-group
+					p Message
+					div
+						textarea(placeholder="How can we help you?", rows="3")
+					

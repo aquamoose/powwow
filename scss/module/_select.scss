@@ -1,23 +1,28 @@
 .lang-box-wrapper {
-	position: absolute;
-	top: 6px;
-	right: 65px;
+	@include clearfix;
 	.cs-skin-underline {
 		.cs-options {
-			background: rgba(0, 0, 0, 0.75);
+			background: white;
 		}
 	}
 }
 .lang-select-box {
 	padding: 0;
-	text-align: right;
+	float: right;
+	margin-right: 1.167em;
 	max-width: 70px;
 	font-size: 1em;
 	.cs-placeholder {
 		padding: 0.5em 3em 0.5em 0.5em;
 	}
 }
-
+.filter-wrap {
+	max-width: 1200px;
+	width: 100%;
+	margin: 40px auto 10px auto;
+	text-align: right;
+	padding: 0 1.2em;
+}
 div.cs-select {
 	display: inline-block;
 	vertical-align: middle;
@@ -141,7 +146,7 @@ div.cs-skin-underline {
 	// padding: 0.5em 3em 0.5em 0.5em;
 	border-bottom: 1px solid #fff;
 	border-color: inherit;
-	color: white;
+	color: $black;
 }
 
 .cs-skin-underline > span::after {
@@ -181,7 +186,7 @@ div.cs-skin-underline {
 	letter-spacing: 1px;
 	padding: 0.5em 0.8em;
 	opacity: 0;
-	color: white;
+	color: $bodyText;
 	-webkit-transform: translate3d(100%,0,0);
 	transform: translate3d(100%,0,0);
 	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
@@ -263,34 +268,36 @@ div.cs-skin-underline {
 .cs-skin-underline .cs-options li span:hover,
 .cs-skin-underline .cs-options li.cs-focus span,
 .cs-skin-underline li.cs-selected span {
-	color: #cb4040;
+	color: $black;
 	background: white;
 }
 .filter-outer-box {
 	display: inline-block;
 }
 .filter-label {
-	padding: 0 10px 0 30px;
 	font-size: 1.5em;
 	display: inline-block;
-	color: #333;
+	color: $bodyText;
+	vertical-align: top;
 }
 .filter-box, .arrange-box {
 	display: inline-block;
 	min-width: 150px;
+	margin-left: 20px;
+	vertical-align: top;
 	.cs-placeholder {
-		color: #333;
+		color: $bodyText;
 	}
 	.cs-options li span:hover {
 		background: white;
-		color: #cb4040;
+		color: $black;
 	}
 	.cs-options {
 		span {
-			color: #333;
+			color: $bodyText;
 			background-color: #fff;
 			&::before {
-				background-color: #333;
+				background-color: $bodyText;
 			}
 		}
 	}
@@ -301,7 +308,7 @@ div.cs-skin-underline {
 		padding-bottom: 0.2em;
 	}
 	li.cs-selected span, .cs-options li span:hover {
-		color: #cb4040;
+		color: $black;
 	}
 }
 .location-filter-box {

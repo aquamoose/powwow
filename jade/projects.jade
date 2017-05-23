@@ -1,0 +1,27 @@
+extend layouts/index-layout.jade
+
+block page-title
+	p pow! wow! projects
+
+block sponsor-title
+	p worldwide sponsors
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block main-content
+	.grid-wrapper
+		.row
+			- var list = [{name: 'Pow! Wow! Hawaii 2017 Finale Concert with Steve Aoki', page: 'news.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/pwconcert_thumb.jpg'}, {name: 'Art To The Pitch', page: 'art-to-the-pitch.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/atp_thumb.jpg'}, {name: 'Thinkspace Curated Exhibition', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/thinkspace2017_thumb.jpg'}, {name: 'Vitality and Verve: In The Third Dimension', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2016/07/thumb.jpg'}, {name: 'Stranded in Paradise Concert 2016', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2016/03/concert_thumb.jpg'}, {name: 'Jeff Staple 1-2-1 Talks at Pow! Wow! Hawaii 2016', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2016/03/oriol_thumb.jpg'}, {name: 'Thinkspace Curated Exhibition 2016', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2016/03/hmoa_thumb.jpg'}, {name: 'Vitality and Verve Exhibition at The LBMA', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2015/07/vv_thumb.jpg'}, {name: 'The Deepest Depths of The Burrow Screening', page: '#', image: 'http://powwowhawaii.com/wp-content/uploads/2015/07/nychos_thumb.jpg'}]
+				each item in list
+					.large-3.medium-6.small-12.column.grid-block.end
+						a(href=item.page)
+							.grid-image(style='background-image: url('+item.image+')')
+							.grid-overlay
+								p=item.name

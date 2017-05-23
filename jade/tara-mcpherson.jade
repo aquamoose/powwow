@@ -1,0 +1,81 @@
+extend layouts/index-layout.jade
+
+block header
+	include component/taiwan-header.jade
+
+block page-title
+	a(href="participants.html") 
+		i.fa.fa-long-arrow-left(aria-hidden="true") 
+		span &nbsp; Back to Pow! Wow! Participants
+
+block second-title
+	.page-title
+		p Tara McPherson and POW! WOW!
+
+block sponsor-title
+	.page-title
+		p taiwan sponsors
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block main-content
+	.info-text-wrapper
+		.mural-image
+			img(src="http://powwowhawaii.com/wp-content/uploads/2017/01/profile_tara.jpg")
+		.text-info
+			.info-block
+				h2.text-title.bold Tara McPherson
+				p Tara McPherson is an artist based out of New York City. Creating art about people and their odd ways, her characters seem to exude an idealized innocence with a glimpse of hard earned wisdom in their eyes. She explores, through portraiture, the realms of our psychological states via myths, legends, astronomy, physics, nature, love, loss, childhood and good old life experience. Giving us a peek into the complexities of the human psyche through her otherwordly characters.
+				p Tara exhibits her paintings and serigraphs in fine art galleries all over the world. Named the crown princess of poster art by ELLE Magazine, she has created numerous gig posters for rock bands such as Beck, Modest Mouse, and Mastodon. Her array of art also includes a variety of toys with Kidrobot, painted covers for DC Vertigo Comics, advertising illustrations for companies such as Wyden+Kennedy, Publicis, and Bernstein Andrulli. She also taught in the Illustration department at Parsons for 4 years.
+				p McPherson’s art has been included in books such as Bunny In The Moon: The Art of Tara McPherson Vol III, Lost Constellations; The Art of Tara McPherson Vol II, Lonely Heart: The Art of Tara McPherson, Fables: 1001 Nights of Snowfall, The Art of Modern Rock, Illustration Now!, and many more. She has lectured at TedxBrooklyn, Semi-Permanent, Offset, Institute of Contemporary Art London, OFFF, School of Visual Arts, University of Philippines, AIGA NYC, AIGA Austin, Columbus College of Art and Design, Parsons, The University of Arizona, MADE in Edmonton, and Foyles London. Her art has been featured in the Oscar Award winning film Juno, on the cover of the Eisner Award winning anthology Popgun 3, and is in the permanent collection of The Rock and Roll Hall of Fame. In October 2012 she won Toy of the Year at the Designer Toy Awards for her ‘Lilitu’ figure produced by KidRobot.
+				p Tara was born in San Francisco in 1976 and raised in Los Angeles. She received her BFA with honors from Art Center College of Design in Pasadena, CA in 2001 with an Illustration major and a Fine Art minor. She interned at Rough Draft Studios working on Matt Groening’s “Futurama” during college.
+				p She has been featured in The New York Times, Esquire, Vanity Fair, Playboy, Sony Magazine, Bust, Magnet, Elle, Marie Claire, Hi-Fructose, Juxtapoz, Clutter, Spin, MTV, Current TV, CBC Radio, Super7, NY Press, LA Times, PBS, HOW, Step, Communication Arts, Society of Illustrators, American Illustration, Metal Hammer, International Tattoo Art, Seattle Times, LA Weekly, Gothamist, Punk Planet and many more.
+				p Some of her clients include DC Comics, Warner Brothers, Swatch, Rayban, Cirque du Soleil, Dark Horse Comics, Kidrobot, Strangeco, SXSW, Spin, Pepsi, Fanta, 1800 Tequila, Goldenvoice, Penguin, Harper Collins, Bloomsbury, Revolver, Knitting Factory, Village Voice, Dogfish Head Brewery, and Nike among others.
+			.left-column 
+				.participant-social
+					.page-title
+						p Tara McPherson
+					.social-pages
+						p: a(href="http://www.taramcpherson.com/", target="_blank") www.taramcpherson.com
+						p: a(href="https://www.facebook.com/taramcpherson", target="_blank") www.facebook.com/taramcpherson
+				.next-prev
+					.page-title
+						p Next Participant
+					.next-pre-participant
+						p: a(href="#") Rolando Venegas
+				.next-prev
+					.page-title
+						p Prev Participant
+					.next-pre-participant
+						p: a(href="#") Shok-1
+				.social-share
+					.page-title
+						p Share
+					.social-icon
+						a(href="https://twitter.com/powwowworldwide")
+							i.fa.fa-twitter.fa-lg(aria-hidden="true")
+						a(href="https://www.facebook.com/PowWowHawaii")
+							i.fa.fa-facebook-official.fa-lg(aria-hidden="true")
+						a(href="https://vimeo.com/powwowhawaii")
+							i.fa.fa-vimeo.fa-lg(aria-hidden="true")
+						a(href="http://powwowblog.tumblr.com/")
+							i.fa.fa-tumblr-square.fa-lg(aria-hidden="true")
+
+
+block second-content
+	.grid-wrapper
+		.row
+			- var list = [{name: 'Bounce Wall in Ximen', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/bounce_01_ximen.jpg'}, {name: 'Candybird Wall in Taichung', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/CandyBird.jpg'}, {name: 'Girenhao Wall in Wei Wu Ying', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/Girenhao-2.jpg'}, {name: 'Danae Wall in Wei Wu Ying', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/Danae-2_Byaserktw.jpg'}]
+				each item in list
+					.large-3.medium-6.small-12.column.grid-block.end
+						a(href=item.page)
+							.grid-image(style='background-image: url('+item.image+')')
+							.grid-overlay
+								p=item.name

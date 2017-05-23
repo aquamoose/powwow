@@ -1,0 +1,115 @@
+.header
+	.logo.header-logo
+		a(href="index.html").linkFade: img(src="img/powwowlogo-hawaii.png")
+	.lang-box-wrapper
+		.lang-select-box
+			select.cs-select.lang-select.cs-skin-underline
+				option(selected="selected", value="eng") Eng
+				option(value="chi") Chi
+	.header-nav.mobile-hide
+		ul.dropdown.menu(data-dropdown-menu)
+			li
+				a(href="#") ABOUT
+				ul.menu
+					- var list = [{name: 'News', data: 'news.html'}, { name : 'General Information', data : 'general-information.html' }, { name : 'History', data : 'history.html' }, { name : 'Directors', data : 'directors.html' }, { name : 'Native American Powwows', data : 'native-american-powwows.html' }]
+						each item in list
+							li: a(href=item.data, target=item.target).linkFade=item.name
+			li
+				a(href="#") FESTIVALS
+				ul.menu
+					- var list = [{name: 'See All Recaps', data: 'festival-recap.html'}, { name : 'Hawaii', data : 'powwow-hawaii.html' }, { name : 'Austin, Texas', data : '#' }, { name : 'Antelope Valley', data : '#' }, { name : 'Worcester', data : '#' }, { name : 'Taiwan', data : 'powwow-taiwan.html' }, { name : 'Japan', data : '#' }, { name : 'Etc', data : '#' }]
+						each item in list
+							li: a(href=item.data, target=item.target).linkFade=item.name
+			li
+				a(href="#") MURALS
+				ul.menu
+					- var list = [{name: 'All', data: 'murals-all.html'}, { name : 'Hawaii', data : '#' }, { name : 'Austin, Texas', data : '#' }, { name : 'Taiwan', data : 'taiwan-murals.html' }, { name : 'Etc', data : '#' }]
+						each item in list
+							li: a(href=item.data, target=item.target).linkFade=item.name
+			li
+				a.linkFade(href="participants.html") PARTICIPANTS
+			li
+				a.linkFade(href="schedule.html") SCHEDULE
+			li
+				a.linkFade(href="video.html") VIDEOS
+			li
+				a.linkFade(href="projects.html") PROJECTS
+			li
+				a.linkFade(href="#") CONSULTATION
+			li
+				a(href="#") TOURS
+				ul.menu
+					- var list = [{name: 'See All', data: '#'}, { name : 'Hawaii', data : '#' }, { name : 'Taiwan', data : '#' }, { name : 'Etc', data : '#' }]
+						each item in list
+							li: a(href=item.data, target=item.target).linkFade=item.name
+			li
+				a(href="#") EDUCATION
+				ul.menu
+					- var list = [{name: 'POW! WOW! School of Art', data: 'pow-wow-school-of-art.html'}, { name : 'POW! WOW! School of Music', data : 'pow-wow-school-of-music.html' }, { name : 'Lectures', data : 'discussion-panel.html' }]
+						each item in list
+							li: a(href=item.data, target=item.target).linkFade=item.name
+			li
+				a(href="https://shop.powwowhawaii.com/", target="_blank") SHOP
+			li
+				a(href="contact.html") CONTACT
+			li.search-wrap
+				a(href="#").searchBtn
+				form.search
+					input.search-textfield(type="text", name="search", placeholder="What are we looking for?")
+	
+					//- input.search-submit(value="", type="submit")	
+	.header-menu
+		span.menu-button
+			button.lines-button.x(type="button", role="button", aria-label="Toggle Navigation")
+				span.lines
+	.header-mobile
+		ul.vertical.menu(data-accordion-menu)
+			li
+				a(href="#").searchBtn
+				form
+					input.search-mobile(type="text", name="search", placeholder="What are we looking for?")
+			li.mobile-menu-section
+				a(href="#").mobile-menu-title About
+				ul.menu.vertical
+					- var list = [{name: 'News', data: 'news.html'}, { name : 'General Information', data : 'general-information.html'}, { name : 'History', data : 'history.html'}, { name : 'Directors', data : 'directors.html'}, { name : 'Native American Powwows', data : 'native-american-powwows.html'}]
+						each item in list
+							li: a(href=item.data).linkFade=item.name
+			li.mobile-menu-section
+				a(href="#").mobile-menu-title Festivals
+				ul.menu.vertical
+					- var list = [{name: 'See All Recaps', data: 'festival-recap.html'}, { name : 'Hawaii', data : 'powwow-hawaii.html'}, { name : 'Austin, Texas', data : '#'}, { name : 'Antelope Valley', data : 'directors.html'}, { name : 'Worcester', data : '#'}, { name : 'Taiwan', data : 'powwow-taiwan.html'}, { name : 'Japan', data : '#'}, { name : 'Etc', data : '#'}]
+						each item in list
+							li: a(href=item.data).linkFade=item.name
+			li.mobile-menu-section
+				a(href="#").mobile-menu-title Murals
+				ul.menu.vertical
+					- var list = [{name: 'All', data: 'murals-all.html'}, { name : 'Hawaii', data : '#'}, { name : 'Austin, Texas', data : '#'}, { name : 'Taiwan', data : 'taiwan-murals.html'}, { name : 'Etc', data : '#'}]
+						each item in list
+							li: a(href=item.data).linkFade=item.name
+			li.mobile-menu-section
+				a(href="participants.html").mobile-menu-title Participants
+			li.mobile-menu-section
+				a(href="schedule.html").mobile-menu-title Schedule
+			li.mobile-menu-section
+				a(href="video.html").mobile-menu-title Videos
+			li.mobile-menu-section
+				a(href="projects.html").mobile-menu-title Projects
+			li.mobile-menu-section
+				a(href="#").mobile-menu-title Consultation
+			li.mobile-menu-section
+				a(href="#").mobile-menu-title Tours
+				ul.menu.vertical
+					- var list = [{name: 'See All', data: '#'}, { name : 'Hawaii', data : '#'}, { name : 'Taiwan', data : '#'}, { name : 'Etc', data : '#'}]
+						each item in list
+							li: a(href=item.data).linkFade=item.name
+			li.mobile-menu-section
+				a(href="#").mobile-menu-title Education
+				ul.menu.vertical
+					- var list = [{name: 'POW! WOW! School of Art', data: 'pow-wow-school-of-art.html'}, { name : 'POW! WOW! School of Music', data : 'pow-wow-school-of-music.html'}, { name : 'Lectures', data : 'discussion-panel.html'}]
+						each item in list
+							li: a(href=item.data).linkFade=item.name
+			li.mobile-menu-section
+				a(href="https://shop.powwowhawaii.com/", target="_blank").mobile-menu-title Shop
+			li.mobile-menu-section
+				a(href="contact.html").mobile-menu-title Contact
+				

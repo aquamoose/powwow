@@ -1,16 +1,91 @@
-.powwow-history {
-	font-size: 1.5em;
+// Directors
+
+.directors-list {
 	text-align: center;
-	.pow-section {
-		text-align: left;
-		width: 49%;
+	max-width: 800px;
+	margin: 50px auto;
+	.directors, .regional-directors {
+		width: 42%;
 		display: inline-block;
-		padding: 0 2%;
+		padding: 0 20px;
 		vertical-align: top;
-		.personnel {
-			margin-bottom: 10px;
+		div {
+			text-align: center;
+			margin: 0 auto 15px auto;
+			p, span {
+				color: $bodyText;
+				font-size: 1.25em;
+			}
 			p {
+				font-weight: bold;
 				margin-bottom: 0;
+			}
+			span {
+				font-style: italic;
+			}
+		}
+	}
+}
+.about-slogan {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	p {
+		font-size: 1.5em;
+		font-weight: bold;
+		color: $bodyText;
+		margin: 1em 0;
+	}
+}
+.general-information {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto 100px auto;
+	p {
+		font-size: 1.333em;
+		color: $bodyText;
+		a {
+			color: inherit;
+			border-bottom: 1px solid transparent;
+			@include transition(all .3s);
+			&:hover {
+				color: $black;
+				border-bottom: 1px solid $black;
+			}
+		}
+	}	
+}
+.news-block {
+	max-width: 1200px;
+	width: 100%;
+	margin: 40px auto 0 auto;
+	div {
+		display: inline-block;
+		vertical-align: top;
+	}
+	.news-image {
+		width: 260px;
+		img {
+			width: 100%;
+		}
+	}
+	.news-description-block {
+		width: calc(100% - 285px);
+		margin-left: 20px;
+		.news-title {
+			font-size: 1.667em;
+			font-weight: bold;
+		}
+		.news-desc {
+			font-size: 1.333em;
+			a {
+				color: $bodyText;
+				border-bottom: 1px solid transparent;
+				@include transition(all .3s);
+				&:hover {
+					color: $black;
+					border-bottom: 1px solid $black;
+				}
 			}
 		}
 	}

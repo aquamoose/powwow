@@ -1,320 +1,57 @@
-doctype html
-html.no-js
-	head
-		meta(charset='utf-8')
-		meta(http-equiv='X-UA-Compatible', content='IE=edge')
-		title Pow! Wow! Taiwan!
-		meta(name='description', content='')
-		meta(name='viewport', content='width=device-width, initial-scale=1')
-		meta(property='og:site_name', content='Pow! Wow! Taiwan!')
-		meta(property='og:type', content='website')
-		meta(property='og:title', content='')
-		meta(property='og:url', content='')
-		meta(property='og:image', content='')
-		meta(property='og:description', content='')
-		<link rel="apple-touch-icon" sizes="180x180" href="fav/apple-touch-icon.png">
-		<link rel="icon" type="image/png" href="fav/favicon-32x32.png" sizes="32x32">
-		<link rel="icon" type="image/png" href="fav/favicon-16x16.png" sizes="16x16">
-		<link rel="manifest" href="fav/manifest.json">
-		<link rel="mask-icon" href="fav/safari-pinned-tab.svg" color="#5bbad5">
-		<meta name="apple-mobile-web-app-title" content="POW! WOW!">
-		<meta name="application-name" content="POW! WOW!">
-		<meta name="theme-color" content="#ffffff">
-		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
-		script(src='js/foundation.js')
-		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
-		script(src='js/classie.js')
-		script(src='js/selectFx.js')
-		script(src='js/maplace.js')
-		script(src='js/markerclusterer.js')
-		script(src='js/barba.min.js')
-		script(src='js/jquery.grid-a-licious.js')
-		script(src='js/scrollTo.js')
-		link(rel='stylesheet', href='font/aller.css')
-		//- link(rel='stylesheet', href='css/flexslider.css')
-		link(rel='stylesheet', href='css/foundation.css')
-		link(rel='stylesheet', href='css/materialize.css')
-		link(rel='stylesheet', href='css/lightbox.css')
-		link(rel='stylesheet', href='css/styles.css')
-		link(rel='stylesheet', href='css/font-awesome.css')
-		link(href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300', rel='stylesheet', type='text/css')
-		script.
-			function goToByScroll(id){
-				id = id.replace("link", "");
-				$('html,body').animate({
-					scrollTop: $("#"+id).offset().top - 50},
-				'slow');
-			}
+extend layouts/index-layout.jade
 
-			function redirectPage() {
-				window.location = linkLocation;
-			}
-			$(window).load(function(){
-				$('.loader').fadeOut(500);
-				$('.loader-bg').fadeOut(1000);
+block page-title
+	p welcome to pow! wow! worldwide!
+
+block sponsor-title
+	p worldwide sponsors
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block main-content
+	#map
+
+block script
+	script.
+		function myMap() {
+			var myLoc = new google.maps.LatLng(51.5074, 0.1278);
+
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 2,
+				center: myLoc
 			});
-			$(document).ready(function() {
-			 	$('body').fadeIn(1000);
-			 
-			    $(".linkFade").click(function(event){
-			        event.preventDefault();
-			        linkLocation = this.href;
-			        $("body").fadeOut(500, redirectPage);      
-			    });
-				
-				$(document).foundation();
-				$('.lines-button').click(function(e) {
-					e.preventDefault();
-					$('.lines-button').toggleClass('close');
-					var open = $('.screen-menu').hasClass('sm-overlay-open');
-					if(open) {
-						$('.screen-menu').removeClass('sm-overlay-open');
-						$('body').css({'overflow-y': 'auto'});
-						$('.header').find('.menu-button').show();
-					} else {
-						$('.screen-menu').addClass('sm-overlay-open');
-						$('body').css({'overflow-y': 'hidden'});
-						$('.header').find('.menu-button').hide();
-					}
-				});
-				$('.index-block').each(function(){
-					$(this).find('.index-artist-block').last().addClass('end');
-				});
-				$(window).scroll(function(){
-					if ($(this).scrollTop() > 50) {
-						$('.back-to-top').addClass('back-top-show');
-					} else if($('.back-to-top').hasClass('back-top-show')) {
-						$('.back-to-top').addClass('back-top-hide').removeClass('back-top-show');
-						window.setTimeout(function(){
-							$('.back-to-top').removeClass('back-top-hide');
-						}, 100);
-					} else {
-						$('.back-to-top').removeClass('back-top-show');
-					}
-				});
-				$('.back-to-top').click(function(){
-					$("html, body").animate({ scrollTop: 0 }, 500);
-					return false;
-				});
-				$("#contentlink").click(function(e) { 
-					e.preventDefault(); 
-					goToByScroll($(this).attr("id"));           
-				});
-				$.fn.is_on_screen = function(){
-					var win = $(window);
-					var viewport = {
-						top : win.scrollTop(),
-						left : win.scrollLeft()
-					};
-					viewport.right = viewport.left + win.width();
-					viewport.bottom = viewport.top + win.height();
-
-					var bounds = this.offset();
-					bounds.right = bounds.left + this.outerWidth();
-					bounds.bottom = bounds.top + this.outerHeight();
-
-					return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
-				};
-				//- $('.visible-el').each(function(){
-				//- 	if( $(this).length > 0 ) { // if target element exists in DOM
-				//- 		if($('#panel1').is_on_screen() ) { // if target element is visible on screen after 
-				//- 			$('.2016').addClass('is-visible');
-				//- 		} else if($('#panel2').is_on_screen() ) { // if target element is visible on screen after 
-				//- 			$('.2015').addClass('is-visible');
-				//- 		} else if($('#panel3').is_on_screen() ) { // if target element is visible on screen after 
-				//- 			$('.2014').addClass('is-visible');
-				//- 		} else if($('#panel4').is_on_screen() ) { // if target element is visible on screen after 
-				//- 			$('.2013').addClass('is-visible');
-				//- 		} else if($('#panel5').is_on_screen() ) { // if target element is visible on screen after 
-				//- 			$('.2012').addClass('is-visible');
-				//- 		} else if($('#panel6').is_on_screen() ) { // if target element is visible on screen after 
-				//- 			$('.2011').addClass('is-visible');
-				//- 		} else if($('#panel7').is_on_screen() ) { // if target element is visible on screen after 
-				//- 			$('.2010').addClass('is-visible');
-				//- 		} else {
-				//- 			$('.panel-link').removeClass('is-visible')
-				//- 		}
-				//- 	};
-				//- });
-
-					
-				//- $('.event-list-wrapper').scroll(function(){ // bind window scroll event
-				//- 	$('.visible-el').each(function(){
-				//- 		if( $(this).length > 0 ) { // if target element exists in DOM
-				//- 			if($('#panel1').is_on_screen() ) { // if target element is visible on screen after 
-				//- 				$('.2016').addClass('is-visible');
-				//- 			} else {
-				//- 				$('.2016').removeClass('is-visible')
-				//- 			}
-				//- 			if($('#panel2').is_on_screen() ) { // if target element is visible on screen after 
-				//- 				$('.2015').addClass('is-visible');
-				//- 			} else {
-				//- 				$('.2015').removeClass('is-visible')
-				//- 			}
-				//- 			if($('#panel3').is_on_screen() ) { // if target element is visible on screen after 
-				//- 				$('.2014').addClass('is-visible');
-				//- 			} else {
-				//- 				$('.2014').removeClass('is-visible')
-				//- 			}
-				//- 			if($('#panel4').is_on_screen() ) { // if target element is visible on screen after 
-				//- 				$('.2013').addClass('is-visible');
-				//- 			} else {
-				//- 				$('.2013').removeClass('is-visible')
-				//- 			}
-				//- 			if($('#panel5').is_on_screen() ) { // if target element is visible on screen after 
-				//- 				$('.2012').addClass('is-visible');
-				//- 			} else {
-				//- 				$('.2012').removeClass('is-visible')
-				//- 			}
-				//- 			if($('#panel6').is_on_screen() ) { // if target element is visible on screen after 
-				//- 				$('.2011').addClass('is-visible');
-				//- 			} else {
-				//- 				$('.2011').removeClass('is-visible')
-				//- 			}
-				//- 			if($('#panel7').is_on_screen() ) { // if target element is visible on screen after 
-				//- 				$('.2010').addClass('is-visible');
-				//- 			} else {
-				//- 				$('.2010').removeClass('is-visible')
-				//- 			}
-				//- 		};
-				//- 	});
-				//- });
-				$('.tabs-title a').each(function(){
-					$(this).click(function(e){
-						$('.tabs-title a').removeClass('is-active');
-						$(this).addClass('is-active');
-						var link = $(this).attr('href');
-						$('.event-list-wrapper').scrollTo($(link), 800);
-						e.preventDefault();
-					})
-				});
-				//- $('#dom-element').click(function() {
-				//- 	$target.scrollTo(document.getElementById('twenty'), 800);
-				//- });
-				
-				$('.ripple').on('click', function (event) {
-					var $div = $('<div/>'),
-					btnOffset = $(this).offset(),
-					xPos = event.pageX - btnOffset.left,
-					yPos = event.pageY - btnOffset.top;
-
-					if ($(window).width() > 641) {
-						$div.addClass('ripple-effect');
-						var $ripple = $(".ripple-effect");
-
-						$ripple.css("height", $(this).height());
-						$ripple.css("width", $(this).height());
-						$div
-						.css({
-							top: yPos - ($ripple.height()/2),
-							left: xPos - ($ripple.width()/2),
-							background: $(this).data("ripple-color")
-						}) 
-						.appendTo($(this));
-
-					} 
-					window.setTimeout(function(){
-						$div.fadeOut('normal', function(){
-							$(this).remove();
-						});
-					}, 500);
-				});
-				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el){	
-					new SelectFx(el);
-				});
-
-				
-				//- BackgroundCheck.init({
-				//- 	targets: '.panel-content',
-				//- 	images: '.panel-hack'
-				//- });
-
-				function expand() {
-					$('.event-list-panel').each(function(){
-						if($(window).width() > 480 ) {
-							$(this).hover(function(){
-								$(this).find('.panel-hack').addClass('hover');
-								$(this).find('.panel-hack').addClass('expand');
-								$(this).next().find('.panel-hack').addClass('shrink-right');
-								$(this).prev().find('.panel-hack').addClass('shrink-left');
-								$(this).css('z-index', '999');
-								$('.event-list-panel').not(this).css('opacity', '0.4');
-
-							}, function(){
-								$(this).find('.panel-hack').removeClass('hover');
-								$(this).find('.panel-hack').removeClass('expand');
-								$(this).next().find('.panel-hack').removeClass('shrink-right');
-								$(this).prev().find('.panel-hack').removeClass('shrink-left');
-								$('.event-list-panel').not(this).css('opacity', '1');
-								$(this).css('z-index', '5');
-							});
-						} else {
-							$(this).hover(function(){
-								$(this).find('.panel-hack').addClass('hover');
-								$(this).find('.panel-hack').removeClass('expand');
-								$(this).next().find('.panel-hack').removeClass('shrink-right');
-								$(this).prev().find('.panel-hack').removeClass('shrink-left');
-							});	
-						}
-					});
-				}		
-				expand();
-				$(window).resize(function(){
-					expand();
-				});
-				function videoHeightSpace() {
-					var windowHeight = $(window).height();
-					$('.video-space').css('margin-top', windowHeight - 150);
-				}
-				videoHeightSpace();
-				$(window).resize(function(){
-					videoHeightSpace();
-				});
-				$('.panel').click(function(){
-					$('html,body').animate({
-						scrollTop: $("#content").offset().top - 50},
-					'slow');
-				});
-				$('.google-maps').click(function(){
-					$(this).find('iframe').addClass('clicked')}).mouseleave(function(){
-						$(this).find('iframe').removeClass('clicked')});
-				$('.artists-content-block').each(function(){
-					$(this).find('.index-artist-block').last().addClass('end');
-				});
-		         
+			var contentString = "<div class='info-box'><p><a href='#'>Ano</a></p><img src='img/mock/ano.jpg'></div>";
+			var infoWindow = new google.maps.InfoWindow({
+				content: contentString,
+				maxWidth: 500
 			});
-	body
-		.loader-bg
-			.spinner
-				.bounce1
-				.bounce2
-				.bounce3
-		.wrapper
-			include component/header.jade
-			.content.padding-50
-				.google-maps
-					<iframe src="https://www.google.com/maps/d/u/0/embed?mid=19s8FCjqTaJEw3mL0B5paTyTV8GU" width="640" height="480"></iframe>
-				.index-result
-					.artists-content-block
-						.row
-							- var list = [{ festival : "POW! WOW! TAIWAN!", data : "2015", pic: "event1" },{ festival : "POW! WOW! TAIWAN!", data : "2014", pic: "event2" },{ festival : "POW! WOW! HAWAII!", data : "2015", pic: "event3"},{ festival : "POW! WOW! HAWAII!", data : "2014", pic: "event4"},{ festival : "POW! WOW! LONG BEACH!", data : "2015", pic: "event5"}, { festival : "POW! WOW! JAPAN!", data : "2015", pic: "event6"},{ festival : "POW! WOW! JAPAN!", data : "2014", pic: "event7"}]
-								each item in list
-									.medium-6.small-12.columns.index-artist-block.revealer.safari_only
-										a.linkFade(href="festival.html")
-											.ratio-hack
-												div.i-artist-thumb(style="background-image: url(img/"+item.pic+".jpg);")
-													.i-artist-overlay
-													.artist-name-cat
-														p=item.festival
-														p.underline
-														p=item.data
-				.index-block.index-brand
-					div.brand-block
-						p.index-title brands
-						div
-							each item in ['knockaround', 'montana', 'rvca']
-								.brand-name
-									img(src='img/'+item+'.png')
-			include component/footer.jade
-			a.back-to-top.ripple(href="#") TOP
-	script(src='js/lightbox.js')
+			var marker = new google.maps.Marker({
+				position: myLoc,
+				map: map,
+				title: 'Ano'
+			});
+			google.maps.event.addListener(marker, 'click', function(){
+				infoWindow.open(map,marker);
+			});
+			google.maps.event.addListener(map, 'click', function(){
+				infoWindow.close();
+			});
+			google.maps.event.addDomListener(infoWindow, 'close', function(){
+				google.maps.event.trigger(map, 'close');
+				var center = map.getCenter();
+				map.setCenter(center);
+			});
+			google.maps.event.addDomListener(window, 'resize', function(){
+				var center = map.getCenter();
+				google.maps.event.trigger(map, 'resize');
+				map.setCenter(center);
+			});
+		}
+	script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_kLitJTrG9CrohPBaoPDu15qjBu7F1Lg&callback=myMap")

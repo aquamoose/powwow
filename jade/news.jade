@@ -1,0 +1,47 @@
+extend layouts/index-layout.jade
+
+block page-title
+	p pow! wow! news
+
+block sponsor-title
+	p worldwide sponsors
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block main-content
+	- var list = [{title: 'POW! WOW! HAWAII 2017 OFFICIAL VIDEO', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/pw2017video_thumb.jpg', des: 'Having taken their artistic vision to eight cities around the world to date, POW! WOW! recently arrived back in their hometown of Hawaii, bringing an array of international artists and musicians to collaborate with local creatives. With a vibrant blend …', cont: 'yes'}, {title: 'POW! WOW! HAWAII 2017 FINALE CONCERT WITH STEVE AOKI', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/pwconcert_thumb.jpg', des: 'Presented by Electric Palms, POW! WOW! and DIM MAK, join in on the epic POW! WOW! Hawaii 2017 finale night with Steve Aoki! Video by Andrew Tran of Redefined Media.', cont: ''}, {title: 'POW! WOW! HAWAII 2017', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/20170209-DSC07373-Edit-260x172.jpg', des: 'After storming through the eight different cities around the globe, POW! WOW! artists enveloped Hawaii’s commercial district of Kakaako with their striking artwork. Since 2011, founder Jasper Wong and lead director Kamea Hadar has been wrangling a bevy of acclaimed …', cont: 'yes'}, {title: 'POW! WOW! TAIWAN 2016', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/1120_%E8%98%87%E7%8F%AE%E5%8D%BFPaigeSu_BYBana_chen-260x172.jpg', des: 'POW! WOW! Taiwan 2016 took artists across six different cities and culminated in a large festival with live art, food, drinks and even drone racing. Take a look at all the action as POW! WOW! beautifies communities all over the … ', cont: 'yes'}, {title: 'POW! WOW! JAPAN 2016 OFFICIAL VIDEO', image: 'http://powwowhawaii.com/wp-content/uploads/2017/01/pwj_o_video_thumb.jpg', des: 'The POW! WOW! Worldwide mural extravaganza made an appearance in Kobe for this year’s festival in Japan. Artists who painted the town: Cinta Vidal, Persue, Push, Sam Rodriguez, Cinta Vidal, John “Prime” Hina, Kami and Sasu of Hitotzuki, Ryuichi Ogino, …', cont: 'yes'}]
+		each item in list
+			if(item.cont === 'yes')
+				.news-block
+					.news-image
+						img(src=item.image)
+					.news-description-block
+						h2.news-title=item.title
+						p.news-desc=item.des 
+							a(href="#").italic.bold
+								span Continue reading <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+			else
+				.news-block
+					.news-image
+						img(src=item.image)
+					.news-description-block
+						h2.news-title=item.title
+						p.news-desc=item.des 
+	.pagination-block
+		ul.pagination.text-center(role='navigation', aria-label='Pagination')
+			li.pagination-previous.disabled Previous
+			li.current <span class="show-for-sr">You're on page</span> 1
+			li: a(href="#", aria-label="Page 2") 2
+			li: a(href="#", aria-label="Page 3") 3
+			li: a(href="#", aria-label="Page 4") 4
+			li.ellipsis
+			li: a(href="#", aria-label="Page 12") 12
+			li: a(href="#", aria-label="Page 13") 13
+			li.pagination-next: a(href="#", aria-label="Next Page") Next

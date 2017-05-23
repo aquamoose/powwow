@@ -1,0 +1,34 @@
+extend layouts/index-layout.jade
+
+block page-title
+	p pow! wow! directors
+
+block sponsor-title
+	p worldwide sponsors
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block content-title
+	h1.content-title pow! wow! directors
+
+block main-content
+	.directors-list
+		.directors
+			- var list = [{name: 'Jasper Wong', position: 'Founder and Lead Director'}, {name: 'Kamea Hadar', position: 'Co-Lead Director'}, {name: 'Jeffrey Gress', position: 'Operations Director'}, {name: 'Michael Inouye', position: 'Documentation Director'}, {name: 'Amy Wong', position: 'Merchandising Director'}, {name: 'JP Kennedy', position: 'Music and Event Coordination'}]
+					each item in list
+						div
+							p=item.position
+							span=item.name
+		.regional-directors
+			- var list = [{name: 'Lawrence Chen', position: 'Taiwan Regional Director'}, {name: 'Emily Okamoto', position: 'Japan Regional Director'}, {name: 'John Hall', position: 'Long Beach Regional Director'}, {name: 'Andy Song', position: 'Music School Director'}, {name: 'Nick Kaleikini', position: 'Music School Director'}, {name: 'John "Prime" Hina', position: 'Art School Director'}]
+					each item in list
+						div
+							p=item.position
+							span=item.name

@@ -1,0 +1,75 @@
+extend layouts/index-layout.jade
+
+block header
+	include component/taiwan-header.jade
+
+block page-title
+	p welcome to pow! wow! taiwan
+
+block sponsor-title
+	p taiwan sponsors
+
+block second-title
+	.page-title
+		p pow! wow! taiwan news
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block main-content
+	#map
+
+block second-content
+	.grid-wrapper
+		.row
+			- var list = [{name: 'Pow! Wow! Taiwan 2016', page: 'powwow-taiwan-2016.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/161120_0272_bySean-Marc-Lee.jpg'}, {name: 'Pow! Wow! Taiwan 2015', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2016/03/DSC09399.jpg'}, {name: 'Pow! Wow! Taiwan 2014', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2014/04/pwtw_process_18-1277x848.jpg'}]
+				each item in list
+					.large-3.medium-6.small-12.column.grid-block.end
+						a(href=item.page)
+							.grid-image(style='background-image: url('+item.image+')')
+							.grid-overlay
+								p=item.name
+
+block script
+	script.
+		function myMap() {
+			var myLoc = new google.maps.LatLng(51.5074, 0.1278);
+
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 2,
+				center: myLoc
+			});
+			var contentString = "<div class='info-box'><p><a href='#'>Ano</a></p><img src='img/mock/ano.jpg'></div>";
+			var infoWindow = new google.maps.InfoWindow({
+				content: contentString,
+				maxWidth: 500
+			});
+			var marker = new google.maps.Marker({
+				position: myLoc,
+				map: map,
+				title: 'Ano'
+			});
+			google.maps.event.addListener(marker, 'click', function(){
+				infoWindow.open(map,marker);
+			});
+			google.maps.event.addListener(map, 'click', function(){
+				infoWindow.close();
+			});
+			google.maps.event.addDomListener(infoWindow, 'close', function(){
+				google.maps.event.trigger(map, 'close');
+				var center = map.getCenter();
+				map.setCenter(center);
+			});
+			google.maps.event.addDomListener(window, 'resize', function(){
+				var center = map.getCenter();
+				google.maps.event.trigger(map, 'resize');
+				map.setCenter(center);
+			});
+		}
+	script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_kLitJTrG9CrohPBaoPDu15qjBu7F1Lg&callback=myMap")

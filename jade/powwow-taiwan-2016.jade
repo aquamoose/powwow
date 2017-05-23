@@ -1,0 +1,103 @@
+extend layouts/index-layout.jade
+
+block header
+	include component/taiwan-header.jade
+
+block page-title
+	a(href="powwow-taiwan.html") 
+		i.fa.fa-long-arrow-left(aria-hidden="true") 
+		span &nbsp; Back to Pow! Wow! Taiwan Recap
+
+block sponsor-title
+	p taiwan sponsors
+
+block second-title
+	.page-title
+		p pow! wow! taiwan 2016 murals
+
+block third-title
+	.page-title
+		p pow! wow! taiwan 2016 images
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block main-content
+	#map
+	.one-column-description
+		h2.text-center.bold Pow! Wow! Taiwan 2016
+		p After storming through the eight different cities around the globe, POW! WOW! artists enveloped Hawaii’s commercial district of Kakaako with their striking artwork. Since 2011, founder Jasper Wong and lead director Kamea Hadar has been wrangling a bevy of acclaimed international artists to network with local artists in order to foster creativity, collaboration and, of course, exposure in these events. Not to mention, 2017 marks the seventh year for the renowned function to take place in the Aloha State.
+
+		p Visiting artists included Kevin Lyons, James Jean, Cinta Vidal, OG Slick, Dan Witz, Careaux, Jorman Roukes, Telmo Miel, Maya Hayuk and more. Local creators span Katch, Ckaweeks, Prime, Wooden Wave to name a few. As a whole, the event will feature live art installations, exhibitions, concerts and panel discussions. As far as music appearances go, Steve Aoki, ILoveMakonnen, Autoerotique, Max Styler, and other special guests took the stage.
+
+		p.italic Photos by Brandon Shigeta and Jonas Maon.
+
+block second-content
+	.grid-wrapper
+		.row
+			- var list = [{name: 'Luise Ono Wall in Ximen', page: 'luise-ono-ximen-mural.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/luiseone_ximen.jpg'}, {name: 'Bounce Wall in Ximen', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/bounce_01_ximen.jpg'}, {name: 'Candybird Wall in Taichung', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/CandyBird.jpg'}, {name: 'Girenhao Wall in Wei Wu Ying', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/Girenhao-2.jpg'}, {name: 'Danae Wall in Wei Wu Ying', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/Danae-2_Byaserktw.jpg'}, {name: 'Bao Wall in Tainan', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/bao_tainan.jpg'}, {name: 'Taiwan Festival Canvas', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/Final_FLEKSONE_bySean-Marc-Lee.jpg'}, {name: 'Taiwan Festival Canvas', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/Final_DEBE_MROGAY_bySean-Marc-Lee.jpg'}, {name: 'Taiwan Festival Canvas', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/Final_Black_bySean-Marc-Lee.jpg'}, {name: 'Taiwan Festival Canvas', page: 'powwow-taiwan.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/Final_SATR_bySean-Marc-Lee.jpg'}]
+				each item in list
+					.large-3.medium-6.small-12.column.grid-block.end
+						a(href=item.page)
+							.grid-image(style='background-image: url('+item.image+')')
+							.grid-overlay
+								p=item.name
+
+block third-content
+	.grid-wrapper
+		.row
+			- var list = [{image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/1120_蘇珮卿PaigeSu_BYBana_chen.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/161120_0110_bySean-Marc-Lee.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/161120_0113_bySean-Marc-Lee.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/161120_0116_bySean-Marc-Lee.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/161120_0119_bySean-Marc-Lee.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/161120_0121_bySean-Marc-Lee.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/161120_0122_bySean-Marc-Lee.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/161120_0134_bySean-Marc-Lee.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/161120_0143_bySean-Marc-Lee.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/161120_0151_bySean-Marc-Lee.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/161120_0158_bySean-Marc-Lee.jpg'}, {image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/161120_0161_bySean-Marc-Lee.jpg'}]
+				each item in list
+					.large-3.medium-6.small-12.column.grid-block.end
+						a(href=item.image, data-lightbox='lightbox')
+							.grid-image(style='background-image: url('+item.image+')')
+							.grid-overlay
+
+block script
+	script(src='js/lightbox.js')
+	script.
+		lightbox.option({
+			'fadeDuration': 300,
+			'resizeDuration': 300
+		});
+		function myMap() {
+			var myLoc = new google.maps.LatLng(51.5074, 0.1278);
+
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 2,
+				center: myLoc
+			});
+			var contentString = "<div class='info-box'><p><a href='#'>Ano</a></p><img src='img/mock/ano.jpg'></div>";
+			var infoWindow = new google.maps.InfoWindow({
+				content: contentString,
+				maxWidth: 500
+			});
+			var marker = new google.maps.Marker({
+				position: myLoc,
+				map: map,
+				title: 'Ano'
+			});
+			google.maps.event.addListener(marker, 'click', function(){
+				infoWindow.open(map,marker);
+			});
+			google.maps.event.addListener(map, 'click', function(){
+				infoWindow.close();
+			});
+			google.maps.event.addDomListener(infoWindow, 'close', function(){
+				google.maps.event.trigger(map, 'close');
+				var center = map.getCenter();
+				map.setCenter(center);
+			});
+			google.maps.event.addDomListener(window, 'resize', function(){
+				var center = map.getCenter();
+				google.maps.event.trigger(map, 'resize');
+				map.setCenter(center);
+			});
+		}
+	script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_kLitJTrG9CrohPBaoPDu15qjBu7F1Lg&callback=myMap")

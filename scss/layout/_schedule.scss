@@ -1,0 +1,91 @@
+.schedule-wrapper {
+	width: 100%;
+	max-width: 1200px;
+	margin: 50px auto;
+	.schedule-grid {
+		height: 100%;
+		a {
+			display: block;
+			position: relative;
+			min-height: 250px;
+			.grid-overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background-color: rgba(0,0,0,0);
+				@include transition(all .3s);
+				p {
+					font-size: 2em;
+					font-weight: bold;
+					color: white;
+					text-align: center;   
+				}
+				.schedule-date {
+					padding-top: 10px;
+					font-size: 2.5em;
+				}
+				.schedule-city {
+					position: absolute;
+				    top: 50%; 
+				    left: 0;
+				    right: 0;
+				    margin: auto;
+				    -webkit-transform: translateY(-50%);
+					-ms-transform: translateY(-50%);
+					transform: translateY(-50%);
+				    padding: 0 5%;
+				}
+					
+			}
+			&:hover {
+				.grid-overlay {
+					background-color: rgba(0,0,0,.6);
+				}
+			}
+		}
+	}
+	.annual-listing {
+		margin-bottom: 1px;
+	}
+	.orange {
+		background-color: $orange;
+	}
+	.red {
+		background-color: $red;
+	}
+	.blue {
+		background-color: $blue;
+	}
+	.green {
+		background-color: $green;
+	}
+	.purple {
+		background-color: $purple;
+	}
+	.yellow {
+		background-color: $yellow;
+	}
+	.darkBlue {
+		background-color: $darkBlue;
+	}
+	.lightGray {
+		background-color: $lightGray;
+	}
+	.gray1 {
+		background-color: #6b6a65;
+	}
+	.gray2 {
+		background-color: #4d4d4a;
+	}
+	.gray3 {
+		background-color: #6b6a65;
+	}
+	.gray4 {
+		background-color: #2f302e;
+	}
+	.gray5 {
+		background-color: #4d4d4a;
+	}
+}

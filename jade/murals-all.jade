@@ -1,0 +1,61 @@
+extend layouts/index-layout.jade
+
+block header
+	include component/header.jade
+
+block page-title
+	p pow! wow! murals
+
+block sponsor-title
+	.page-title
+		p worldwide sponsors
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block second-content
+	.filter-wrap
+		.filter-outer-box
+			span.filter-label Filter
+			.filter-box
+				select.cs-select.filter-select.cs-skin-underline
+					option(selected, disabled) Choose Event
+					- var list = [{position: 'None', value: 'none'}, {position: '2010 Hong-kong', value: '2011 hk'}, {position: '2011 Hawaii', value: '2011 hawaii'}, {position: '2012 Hawaii', value: '2012 hawaii'}, {position: '2013 Hawaii', value: '2013 hawaii'}, {position: '2014 Hawaii', value: '2014 hawaii'}, {position: '2014 Taiwan', value: '2014 taiwan'}, {position: '2015 Hawaii', value: '2015 hawaii'}, {position: '2015 Taiwan', value: '2015 taiwan'}, {position: '2015 Japan', value: '2015 japan'}, {position: '2015 Long Beach', value: '2015 long beach'}, {position: '2015 SXSW', value: '2015 sxsw'}, {position: '2016 Antelope Valley', value: '2016 antelope valley'}, {position: '2016 Hawaii', value: '2016 hawaii'}, {position: '2016 Japan', value: '2016 japan'}, {position: '2016 Long Beach', value: '2016 long beach'}, {position: '2016 SXSW', value: '2016 sxsw'}, {position: '2016 Washington DC', value: '2016 washington dc'}, {position: '2016 Worcester', value: '2016 worcester'}, {position: '2016 Taiwan', value: '2016 taiwan'}, {position: '2017 Hawaii', value: '2017 hawaii'}]
+						each item in list
+							option(value=item.value)=item.position
+		.filter-submit 
+			button.submit APPLY
+	.grid-wrapper
+		.row
+			- var list = [{name: 'Luise Ono Wall', page: 'luise-ono-ximen-mural.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/luiseone_ximen.jpg', value: '2016 Taiwan'}, {name: 'James Jean Wall', page: 'luise-ono-ximen-mural.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/jj_thumb-260x172.jpg', value: '2017 Hawaii'}, {name: 'Shok-1 Wall', page: 'luise-ono-ximen-mural.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/shok_thumb-260x172.jpg', value: '2017 Hawaii'}, {name: 'Girenhao Wall', page: 'luise-ono-ximen-mural.html', image: 'http://powwowhawaii.com/wp-content/uploads/2017/03/girenhao_thumb-260x172.jpg', value: '2016 Taiwan'}, {name: 'Samuel Rodriguez Wall', page: 'luise-ono-ximen-mural.html', image: 'http://powwowhawaii.com/wp-content/uploads/2016/10/thumb_sam-260x172.jpg', value: '2016 Japan'}, {name: 'Askew Wall', page: 'luise-ono-ximen-mural.html', image: 'http://powwowhawaii.com/wp-content/uploads/2016/09/askew_thumb-260x172.jpg', value: '2016 Worcester'}, {name: 'Meggs Wall', page: 'luise-ono-ximen-mural.html', image: 'http://powwowhawaii.com/wp-content/uploads/2016/08/meggs_thumb-260x172.jpg', value: '2016 Antelope Valley'}, {name: 'David Flores Wall', page: 'luise-ono-ximen-mural.html', image: 'http://powwowhawaii.com/wp-content/uploads/2016/08/df_thumb-260x172.jpg', value: '2016 Antelope Valley'}, {name: 'Persue, Sheryo and Yok Wall', page: 'luise-ono-ximen-mural.html', image: 'http://powwowhawaii.com/wp-content/uploads/2016/07/persue_thumb-260x172.jpg', value: '2016 Long Beach'}, {name: 'Virtue Wall', page: 'luise-ono-ximen-mural.html', image: 'http://powwowhawaii.com/wp-content/uploads/2016/03/virtue_thumb-260x172.jpg', value: '2016 SXSW'}, {name: 'Audrey Kawasaki Wall', page: 'luise-ono-ximen-mural.html', image: 'http://powwowhawaii.com/wp-content/uploads/2016/03/audrey_mural_thumb-260x172.jpg', value: '2016 Hawaii'}]
+				each item in list
+					.large-3.medium-6.small-12.column.grid-block.end(data-event=item.value)
+						a(href=item.page)
+							.grid-image(style='background-image: url('+item.image+')')
+							.grid-overlay
+								p=item.name
+
+block script
+	script.
+		$(document).ready(function(){
+			$('.submit').click(function(e){
+				e.preventDefault();
+				var filter = $('.filter-select .cs-placeholder').html();
+				console.log(filter);
+				$('.grid-block').each(function(){
+					if($(this).attr('data-event') == filter) {
+						$(this).show();
+					} else if (filter == 'None') {
+						$('.grid-block').show();
+					} else {
+						$(this).hide();
+					}
+				});
+			});
+		});

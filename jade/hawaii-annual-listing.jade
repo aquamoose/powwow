@@ -1,0 +1,69 @@
+extend layouts/index-layout.jade
+
+block header
+	include component/hawaii-header.jade
+
+block page-title
+	a(href="schedule.html") 
+		i.fa.fa-long-arrow-left(aria-hidden="true") 
+		span &nbsp; Back to Pow! Wow! Worldwide Schedule
+
+block sponsor-title
+	p hawaii sponsors
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block content-title
+	h1.content-title pow! wow! hawaii annual listing
+
+block main-content
+	.schedule-wrapper
+		#schedule-tabs.tabs.schedule-block.row.small-up-2.medium-up-4.large-up-5.collapse(data-tabs)
+			- var list = [{id: '#panel1', color: 'gray1', title: 'POW! WOW! HAWAII 2017', aria: 'true', active: 'active'}, {id: '#panel2', color: 'gray2', title: 'POW! WOW! HAWAII 2016'}, {id: '#panel3', color: 'gray3', title: 'POW! WOW! HAWAII 2015'}, {id: '#panel4', color: 'gray4', title: 'POW! WOW! HAWAII 2014'}, {id: '#panel5', color: 'gray5', title: 'POW! WOW! HAWAII 2013'}, {id: '#panel6', color: 'gray1', title: 'POW! WOW! HAWAII 2012'}, {id: '#panel7', color: 'gray2', title: 'POW! WOW! HAWAII 2011'}]
+				each item in list
+					.tabs-title.schedule-grid.annual-listing.column.end(class=item.color, class=item.active)
+						a(href=item.id, aria-selected=item.aria)
+							.grid-overlay
+								p.schedule-city=item.title
+		.schedule-tab-content.tabs-content(data-tabs-content="schedule-tabs")
+			.tabs-panel.is-active#panel1
+				.schedule-timeline
+					p.schedule-timeline-title Pow! Wow! Hawaii 2017 Schedule
+					include layouts/hawaii-2017-timeline.jade
+			.tabs-panel.is-active#panel2
+				.schedule-timeline
+					p.schedule-timeline-title Pow! Wow! Hawaii 2016 Schedule
+					include layouts/hawaii-2017-timeline.jade
+			.tabs-panel.is-active#panel3
+				.schedule-timeline
+					p.schedule-timeline-title Pow! Wow! Hawaii 2015 Schedule
+					include layouts/hawaii-2017-timeline.jade
+			.tabs-panel.is-active#panel4
+				.schedule-timeline
+					p.schedule-timeline-title Pow! Wow! Hawaii 2014 Schedule
+					include layouts/hawaii-2017-timeline.jade
+			.tabs-panel.is-active#panel5
+				.schedule-timeline
+					p.schedule-timeline-title Pow! Wow! Hawaii 2013 Schedule
+					include layouts/hawaii-2017-timeline.jade
+			.tabs-panel.is-active#panel6
+				.schedule-timeline
+					p.schedule-timeline-title Pow! Wow! Hawaii 2012 Schedule
+					include layouts/hawaii-2017-timeline.jade
+			.tabs-panel.is-active#panel7
+				.schedule-timeline
+					p.schedule-timeline-title Pow! Wow! Hawaii 2011 Schedule
+					include layouts/hawaii-2017-timeline.jade
+
+block script
+	script.
+		$(document).ready(function(){
+			$.timeliner({timelineContainer: "#timeline1"});
+		});
