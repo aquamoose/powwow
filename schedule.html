@@ -26,11 +26,9 @@
     <script src="js/classie.js"></script>
     <script src="js/selectFx.js"></script>
     <script src="js/scrollTo.js"></script>
-    <script src="js/timeliner.js"></script>
     <link rel="stylesheet" href="font/aller.css">
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/lightbox.css">
-    <link rel="stylesheet" href="css/timeliner.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,300" rel="stylesheet" type="text/css">
@@ -42,7 +40,35 @@
           scrollTop: $("#"+id).offset().top - 50},
         'slow');
       }
+      equalheight = function(container){
+        var currentTallest = 0,
+           currentRowStart = 0,
+           rowDivs = new Array(),
+           $el,
+           topPosition = 0;
+       $(container).each(function() {
       
+         $el = $(this);
+         $($el).height('auto')
+         topPostion = $el.position().top;
+      
+         if (currentRowStart != topPostion) {
+           for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+             rowDivs[currentDiv].height(currentTallest);
+           }
+           rowDivs.length = 0; // empty the array
+           currentRowStart = topPostion;
+           currentTallest = $el.height();
+           rowDivs.push($el);
+         } else {
+           rowDivs.push($el);
+           currentTallest = (currentTallest < $el.height()) ? ($el.height()) : (currentTallest);
+        }
+         for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+           rowDivs[currentDiv].height(currentTallest);
+         }
+       });
+      }
       function redirectPage() {
         window.location = linkLocation;
       }
@@ -69,6 +95,7 @@
             $('.mobile-menu-section').attr('aria-expanded', 'false');
           }
         });
+      
         $(window).scroll(function(){
           if ($(this).scrollTop() > 50) {
             $('.back-to-top').addClass('back-top-show');
@@ -277,42 +304,42 @@
       <h1 class="content-title">pow! wow! worldwide schedule</h1>
       <div class="schedule-wrapper">
         <div class="schedule-block row small-up-2 medium-up-3 large-up-5 collapse">
-          <div class="schedule-grid column end red"><a href="hawaii-annual-listing.html">
+          <div style="background-image: url(&quot;http://powwowhawaii.com/wp-content/uploads/2017/03/CU4B1120.jpg&quot;);" class="schedule-grid column end"><a href="hawaii-schedule.html">
               <div class="grid-overlay">
                 <p class="schedule-date">Feburary</p>
                 <p class="schedule-city">POW! WOW! HAWAII</p>
               </div></a></div>
-          <div class="schedule-grid column end orange"><a href="hawaii-annual-listing.html">
+          <div style="background-image: url(&quot;http://powwowhawaii.com/wp-content/uploads/2016/03/day5_esao.jpg&quot;);" class="schedule-grid column end"><a href="hawaii-schedule.html">
               <div class="grid-overlay">
                 <p class="schedule-date">March</p>
                 <p class="schedule-city">POW! WOW! SXSW</p>
               </div></a></div>
-          <div class="schedule-grid column end blue"><a href="hawaii-annual-listing.html">
+          <div style="background-image: url(&quot;http://powwowhawaii.com/wp-content/uploads/2016/07/Persue-Yok-Sheryo-5-26-FS-1.jpg&quot;);" class="schedule-grid column end"><a href="hawaii-schedule.html">
               <div class="grid-overlay">
                 <p class="schedule-date">May</p>
                 <p class="schedule-city">POW! WOW! DC</p>
               </div></a></div>
-          <div class="schedule-grid column end green"><a href="hawaii-annual-listing.html">
+          <div style="background-image: url(&quot;http://powwowhawaii.com/wp-content/uploads/2016/07/20160711-DSC02621.jpg&quot;);" class="schedule-grid column end"><a href="hawaii-schedule.html">
               <div class="grid-overlay">
                 <p class="schedule-date">July</p>
                 <p class="schedule-city">POW! WOW! LONG BEACH</p>
               </div></a></div>
-          <div class="schedule-grid column end purple"><a href="hawaii-annual-listing.html">
+          <div style="background-image: url(&quot;http://powwowhawaii.com/wp-content/uploads/2016/08/MeggsFinishedCanvas1.jpg&quot;);" class="schedule-grid column end"><a href="hawaii-schedule.html">
               <div class="grid-overlay">
                 <p class="schedule-date">August</p>
                 <p class="schedule-city">POW! WOW! ANTELOPE VALLEY</p>
               </div></a></div>
-          <div class="schedule-grid column end darkBlue"><a href="hawaii-annual-listing.html">
+          <div style="background-image: url(&quot;http://powwowhawaii.com/wp-content/uploads/2016/09/Marka_27_SK_Worcester_2016_0230.jpg&quot;);" class="schedule-grid column end"><a href="hawaii-schedule.html">
               <div class="grid-overlay">
                 <p class="schedule-date">August</p>
                 <p class="schedule-city">POW! WOW! WORCESTER</p>
               </div></a></div>
-          <div class="schedule-grid column end lightGray"><a href="hawaii-annual-listing.html">
+          <div style="background-image: url(&quot;http://powwowhawaii.com/wp-content/uploads/2016/03/DSC05494.jpg&quot;);" class="schedule-grid column end"><a href="hawaii-schedule.html">
               <div class="grid-overlay">
                 <p class="schedule-date">October</p>
                 <p class="schedule-city">POW! WOW! JAPAN</p>
               </div></a></div>
-          <div class="schedule-grid column end yellow"><a href="hawaii-annual-listing.html">
+          <div style="background-image: url(&quot;http://powwowhawaii.com/wp-content/uploads/2016/03/DSC09434-Edit.jpg&quot;);" class="schedule-grid column end"><a href="hawaii-schedule.html">
               <div class="grid-overlay">
                 <p class="schedule-date">November</p>
                 <p class="schedule-city">POW! WOW! TAIWAN</p>

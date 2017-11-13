@@ -1,6 +1,6 @@
 .header {
 	width: 100%;
-	max-width: 1920px;
+	max-width: 1280px;
 	background: white;
 	margin: 0 auto;
 	position: relative;
@@ -26,11 +26,17 @@
 		a {
 			color: $darkGray;
 			font-weight: bold;
-			font-size: 1.125em;
+			font-size: 1em;
 			@include transition(all .3s);
 			&:hover {
 				color: white;
 				background-color: $darkGray;
+			}
+		}
+		a.searchBtn {
+			&:hover {
+				color: #333;
+				background-color: transparent;
 			}
 		}
 		.is-active {

@@ -28,12 +28,10 @@ html.no-js
       script(src='js/classie.js')
       script(src='js/selectFx.js')
       script(src='js/scrollTo.js')
-      script(src='js/timeliner.js')
       //- script(src='js/markerclusterer.js')
       link(rel='stylesheet', href='font/aller.css')
       link(rel='stylesheet', href='css/foundation.css')
       link(rel='stylesheet', href='css/lightbox.css')
-      link(rel='stylesheet', href='css/timeliner.css')
       link(rel='stylesheet', href='css/styles.css')
       link(rel='stylesheet', href='css/font-awesome.css')
       link(href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300', rel='stylesheet', type='text/css')
@@ -47,7 +45,35 @@ html.no-js
           scrollTop: $("#"+id).offset().top - 50},
         'slow');
       }
+      equalheight = function(container){
+        var currentTallest = 0,
+           currentRowStart = 0,
+           rowDivs = new Array(),
+           $el,
+           topPosition = 0;
+       $(container).each(function() {
 
+         $el = $(this);
+         $($el).height('auto')
+         topPostion = $el.position().top;
+
+         if (currentRowStart != topPostion) {
+           for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+             rowDivs[currentDiv].height(currentTallest);
+           }
+           rowDivs.length = 0; // empty the array
+           currentRowStart = topPostion;
+           currentTallest = $el.height();
+           rowDivs.push($el);
+         } else {
+           rowDivs.push($el);
+           currentTallest = (currentTallest < $el.height()) ? ($el.height()) : (currentTallest);
+        }
+         for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+           rowDivs[currentDiv].height(currentTallest);
+         }
+       });
+      }
       function redirectPage() {
         window.location = linkLocation;
       }
@@ -74,6 +100,7 @@ html.no-js
             $('.mobile-menu-section').attr('aria-expanded', 'false');
           }
         });
+
         $(window).scroll(function(){
           if ($(this).scrollTop() > 50) {
             $('.back-to-top').addClass('back-top-show');

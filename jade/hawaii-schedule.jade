@@ -1,0 +1,39 @@
+extend layouts/index-layout.jade
+
+block header
+	include component/hawaii-header.jade
+
+block page-title
+	a(href="schedule.html") 
+		i.fa.fa-long-arrow-left(aria-hidden="true") 
+		span &nbsp; Back to Pow! Wow! Worldwide Schedule
+
+block sponsor-title
+	p hawaii sponsors
+
+block sponsor-brand
+	span: img(src="img/sp-montana-logo.png")
+	span: img(src="img/sp-hawaiian-airline-logo.png")
+	span: img(src="img/sp-monster-logo.png")
+	span: img(src="img/sp-olukai-logo.png")
+	span: img(src="img/sp-eptm-logo.png")
+	span: img(src="img/sp-thinkspace-logo.png")
+	span: img(src="img/sp-1xrun-logo.png")
+
+block main-content
+	.schedule-wrapper
+		.schedule-tab-content
+			.tabs-panel-div.is-active#panel1
+				.schedule-timeline
+					p.schedule-timeline-title Pow! Wow! Hawaii 2017 Schedule
+					include layouts/hawaii-2017-timeline.jade
+block script
+	script.
+		$(document).ready(function() {
+			equalheight($(".top-grid"));
+			equalheight($(".bottom-grid"));
+		});
+		$(window).resize(function(){
+		 	equalheight($(".top-grid"));
+			equalheight($(".bottom-grid"));
+		 });

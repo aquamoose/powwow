@@ -75,6 +75,11 @@
 		.news-title {
 			font-size: 1.667em;
 			font-weight: bold;
+			color: $black;
+			@include transition(all .3s);
+			&:hover {
+				color: $bodyText;
+			}
 		}
 		.news-desc {
 			font-size: 1.333em;

@@ -5,6 +5,11 @@
 	height: auto;
 	padding: 100px 0.9375em 70px 0.9375em;
 	position: relative;
+	background: white;
+	.footer-block {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
 	.footer-logo {
 		display: inline-block;
 		vertical-align: top;

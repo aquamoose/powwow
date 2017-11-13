@@ -1,4 +1,6 @@
 .lang-box-wrapper {
+	max-width: 1220px;
+	margin: 0 auto 15px auto;
 	@include clearfix;
 	.cs-skin-underline {
 		.cs-options {
@@ -9,7 +11,7 @@
 .lang-select-box {
 	padding: 0;
 	float: right;
-	margin-right: 1.167em;
+	margin-right: 0.9375em;
 	max-width: 70px;
 	font-size: 1em;
 	.cs-placeholder {
@@ -56,7 +58,7 @@ div.cs-select:focus {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	font-size: 0.75em;
+	font-size: 0.6em;
 }
 
 /* Placeholder and selected option */

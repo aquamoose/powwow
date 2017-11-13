@@ -4,6 +4,10 @@
 	margin: 50px auto;
 	.schedule-grid {
 		height: 100%;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		border-bottom: 1px solid #eeeeee;
 		a {
 			display: block;
 			position: relative;
@@ -44,6 +48,72 @@
 					background-color: rgba(0,0,0,.6);
 				}
 			}
+		}
+		.middle-grid {
+			height: auto;
+			img {
+				width: 100%;
+			}
+		}
+		.top-grid, .bottom-grid {
+			padding: 1em;
+			position: relative;
+			height: auto;
+			p {
+				color: white;
+				font-weight: bold;
+			}
+			p.schedule-date {
+				font-size: 2em;
+				margin-bottom: 50px;
+				text-transform: uppercase;
+			}
+			p.schedule-time {
+				font-size: 1.875em;
+				margin-bottom: 0;
+				text-transform: uppercase;
+			}
+			p.schedule-title {
+				font-size: 1.25em;
+				margin-bottom: 0;
+				text-transform: uppercase;
+			}
+			.divider {
+				height: 1px;
+				background-color: white;
+				margin: 10px 0;
+			}
+			p.schedule-text {
+				text-transform: normal;
+				font-size: 1em;
+				padding-bottom: 10px;
+			}
+			a {
+				color: #ccc;
+				display: inline;
+				text-decoration: underline;
+				padding-left: 5px;
+				@include transition(color .3s);
+				&:hover {
+					color: white;
+				}
+			}
+		}
+		 
+		.gray1 {
+			background-color: #6b6a65;
+		}
+		.gray2 {
+			background-color: #4d4d4a;
+		}
+		.gray3 {
+			background-color: #6b6a65;
+		}
+		.gray4 {
+			background-color: #2f302e;
+		}
+		.gray5 {
+			background-color: #4d4d4a;
 		}
 	}
 	.annual-listing {

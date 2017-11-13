@@ -430,7 +430,8 @@ body {
 .content {
   position: relative;
   width: 100%;
-  max-width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
   padding: 30px 0.9375em;
   background: white;
   -moz-transition: all 0.3s;
@@ -572,7 +573,11 @@ _::-webkit-:not(:root:root), .safari_only {
   margin: 0 auto;
   height: auto;
   padding: 100px 0.9375em 70px 0.9375em;
-  position: relative; }
+  position: relative;
+  background: white; }
+  .footer .footer-block {
+    max-width: 1200px;
+    margin: 0 auto; }
   .footer .footer-logo {
     display: inline-block;
     vertical-align: top;
@@ -638,7 +643,7 @@ _::-webkit-:not(:root:root), .safari_only {
 
 .header {
   width: 100%;
-  max-width: 1920px;
+  max-width: 1280px;
   background: white;
   margin: 0 auto;
   position: relative;
@@ -665,7 +670,7 @@ _::-webkit-:not(:root:root), .safari_only {
     .header .header-nav a {
       color: #615f5f;
       font-weight: bold;
-      font-size: 1.125em;
+      font-size: 1em;
       -moz-transition: all 0.3s;
       -o-transition: all 0.3s;
       -webkit-transition: all 0.3s;
@@ -673,6 +678,9 @@ _::-webkit-:not(:root:root), .safari_only {
       .header .header-nav a:hover {
         color: white;
         background-color: #615f5f; }
+    .header .header-nav a.searchBtn:hover {
+      color: #333;
+      background-color: transparent; }
     .header .header-nav .is-active {
       background-color: #615f5f; }
       .header .header-nav .is-active a {
@@ -790,7 +798,14 @@ _::-webkit-:not(:root:root), .safari_only {
     margin-left: 20px; }
     .news-block .news-description-block .news-title {
       font-size: 1.667em;
-      font-weight: bold; }
+      font-weight: bold;
+      color: #050505;
+      -moz-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s; }
+      .news-block .news-description-block .news-title:hover {
+        color: #7d7672; }
     .news-block .news-description-block .news-desc {
       font-size: 1.333em; }
       .news-block .news-description-block .news-desc a {
@@ -880,7 +895,11 @@ _::-webkit-:not(:root:root), .safari_only {
   max-width: 1200px;
   margin: 50px auto; }
   .schedule-wrapper .schedule-grid {
-    height: 100%; }
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid #eeeeee; }
     .schedule-wrapper .schedule-grid a {
       display: block;
       position: relative;
@@ -916,6 +935,58 @@ _::-webkit-:not(:root:root), .safari_only {
           padding: 0 5%; }
       .schedule-wrapper .schedule-grid a:hover .grid-overlay {
         background-color: rgba(0, 0, 0, 0.6); }
+    .schedule-wrapper .schedule-grid .middle-grid {
+      height: auto; }
+      .schedule-wrapper .schedule-grid .middle-grid img {
+        width: 100%; }
+    .schedule-wrapper .schedule-grid .top-grid, .schedule-wrapper .schedule-grid .bottom-grid {
+      padding: 1em;
+      position: relative;
+      height: auto; }
+      .schedule-wrapper .schedule-grid .top-grid p, .schedule-wrapper .schedule-grid .bottom-grid p {
+        color: white;
+        font-weight: bold; }
+      .schedule-wrapper .schedule-grid .top-grid p.schedule-date, .schedule-wrapper .schedule-grid .bottom-grid p.schedule-date {
+        font-size: 2em;
+        margin-bottom: 50px;
+        text-transform: uppercase; }
+      .schedule-wrapper .schedule-grid .top-grid p.schedule-time, .schedule-wrapper .schedule-grid .bottom-grid p.schedule-time {
+        font-size: 1.875em;
+        margin-bottom: 0;
+        text-transform: uppercase; }
+      .schedule-wrapper .schedule-grid .top-grid p.schedule-title, .schedule-wrapper .schedule-grid .bottom-grid p.schedule-title {
+        font-size: 1.25em;
+        margin-bottom: 0;
+        text-transform: uppercase; }
+      .schedule-wrapper .schedule-grid .top-grid .divider, .schedule-wrapper .schedule-grid .bottom-grid .divider {
+        height: 1px;
+        background-color: white;
+        margin: 10px 0; }
+      .schedule-wrapper .schedule-grid .top-grid p.schedule-text, .schedule-wrapper .schedule-grid .bottom-grid p.schedule-text {
+        text-transform: normal;
+        font-size: 1em;
+        padding-bottom: 10px; }
+      .schedule-wrapper .schedule-grid .top-grid a, .schedule-wrapper .schedule-grid .bottom-grid a {
+        color: #ccc;
+        display: inline;
+        text-decoration: underline;
+        padding-left: 5px;
+        -moz-transition: color 0.3s;
+        -o-transition: color 0.3s;
+        -webkit-transition: color 0.3s;
+        transition: color 0.3s; }
+        .schedule-wrapper .schedule-grid .top-grid a:hover, .schedule-wrapper .schedule-grid .bottom-grid a:hover {
+          color: white; }
+    .schedule-wrapper .schedule-grid .gray1 {
+      background-color: #6b6a65; }
+    .schedule-wrapper .schedule-grid .gray2 {
+      background-color: #4d4d4a; }
+    .schedule-wrapper .schedule-grid .gray3 {
+      background-color: #6b6a65; }
+    .schedule-wrapper .schedule-grid .gray4 {
+      background-color: #2f302e; }
+    .schedule-wrapper .schedule-grid .gray5 {
+      background-color: #4d4d4a; }
   .schedule-wrapper .annual-listing {
     margin-bottom: 1px; }
   .schedule-wrapper .orange {
@@ -1287,6 +1358,8 @@ textarea {
     transition: all 0.4s ease-in-out; }
 
 .lang-box-wrapper {
+  max-width: 1220px;
+  margin: 0 auto 15px auto;
   zoom: 1; }
   .lang-box-wrapper:before, .lang-box-wrapper:after {
     content: "\0020";
@@ -1301,7 +1374,7 @@ textarea {
 .lang-select-box {
   padding: 0;
   float: right;
-  margin-right: 1.167em;
+  margin-right: 0.9375em;
   max-width: 70px;
   font-size: 1em; }
   .lang-select-box .cs-placeholder {
@@ -1343,7 +1416,7 @@ div.cs-select:focus {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.75em; }
+  font-size: 0.6em; }
 
 /* Placeholder and selected option */
 .cs-select > span::after,
